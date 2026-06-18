@@ -1,0 +1,532 @@
+[
+  {
+    "character": "女A",
+    "chunk": "0",
+    "post": "（自動）",
+    "recipeRaw": "—",
+    "recipes": [],
+    "route": "COM",
+    "estDay": "Day 1-2",
+    "event": "CG（開場自慰）"
+  },
+  {
+    "character": "女A",
+    "chunk": "1",
+    "post": "A1 首約",
+    "recipeRaw": "#慾望 + #自拍",
+    "recipes": [
+      [
+        "#慾望",
+        "#自拍"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 3",
+    "event": "H模式00（新手教學）"
+  },
+  {
+    "character": "女A",
+    "chunk": "2",
+    "post": "A2 深蹲",
+    "recipeRaw": "#第一次 + #汗水",
+    "recipes": [
+      [
+        "#第一次",
+        "#汗水"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 9",
+    "event": "健身房進入"
+  },
+  {
+    "character": "女A",
+    "chunk": "3",
+    "post": "A3a 界限a / A3b 界限b",
+    "recipeRaw": "#規矩 + #拉筋 ／ #越界 + #拉筋",
+    "recipes": [
+      [
+        "#規矩",
+        "#拉筋"
+      ],
+      [
+        "#越界",
+        "#拉筋"
+      ]
+    ],
+    "route": "MASKED/UNMASKED",
+    "estDay": "Day 17",
+    "event": "二番戰面紗分歧"
+  },
+  {
+    "character": "女A",
+    "chunk": "4",
+    "post": "A4 溫柔",
+    "recipeRaw": "#真實 + #烏魚 + #鏡中的自己 (女主心情值\"好\"以上)",
+    "recipes": [
+      [
+        "#真實",
+        "#烏魚",
+        "#鏡中的自己"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 25",
+    "event": "STEAM 過審版做到此"
+  },
+  {
+    "character": "女A",
+    "chunk": "5",
+    "post": "A5a 陪伴a / A5b 陪伴b",
+    "recipeRaw": "#陪伴 + #空座位 ／ #尊嚴 + #空座位",
+    "recipes": [
+      [
+        "#陪伴",
+        "#空座位"
+      ],
+      [
+        "#尊嚴",
+        "#空座位"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 31",
+    "event": "臨終關懷分歧"
+  },
+  {
+    "character": "女A",
+    "chunk": "6",
+    "post": "A6 糾結",
+    "recipeRaw": "#敲門 + #鐵的味道",
+    "recipes": [
+      [
+        "#敲門",
+        "#鐵的味道"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 38",
+    "event": "線下事件（敲門）"
+  },
+  {
+    "character": "女A",
+    "chunk": "7",
+    "post": "A7 支持",
+    "recipeRaw": "#安全詞 + #安全感",
+    "recipes": [
+      [
+        "#安全詞",
+        "#安全感"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 45",
+    "event": "上課07"
+  },
+  {
+    "character": "女A",
+    "chunk": "結局",
+    "post": "A8 排練照",
+    "recipeRaw": "#掀開帷幕",
+    "recipes": [
+      [
+        "#掀開帷幕"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 50",
+    "event": "結局檢定"
+  },
+  {
+    "character": "女B",
+    "chunk": "0",
+    "post": "（自動）",
+    "recipeRaw": "—",
+    "recipes": [],
+    "route": "COM",
+    "estDay": "Day 1",
+    "event": "加班場景"
+  },
+  {
+    "character": "女B",
+    "chunk": "1",
+    "post": "B1 注意力*",
+    "recipeRaw": "#女B劇01 + #自拍 + #理髮01",
+    "recipes": [
+      [
+        "#女B劇01",
+        "#自拍",
+        "#理髮01"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 5",
+    "event": "實習01上司"
+  },
+  {
+    "character": "女B",
+    "chunk": "2",
+    "post": "B2 努力工作",
+    "recipeRaw": "#女B劇02 + #深夜 + #加班",
+    "recipes": [
+      [
+        "#女B劇02",
+        "#深夜",
+        "#加班"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 11",
+    "event": "實習02 撞見自慰"
+  },
+  {
+    "character": "女B",
+    "chunk": "3",
+    "post": "B3 責任",
+    "recipeRaw": "#女B劇06 + #理髮02",
+    "recipes": [
+      [
+        "#女B劇06",
+        "#理髮02"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 18",
+    "event": "劇情訊息06 狡辯"
+  },
+  {
+    "character": "女B",
+    "chunk": "4",
+    "post": "B4 應援",
+    "recipeRaw": "#女B劇05 + #女B劇08 + #城市",
+    "recipes": [
+      [
+        "#女B劇05",
+        "#女B劇08",
+        "#城市"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 25",
+    "event": "CG過勞"
+  },
+  {
+    "character": "女B",
+    "chunk": "5",
+    "post": "B5a 圓夢a / B5b 圓夢b",
+    "recipeRaw": "#女B劇09 + #理髮03 ／ #女B劇10 + #理髮03",
+    "recipes": [
+      [
+        "#女B劇09",
+        "#理髮03"
+      ],
+      [
+        "#女B劇10",
+        "#理髮03"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 32",
+    "event": "演唱會分歧"
+  },
+  {
+    "character": "女B",
+    "chunk": "6",
+    "post": "B6 勞逸結合",
+    "recipeRaw": "#女B劇11 + #理髮04 + #自拍",
+    "recipes": [
+      [
+        "#女B劇11",
+        "#理髮04",
+        "#自拍"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 39",
+    "event": "實習06 吊帶襪"
+  },
+  {
+    "character": "女B",
+    "chunk": "結局",
+    "post": "B7a 執著a / B7b 執著b",
+    "recipeRaw": "#女B劇13  ／ #女B劇14",
+    "recipes": [
+      [
+        "#女B劇13"
+      ],
+      [
+        "#女B劇14"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 51",
+    "event": "結局檢定（雙分支，最終觸發 #女B劇16）"
+  },
+  {
+    "character": "女C",
+    "chunk": "0",
+    "post": "（自動）",
+    "recipeRaw": "—",
+    "recipes": [],
+    "route": "COM",
+    "estDay": "Day 1",
+    "event": "串門01 教學"
+  },
+  {
+    "character": "女C",
+    "chunk": "1",
+    "post": "C1 年輕",
+    "recipeRaw": "#鄰居的氣味 + #慾望 + #某段文字",
+    "recipes": [
+      [
+        "#鄰居的氣味",
+        "#慾望",
+        "#某段文字"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 8",
+    "event": "寫作01 年下"
+  },
+  {
+    "character": "女C",
+    "chunk": "2",
+    "post": "C2 算法",
+    "recipeRaw": "#女C劇03 + #圖書01",
+    "recipes": [
+      [
+        "#女C劇03",
+        "#圖書01"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 15",
+    "event": "CG享受當下"
+  },
+  {
+    "character": "女C",
+    "chunk": "3",
+    "post": "C3 自我",
+    "recipeRaw": "#女C劇06 + #房間一角",
+    "recipes": [
+      [
+        "#女C劇06",
+        "#房間一角"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 21",
+    "event": "H模式02 願者上鉤"
+  },
+  {
+    "character": "女C",
+    "chunk": "4",
+    "post": "C4a 呼吸a / C4b 呼吸b / C4c 呼吸c",
+    "recipeRaw": "#女C劇09 + #圖書02 ／ #女C劇10 + #圖書02／ #女C劇11 + #圖書02",
+    "recipes": [
+      [
+        "#女C劇09",
+        "#圖書02"
+      ],
+      [
+        "#女C劇10",
+        "#圖書02"
+      ],
+      [
+        "#女C劇11",
+        "#圖書02"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 27",
+    "event": "CG正宮登場"
+  },
+  {
+    "character": "女C",
+    "chunk": "5",
+    "post": "C5a 修復a / C5b 修復b",
+    "recipeRaw": "#女C劇09 + #圖書03 ／ #女C劇10 + #圖書03",
+    "recipes": [
+      [
+        "#女C劇09",
+        "#圖書03"
+      ],
+      [
+        "#女C劇10",
+        "#圖書03"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 37",
+    "event": "H模式03"
+  },
+  {
+    "character": "女C",
+    "chunk": "6",
+    "post": "C6a 平靜",
+    "recipeRaw": "#女C劇14 + #圖書04 ／ #女C劇11 + #圖書04",
+    "recipes": [
+      [
+        "#女C劇14",
+        "#圖書04"
+      ],
+      [
+        "#女C劇11",
+        "#圖書04"
+      ]
+    ],
+    "route": "COM/ANGRY",
+    "estDay": "Day 47",
+    "event": "修復/撕破臉分歧"
+  },
+  {
+    "character": "女C",
+    "chunk": "結局",
+    "post": "C7a 遠行a / C7b 遠行b / C7b 遠行c",
+    "recipeRaw": "#女C劇15  ／ #女C劇16 ／ #女C劇17",
+    "recipes": [
+      [
+        "#女C劇15"
+      ],
+      [
+        "#女C劇16"
+      ],
+      [
+        "#女C劇17"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 55",
+    "event": "結局檢定（雙分支，最終觸發 #女C劇16）"
+  },
+  {
+    "character": "女D",
+    "chunk": "0",
+    "post": "（自動）",
+    "recipeRaw": "—",
+    "recipes": [],
+    "route": "COM",
+    "estDay": "Day 1",
+    "event": "搬家陷阱"
+  },
+  {
+    "character": "女D",
+    "chunk": "1",
+    "post": "D1 蛋餅",
+    "recipeRaw": "#搬家 + #日常",
+    "recipes": [
+      [
+        "#搬家",
+        "#日常"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 6",
+    "event": "陷阱貼文"
+  },
+  {
+    "character": "女D",
+    "chunk": "2",
+    "post": "D2 暑修",
+    "recipeRaw": "#日常 + #學業",
+    "recipes": [
+      [
+        "#日常",
+        "#學業"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 11",
+    "event": "陷阱貼文"
+  },
+  {
+    "character": "女D",
+    "chunk": "3",
+    "post": "D3 量度",
+    "recipeRaw": "#女D劇04 + #街燈",
+    "recipes": [
+      [
+        "#女D劇04",
+        "#街燈"
+      ]
+    ],
+    "route": "COM",
+    "estDay": "Day 21",
+    "event": "直播03 H模式01"
+  },
+  {
+    "character": "女D",
+    "chunk": "4",
+    "post": "D4a 表裏不一",
+    "recipeRaw": "#女D劇05 + #女D劇06",
+    "recipes": [
+      [
+        "#女D劇05",
+        "#女D劇06"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 29",
+    "event": "星星與狗分歧"
+  },
+  {
+    "character": "女D",
+    "chunk": "5",
+    "post": "D5a 賭注宣言a / D5b 賭注宣言b",
+    "recipeRaw": "#女D劇07 + #某段文字 ／ #女D劇08 + #某段文字",
+    "recipes": [
+      [
+        "#女D劇07",
+        "#某段文字"
+      ],
+      [
+        "#女D劇08",
+        "#某段文字"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 46",
+    "event": "H模式02 / 線下02"
+  },
+  {
+    "character": "女D",
+    "chunk": "6",
+    "post": "D6a 萬眾矚目a / D6b 萬眾矚目b",
+    "recipeRaw": "#女D劇09 + #女D劇11 + #自拍 ／ #女D劇10 + #女D劇12 + #自拍",
+    "recipes": [
+      [
+        "#女D劇09",
+        "#女D劇11",
+        "#自拍"
+      ],
+      [
+        "#女D劇10",
+        "#女D劇12",
+        "#自拍"
+      ]
+    ],
+    "route": "DATE/NODATE",
+    "estDay": "Day 53",
+    "event": "路線分支推進"
+  },
+  {
+    "character": "女D",
+    "chunk": "結局",
+    "post": "D7a 最後通牒a / D7b 最後通牒b  / D7c 最後通牒c",
+    "recipeRaw": "#女D劇13  ／ #女D劇14 ／ #女D劇15",
+    "recipes": [
+      [
+        "#女D劇13"
+      ],
+      [
+        "#女D劇14"
+      ],
+      [
+        "#女D劇15"
+      ]
+    ],
+    "route": "FAIR/UNFAIR/SINGLE",
+    "estDay": "Day 58",
+    "event": "結局檢定（三分支，最終觸發 #最後通牒）"
+  }
+]

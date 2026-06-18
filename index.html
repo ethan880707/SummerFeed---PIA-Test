@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>SummerFeed — 內部測試版</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ====================================================================
+         Sticky 頂列：handle / 粉絲數 / 時鐘 / 重置存檔
+         ==================================================================== -->
+    <header class="topbar">
+      <div class="topbar__brand">
+        <div class="topbar__avatar" id="tbAvatar">P</div>
+        <div class="topbar__id">
+          <div class="topbar__handle" id="tbHandle">@player</div>
+          <div class="topbar__followers">
+            粉絲 <b id="tbFollowers">0</b>
+            <span class="delta" id="tbDelta"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar__spacer"></div>
+
+      <div class="clock">
+        <div class="clock__readout">
+          <span class="clock__day" id="tbDay">Day 1</span>
+          <span class="clock__ticks" id="tbTicks">0h</span>
+        </div>
+        <button class="btn btn--ghost btn--sm" id="btnFastForward">快進 6 小時</button>
+        <button class="btn btn--primary btn--sm" id="btnNextDay">下一天</button>
+        <button class="btn btn--danger btn--sm" id="btnResetSave">重置存檔</button>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         分頁列（4 tabs）
+         ==================================================================== -->
+    <nav class="tabbar">
+      <button class="tab is-active" data-tab="inventory">詞條庫存</button>
+      <button class="tab" data-tab="compose">發文</button>
+      <button class="tab" data-tab="feed">動態 Feed</button>
+      <button class="tab" data-tab="params">演算法參數</button>
+    </nav>
+
+    <!-- ====================================================================
+         面板容器（每個 tab 一個；由 app.js 動態填充）
+         ==================================================================== -->
+    <main class="panels">
+      <section class="panel is-active" id="panel-inventory"></section>
+      <section class="panel" id="panel-compose"></section>
+      <section class="panel" id="panel-feed"></section>
+      <section class="panel" id="panel-params"></section>
+    </main>
+
+  </div>
+
+  <!-- toast 容器 -->
+  <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+  <!-- ======================================================================
+       Script 載入順序（SPEC §1）：
+         data/db.js → js/data.js → js/algorithm.js → js/recipes.js
+         → js/state.js → js/app.js
+       全程以 <script>（非 fetch）載入資料，故 file:// 雙擊即可運作。
+       ====================================================================== -->
+  <script src="data/db.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/algorithm.js"></script>
+  <script src="js/recipes.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- 初始化：建索引 → 建配方表 → 載入存檔 → 啟動 UI -->
+  <script>
+    (function () {
+      SF.Data.init();
+      SF.Recipes.build();
+      SF.State.load();
+      SF.App.init();
+    })();
+  </script>
+</body>
+</html>

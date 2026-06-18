@@ -1,0 +1,2272 @@
+[
+  {
+    "type": "story",
+    "id": "A1",
+    "name": "首約",
+    "route": "COM",
+    "unlockChunk": "1",
+    "prereq": null,
+    "recipes": [
+      [
+        "#慾望",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A2",
+    "name": "深蹲",
+    "route": "COM",
+    "unlockChunk": "2",
+    "prereq": null,
+    "recipes": [
+      [
+        "#第一次",
+        "#汗水"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A3a",
+    "name": "界限a",
+    "route": "MASKED",
+    "unlockChunk": "3",
+    "prereq": "二番戰選不摘面紗",
+    "recipes": [
+      [
+        "#規矩",
+        "#拉筋"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A3b",
+    "name": "界限b",
+    "route": "UNMASK",
+    "unlockChunk": "3",
+    "prereq": "二番戰選摘面紗",
+    "recipes": [
+      [
+        "#越界",
+        "#拉筋"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A4",
+    "name": "溫柔",
+    "route": "COM",
+    "unlockChunk": "4",
+    "prereq": null,
+    "recipes": [
+      [
+        "#真實",
+        "#烏魚",
+        "#鏡中的自己"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A5a",
+    "name": "陪伴a",
+    "route": "DATE",
+    "unlockChunk": "5",
+    "prereq": "臨終關懷選交往",
+    "recipes": [
+      [
+        "#陪伴",
+        "#空座位"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A5b",
+    "name": "陪伴b",
+    "route": "NODATE",
+    "unlockChunk": "5",
+    "prereq": "臨終關懷選不交往",
+    "recipes": [
+      [
+        "#尊嚴",
+        "#空座位"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A6",
+    "name": "糾結",
+    "route": "COM",
+    "unlockChunk": "6",
+    "prereq": null,
+    "recipes": [
+      [
+        "#敲門",
+        "#鐵的味道"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A7",
+    "name": "支持",
+    "route": "COM",
+    "unlockChunk": "7",
+    "prereq": null,
+    "recipes": [
+      [
+        "#安全詞",
+        "#安全感"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "A8",
+    "name": "排練照",
+    "route": "COM",
+    "unlockChunk": "結局",
+    "prereq": "結局檢定貼文",
+    "recipes": [
+      [
+        "#掀開帷幕"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B1",
+    "name": "注意力",
+    "route": "COM",
+    "unlockChunk": "1",
+    "prereq": null,
+    "recipes": [
+      [
+        "#首次上工",
+        "#自拍",
+        "#理髮01"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B2",
+    "name": "努力工作",
+    "route": "COM",
+    "unlockChunk": "2",
+    "prereq": null,
+    "recipes": [
+      [
+        "#服從",
+        "#深夜",
+        "#加班"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B3",
+    "name": "責任",
+    "route": "COM",
+    "unlockChunk": "3",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女B劇06",
+        "#理髮02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B4",
+    "name": "應援",
+    "route": "COM",
+    "unlockChunk": "4",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女B劇05",
+        "#女B劇08",
+        "#城市"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B5a",
+    "name": "圓夢a",
+    "route": "DATE",
+    "unlockChunk": "5",
+    "prereq": "演唱會選交往",
+    "recipes": [
+      [
+        "#女B劇09",
+        "#理髮03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B5b",
+    "name": "圓夢b",
+    "route": "NODATE",
+    "unlockChunk": "5",
+    "prereq": "演唱會選不交往",
+    "recipes": [
+      [
+        "#女B劇10",
+        "#理髮03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B6",
+    "name": "勞逸結合",
+    "route": "COM",
+    "unlockChunk": "6",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女B劇11",
+        "#理髮04",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B7a",
+    "name": "執著a",
+    "route": "DATE",
+    "unlockChunk": "結局",
+    "prereq": "結局檢定貼文-DATE",
+    "recipes": [
+      [
+        "#女B劇13"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "B7b",
+    "name": "執著b",
+    "route": "NODATE",
+    "unlockChunk": "結局",
+    "prereq": "結局檢定貼文-NODATE",
+    "recipes": [
+      [
+        "#女B劇14"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C1",
+    "name": "年輕",
+    "route": "COM",
+    "unlockChunk": "1",
+    "prereq": null,
+    "recipes": [
+      [
+        "#鄰居的氣味",
+        "#慾望",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C2",
+    "name": "算法",
+    "route": "COM",
+    "unlockChunk": "2",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女C劇03",
+        "#圖書01"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C3",
+    "name": "自我",
+    "route": "COM",
+    "unlockChunk": "3",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女C劇06",
+        "#房間一角"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C4a",
+    "name": "呼吸a",
+    "route": "DATE",
+    "unlockChunk": "4",
+    "prereq": "正宮登場選相信",
+    "recipes": [
+      [
+        "#女C劇09",
+        "#圖書02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C4b",
+    "name": "呼吸b",
+    "route": "NODATE",
+    "unlockChunk": "4",
+    "prereq": "正宮登場選不相信",
+    "recipes": [
+      [
+        "#女C劇10",
+        "#圖書02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C4c",
+    "name": "呼吸c",
+    "route": "ANGRY",
+    "unlockChunk": "4",
+    "prereq": "正宮登場選撕破臉",
+    "recipes": [
+      [
+        "#女C劇11",
+        "#圖書02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C5a",
+    "name": "修復a",
+    "route": "DATE",
+    "unlockChunk": "5",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女C劇09",
+        "#圖書03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C5b",
+    "name": "修復b",
+    "route": "NODATE",
+    "unlockChunk": "5",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女C劇10",
+        "#圖書03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C6",
+    "name": "平靜",
+    "route": "COM",
+    "unlockChunk": "6",
+    "prereq": "DATE/NODATE/ANGRY共用",
+    "recipes": [
+      [
+        "#女C劇14",
+        "#圖書04"
+      ],
+      [
+        "#女C劇11",
+        "#圖書04"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C7a",
+    "name": "遠行a",
+    "route": "DATE",
+    "unlockChunk": "結局",
+    "prereq": "結局檢定貼文-DATE",
+    "recipes": [
+      [
+        "#女C劇15"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C7b",
+    "name": "遠行b",
+    "route": "NODATE",
+    "unlockChunk": "結局",
+    "prereq": "結局檢定貼文-NODATE",
+    "recipes": [
+      [
+        "#女C劇16"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "C7c",
+    "name": "遠行c",
+    "route": "ANGRY",
+    "unlockChunk": "結局",
+    "prereq": "結局檢定貼文-ANGRY",
+    "recipes": [
+      [
+        "#女C劇17"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D1",
+    "name": "蛋餅",
+    "route": "COM",
+    "unlockChunk": "1",
+    "prereq": "陷阱貼文",
+    "recipes": [
+      [
+        "#搬家",
+        "#日常"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D2",
+    "name": "暑修",
+    "route": "COM",
+    "unlockChunk": "2",
+    "prereq": "陷阱貼文",
+    "recipes": [
+      [
+        "#日常",
+        "#學業"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D3",
+    "name": "量度",
+    "route": "COM",
+    "unlockChunk": "3",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女D劇04",
+        "#街燈"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D4",
+    "name": "表裏不一",
+    "route": "COM",
+    "unlockChunk": "4",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女D劇05",
+        "#女D劇06"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D5a",
+    "name": "賭注宣言a",
+    "route": "DATE",
+    "unlockChunk": "5",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女D劇07",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D5b",
+    "name": "賭注宣言b",
+    "route": "NODATE",
+    "unlockChunk": "5",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女D劇08",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D6a",
+    "name": "萬眾矚目a",
+    "route": "DATE",
+    "unlockChunk": "6",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女D劇09",
+        "#女D劇11",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D6b",
+    "name": "萬眾矚目b",
+    "route": "NODATE",
+    "unlockChunk": "6",
+    "prereq": null,
+    "recipes": [
+      [
+        "#女D劇10",
+        "#女D劇12",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D7a",
+    "name": "最後通牒a",
+    "route": "FAIR",
+    "unlockChunk": "結局",
+    "prereq": "忠誠結局",
+    "recipes": [
+      [
+        "#女D劇13"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D7b",
+    "name": "最後通牒b",
+    "route": "UNFAIR",
+    "unlockChunk": "結局",
+    "prereq": "出軌結局",
+    "recipes": [
+      [
+        "#女D劇14"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "story",
+    "id": "D7c",
+    "name": "最後通牒c",
+    "route": "SINGLE",
+    "unlockChunk": "結局",
+    "prereq": "單身結局",
+    "recipes": [
+      [
+        "#女D劇15"
+      ]
+    ],
+    "trafficTier": null,
+    "trafficName": null,
+    "trafficStars": null,
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E01",
+    "name": "玩家探索貼文（新家）",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "女C教學內發出（一次性）",
+    "recipes": [
+      [
+        "#搬家"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E02",
+    "name": "玩家探索貼文（肉帳女）",
+    "relatedChar": "女A",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式00（新手教學）",
+    "recipes": [
+      [
+        "#第一次",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E03",
+    "name": "玩家探索貼文（綁縛）",
+    "relatedChar": "女A",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "CG繩縛play",
+    "recipes": [
+      [
+        "#安全詞",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E04",
+    "name": "玩家探索貼文（排練）",
+    "relatedChar": "女A",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式03（戲劇排練）",
+    "recipes": [
+      [
+        "#安全感",
+        "#教室"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E05",
+    "name": "玩家探索貼文（天台）",
+    "relatedChar": "女B",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式01（天台）",
+    "recipes": [
+      [
+        "#女B劇04",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E06",
+    "name": "玩家探索貼文（醫院）",
+    "relatedChar": "女B",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "CG過勞",
+    "recipes": [
+      [
+        "#女B劇06",
+        "#加班"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E07",
+    "name": "玩家探索貼文（溫泉）",
+    "relatedChar": "女B",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式03（泡湯）",
+    "recipes": [
+      [
+        "#女B劇11",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E08",
+    "name": "玩家探索貼文（口交）",
+    "relatedChar": "女C",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "CG享受當下",
+    "recipes": [
+      [
+        "#女C劇03",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E09",
+    "name": "玩家探索貼文（靈感）",
+    "relatedChar": "女C",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式01（需要靈感）",
+    "recipes": [
+      [
+        "#女C劇04",
+        "#房間一角"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E10",
+    "name": "玩家探索貼文（旅館）",
+    "relatedChar": "女C",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式02（願者上鉤）",
+    "recipes": [
+      [
+        "#女C劇05",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E11",
+    "name": "玩家探索貼文（直播自慰）",
+    "relatedChar": "女D",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式01（直播自慰）",
+    "recipes": [
+      [
+        "#女D劇06",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E12",
+    "name": "玩家探索貼文（直播做愛）",
+    "relatedChar": "女D",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式02-DATE版",
+    "recipes": [
+      [
+        "#女D劇11",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E13",
+    "name": "玩家探索貼文（直播做愛）NODATE",
+    "relatedChar": "女D",
+    "art": "CG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "H模式02-NODATE版",
+    "recipes": [
+      [
+        "#女D劇12",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E14",
+    "name": "健身房照片",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "健身房3次+",
+    "recipes": [
+      [
+        "#汗水",
+        "#肌肉痠痛"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E15",
+    "name": "咖啡廳窗邊",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "咖啡廳5次+",
+    "recipes": [
+      [
+        "#咖啡香",
+        "#窗邊"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E16",
+    "name": "深夜街拍",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "街道5次+",
+    "recipes": [
+      [
+        "#深夜",
+        "#街燈"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E17",
+    "name": "校園午後",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "學校13次+",
+    "recipes": [
+      [
+        "#校園午後",
+        "#蟬鳴"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E18",
+    "name": "便利商店深夜",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "街道10次+",
+    "recipes": [
+      [
+        "#便利商店",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E19",
+    "name": "女D豪宅內",
+    "relatedChar": "女D",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "直播02後",
+    "recipes": [
+      [
+        "#女D劇04",
+        "#房間一角"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E20",
+    "name": "女B家早晨",
+    "relatedChar": "女B",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "劇情訊息06後",
+    "recipes": [
+      [
+        "#女B劇05",
+        "#日常"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E21",
+    "name": "釣蝦場",
+    "relatedChar": "女C",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "願者上鉤後",
+    "recipes": [
+      [
+        "#女C劇05",
+        "#街燈"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E22",
+    "name": "廉價旅館",
+    "relatedChar": "女C",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "CG事前菸後",
+    "recipes": [
+      [
+        "#女C劇07",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 2,
+    "trafficName": "High",
+    "trafficStars": "★★★",
+    "immoralEvidence": true,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E23",
+    "name": "理髮後新造型",
+    "relatedChar": "-",
+    "art": "BG復用",
+    "artTrafficRaw": "★★",
+    "prereq": "理髮5次+",
+    "recipes": [
+      [
+        "#新造型",
+        "#理髮02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E24",
+    "name": "浴後的水霧",
+    "relatedChar": "-",
+    "art": "新繪",
+    "artTrafficRaw": "★★",
+    "prereq": "霧面玻璃裡的身體輪廓",
+    "recipes": [
+      [
+        "#鏡中的自己",
+        "#無聊的夜晚"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E25",
+    "name": "練後餐鹹酥雞",
+    "relatedChar": "-",
+    "art": "新繪",
+    "artTrafficRaw": "★★",
+    "prereq": "NPC訓練後",
+    "recipes": [
+      [
+        "#吃飽了",
+        "#肌肉痠痛"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E26",
+    "name": "凌晨的床單",
+    "relatedChar": "-",
+    "art": "新繪",
+    "artTrafficRaw": "★★",
+    "prereq": "皺床單+散落衣物的暗示構圖",
+    "recipes": [
+      [
+        "#天花板",
+        "#無所事事"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E27",
+    "name": "男主與腸腸",
+    "relatedChar": "女D",
+    "art": "新繪",
+    "artTrafficRaw": "★★",
+    "prereq": "線下事件遛狗後",
+    "recipes": [
+      [
+        "#女D劇05",
+        "#自拍"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E28",
+    "name": "汗與燈光",
+    "relatedChar": "-",
+    "art": "新繪",
+    "artTrafficRaw": "★★",
+    "prereq": "深夜重訓，單側光源打在肌肉線條",
+    "recipes": [
+      [
+        "#拉筋",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "image",
+    "id": "E29",
+    "name": "浴巾",
+    "relatedChar": "-",
+    "art": "新繪",
+    "artTrafficRaw": "★★",
+    "prereq": "練後只圍浴巾坐在地板放空",
+    "recipes": [
+      [
+        "#鐵的味道",
+        "#發呆"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W01",
+    "name": "半夜的想法",
+    "category": "思考",
+    "direction": "失眠時讀到一句話的延伸",
+    "recipes": [
+      [
+        "#深夜",
+        "#慾望"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W02",
+    "name": "職場吐槽",
+    "category": "日常",
+    "direction": "上班族抱怨小段子",
+    "recipes": [
+      [
+        "#加班",
+        "#日常"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W03",
+    "name": "校園隨筆",
+    "category": "日常",
+    "direction": "暑修日的氛圍感",
+    "recipes": [
+      [
+        "#學業",
+        "#教室"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W04",
+    "name": "搬家後遺症",
+    "category": "日常",
+    "direction": "新環境的不適應",
+    "recipes": [
+      [
+        "#搬家",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W05",
+    "name": "學妹推的書評",
+    "category": "八卦",
+    "direction": "冷門書評論",
+    "recipes": [
+      [
+        "#學妹推薦的怪書",
+        "#書頁的味道"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W06",
+    "name": "PIA本質",
+    "category": "Meta",
+    "direction": "對PIA上人設真假的吐槽",
+    "recipes": [
+      [
+        "#陌生人",
+        "#發呆"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W07",
+    "name": "加班心得",
+    "category": "日常",
+    "direction": "深夜辦公室的吐槽",
+    "recipes": [
+      [
+        "#辦公桌",
+        "#冷氣太強"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W08",
+    "name": "便利商店哲學",
+    "category": "日常",
+    "direction": "深夜便利商店的回家路",
+    "recipes": [
+      [
+        "#便利商店",
+        "#街燈"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W09",
+    "name": "八卦轉述",
+    "category": "八卦",
+    "direction": "從阿姨那聽來的八卦改寫",
+    "recipes": [
+      [
+        "#阿姨的小道消息",
+        "#日常"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W10",
+    "name": "坦白的後遺症",
+    "category": "回憶",
+    "direction": "A線坦白事件回憶向",
+    "recipes": [
+      [
+        "#坦白",
+        "#界限"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W11",
+    "name": "研究所這條路",
+    "category": "思考",
+    "direction": "學妹聊到研究所的迴音",
+    "recipes": [
+      [
+        "#學妹劇05",
+        "#圖書03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W12",
+    "name": "香水的記憶",
+    "category": "回憶",
+    "direction": "阿姨用過的那瓶香水",
+    "recipes": [
+      [
+        "#阿姨劇01",
+        "#新造型"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W13",
+    "name": "那場直播",
+    "category": "回憶",
+    "direction": "直播01抽獎那晚",
+    "recipes": [
+      [
+        "#女D劇01",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W14",
+    "name": "女D登場記",
+    "category": "回憶",
+    "direction": "CG女D登場",
+    "recipes": [
+      [
+        "#女D劇02",
+        "#城市"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W15",
+    "name": "副駕的視角",
+    "category": "回憶",
+    "direction": "CG大G車震後的副駕視角",
+    "recipes": [
+      [
+        "#女D劇03",
+        "#街燈"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W16",
+    "name": "鎖帳號之夜",
+    "category": "回憶",
+    "direction": "世界事件鎖帳號的那晚",
+    "recipes": [
+      [
+        "#女C劇08",
+        "#夢到什麼"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W17",
+    "name": "年下這個詞",
+    "category": "回憶",
+    "direction": "寫作01被點到的時刻",
+    "recipes": [
+      [
+        "#女C劇02",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W18",
+    "name": "關係反思",
+    "category": "回憶",
+    "direction": "NOWHIP限定",
+    "recipes": [
+      [
+        "#女C劇13",
+        "#圖書02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W19",
+    "name": "遠程辦公的我",
+    "category": "回憶",
+    "direction": "實習04遠程辦公",
+    "recipes": [
+      [
+        "#女B劇07",
+        "#冷氣太強"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W20",
+    "name": "責任邊界",
+    "category": "回憶",
+    "direction": "B6之後的責任邊界",
+    "recipes": [
+      [
+        "#女B劇12",
+        "#職場觀察"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W21",
+    "name": "無事發生的下午",
+    "category": "回憶",
+    "direction": "WHIP限定",
+    "recipes": [
+      [
+        "#女C劇12",
+        "#圖書03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W22",
+    "name": "那個夜晚",
+    "category": "回憶",
+    "direction": "CG喜歡的電影—雙詞條合併",
+    "recipes": [
+      [
+        "#學妹劇01",
+        "#學妹劇02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W23",
+    "name": "翻頁的聲音",
+    "category": "回憶",
+    "direction": "NOWAY・初體驗隱晦回憶",
+    "recipes": [
+      [
+        "#學妹劇03",
+        "#書頁的味道"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W24",
+    "name": "金色的光",
+    "category": "回憶",
+    "direction": "CG金包銀—雙詞條合併",
+    "recipes": [
+      [
+        "#阿姨劇02",
+        "#阿姨劇03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W25",
+    "name": "酒醒以後",
+    "category": "回憶",
+    "direction": "SURE・酒後亂性隱晦",
+    "recipes": [
+      [
+        "#阿姨劇05",
+        "#發呆"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W26",
+    "name": "便利商店的咖啡",
+    "category": "回憶",
+    "direction": "CG撞見自慰—隔天的咖啡",
+    "recipes": [
+      [
+        "#女B劇03",
+        "#便利商店"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W27",
+    "name": "那扇門後",
+    "category": "回憶",
+    "direction": "SURE・單男做愛隱晦",
+    "recipes": [
+      [
+        "#巨巨劇05",
+        "#鐵的味道"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W28",
+    "name": "翻到那一頁",
+    "category": "回憶",
+    "direction": "SURE・初體驗接受版回憶",
+    "recipes": [
+      [
+        "#學妹劇04",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W29",
+    "name": "醉後的那杯水",
+    "category": "回憶",
+    "direction": "NOWAY・酒後亂性拒絕版",
+    "recipes": [
+      [
+        "#阿姨劇04",
+        "#深夜"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "text",
+    "id": "W30",
+    "name": "那通沒接的電話",
+    "category": "回憶",
+    "direction": "NOWAY・單男邀約拒絕後",
+    "recipes": [
+      [
+        "#巨巨劇04",
+        "#無聊的夜晚"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F01",
+    "name": "玩家填充貼文01（搬家感想）",
+    "acquire": "自動",
+    "direction": null,
+    "recipes": [
+      [
+        "#搬家"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F02",
+    "name": "玩家填充貼文02（早安）",
+    "acquire": "自動",
+    "direction": "純氛圍兩句",
+    "recipes": [
+      [
+        "#日常"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F03",
+    "name": "玩家填充貼文03（校園日常）",
+    "acquire": "學校1",
+    "direction": "學生身份點滴",
+    "recipes": [
+      [
+        "#教室"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F04",
+    "name": "玩家填充貼文04（健身吐槽）",
+    "acquire": "健身1",
+    "direction": "兩句訓練吐槽",
+    "recipes": [
+      [
+        "#汗水"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F05",
+    "name": "玩家填充貼文05（偽哲學）",
+    "acquire": "自動",
+    "direction": "「其實人生就是——」沒了",
+    "recipes": [
+      [
+        "#無所事事"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F06",
+    "name": "玩家填充貼文06（神秘引用）",
+    "acquire": "圖書1",
+    "direction": "虛構書句沒寫出處",
+    "recipes": [
+      [
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F07",
+    "name": "玩家填充貼文07（新造型）",
+    "acquire": "理髮1",
+    "direction": null,
+    "recipes": [
+      [
+        "#新造型"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F08",
+    "name": "玩家填充貼文08（痠痛日記）",
+    "acquire": "健身4",
+    "direction": null,
+    "recipes": [
+      [
+        "#肌肉痠痛"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F09",
+    "name": "玩家填充貼文09（日常碎念）",
+    "acquire": "自動",
+    "direction": null,
+    "recipes": [
+      [
+        "#慾望"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "filler",
+    "id": "F10",
+    "name": "玩家填充貼文10（絕望的啊啊叫）",
+    "acquire": "自動",
+    "direction": "啊啊啊啊啊",
+    "recipes": [
+      [
+        "#吃飽了"
+      ]
+    ],
+    "trafficTier": 0,
+    "trafficName": "Low",
+    "trafficStars": "★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N01",
+    "name": "巨巨的雅玲說",
+    "relatedNpc": "巨巨",
+    "direction": "巨巨提到雅玲與性愛的男人哲學",
+    "recipes": [
+      [
+        "#巨巨的吼聲",
+        "#巨巨劇01"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N02",
+    "name": "巨巨私下的話",
+    "relatedNpc": "巨巨",
+    "direction": "壞男人才會懂的男人對男人",
+    "recipes": [
+      [
+        "#巨巨的吼聲",
+        "#巨巨劇02"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N03",
+    "name": "巨巨的新鮮感論",
+    "relatedNpc": "巨巨",
+    "direction": "健身02後的訓練哲學語錄",
+    "recipes": [
+      [
+        "#巨巨的吼聲",
+        "#巨巨劇03"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N04",
+    "name": "巨巨的炮後感",
+    "relatedNpc": "巨巨",
+    "direction": "健身房裡那場protein後的領悟",
+    "recipes": [
+      [
+        "#巨巨的吼聲",
+        "#巨巨劇06"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N05",
+    "name": "學妹的奇書",
+    "relatedNpc": "學妹",
+    "direction": "學妹隨手抽的那本書",
+    "recipes": [
+      [
+        "#學妹推薦的怪書",
+        "#某段文字"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N06",
+    "name": "學妹的研究路",
+    "relatedNpc": "學妹",
+    "direction": "學妹談研究所的那個下午",
+    "recipes": [
+      [
+        "#學妹推薦的怪書",
+        "#學妹劇05"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N07",
+    "name": "學妹的畢業",
+    "relatedNpc": "學妹",
+    "direction": "學妹畢業後的書評",
+    "recipes": [
+      [
+        "#學妹推薦的怪書",
+        "#學妹劇06"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N08",
+    "name": "阿姨的小道",
+    "relatedNpc": "阿姨",
+    "direction": "阿姨剪頭髮時透露的八卦",
+    "recipes": [
+      [
+        "#阿姨的小道消息",
+        "#新造型"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N09",
+    "name": "阿姨的香水記",
+    "relatedNpc": "阿姨",
+    "direction": "阿姨那瓶香水背後的故事",
+    "recipes": [
+      [
+        "#阿姨的小道消息",
+        "#阿姨劇01"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  },
+  {
+    "type": "npc",
+    "id": "N10",
+    "name": "阿姨的離婚論",
+    "relatedNpc": "阿姨",
+    "direction": "阿姨離過婚的人生哲學",
+    "recipes": [
+      [
+        "#阿姨的小道消息",
+        "#阿姨劇06"
+      ]
+    ],
+    "trafficTier": 1,
+    "trafficName": "Medium",
+    "trafficStars": "★★",
+    "immoralEvidence": false,
+    "content": ""
+  }
+]
