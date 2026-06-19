@@ -114,6 +114,7 @@
       case "inventory": renderInventory(); break;
       case "compose":   renderCompose();   break;
       case "feed":      renderFeed();       break;
+      case "cardgame":  renderCardgame();   break;
       case "params":    renderParams();     break;
     }
   }
@@ -998,6 +999,15 @@
   function clamp01(v) { return clamp(v, 0, 1); }
 
   // ===========================================================================
+  // Tab 5：排行榜挑戰（委派給 SF.CardGameUI）
+  // ===========================================================================
+  function renderCardgame() {
+    if (SF.CardGameUI && typeof SF.CardGameUI.render === "function") {
+      SF.CardGameUI.render();
+    }
+  }
+
+  // ===========================================================================
   // 全域控制
   // ===========================================================================
   function init() {
@@ -1005,6 +1015,7 @@
     panels.inventory = $("panel-inventory");
     panels.compose = $("panel-compose");
     panels.feed = $("panel-feed");
+    panels.cardgame = $("panel-cardgame");
     panels.params = $("panel-params");
 
     // 分頁按鈕。

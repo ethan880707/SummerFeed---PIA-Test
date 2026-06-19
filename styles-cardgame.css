@@ -1,0 +1,468 @@
+/* ============================================================================
+   styles-cardgame.css — 排行榜挑戰（Leaderboard Card Battle）UI 樣式
+   僅含 cg-* class；沿用 styles.css 之 :root design tokens 與既有可複用 class
+   （.btn / .chip / .badge / .post / .section-label / .panel__head ...）。
+   零相依、file:// 安全。請勿修改 styles.css。
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   0. 外殼
+   ------------------------------------------------------------------------- */
+.cg-root { display: block; }
+.cg-stage { display: block; }
+
+/* ---------------------------------------------------------------------------
+   1. HOME — 牌庫摘要列 + 排行榜
+   ------------------------------------------------------------------------- */
+.cg-deckbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  margin-bottom: 6px;
+}
+.cg-deckbar__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cg-deckbar__title { font-size: var(--fs-md); font-weight: 800; }
+.cg-deckbar__hint { font-size: var(--fs-sm); color: var(--txt-2); }
+.cg-deckbar__spacer { flex: 1 1 auto; }
+
+.cg-board__notice {
+  font-size: var(--fs-sm);
+  color: var(--warn);
+  margin: 10px 0 4px;
+}
+
+.cg-board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 排行榜列 */
+.cg-rank {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.cg-rank.is-defeated { opacity: 0.55; }
+.cg-rank.is-player {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.cg-rank__no {
+  flex: 0 0 auto;
+  width: 28px;
+  text-align: center;
+  font-weight: 800;
+  font-size: var(--fs-lg);
+  color: var(--txt-1);
+}
+.cg-rank.is-player .cg-rank__no { color: var(--accent); }
+.cg-rank__avatar {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: var(--fs-md);
+  background: var(--bg-3);
+  border: 1px solid var(--line-strong);
+  color: var(--txt-0);
+}
+.cg-rank__id {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.cg-rank__name {
+  font-weight: 700;
+  font-size: var(--fs-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cg-rank__handle {
+  font-size: var(--fs-xs);
+  color: var(--txt-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cg-rank__stat {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 110px;
+}
+.cg-rank__followers { font-size: var(--fs-sm); font-weight: 700; color: var(--txt-1); }
+.cg-rank__followers b { color: var(--txt-0); }
+.cg-rank__btn { flex: 0 0 auto; }
+
+/* ---------------------------------------------------------------------------
+   2. DECK — 阻擋訊息 / 牌庫編輯
+   ------------------------------------------------------------------------- */
+.cg-block {
+  text-align: center;
+  padding: 36px 20px;
+  background: var(--bg-2);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md);
+}
+.cg-block__title { font-size: var(--fs-lg); font-weight: 800; color: var(--warn); margin-bottom: 8px; }
+.cg-block__msg { font-size: var(--fs-sm); color: var(--txt-2); margin-bottom: 16px; }
+.cg-block__prog { font-size: var(--fs-xl); font-weight: 800; color: var(--txt-0); margin-bottom: 16px; }
+
+.cg-deck { display: block; }
+.cg-deck__live {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  margin-bottom: 12px;
+}
+.cg-deck__count { font-weight: 800; font-size: var(--fs-md); }
+.cg-deck__count.is-bad { color: var(--warn); }
+.cg-deck__count.is-ok { color: var(--ok); }
+.cg-deck__sum { font-size: var(--fs-sm); color: var(--txt-2); }
+.cg-deck__spacer { flex: 1 1 auto; }
+
+.cg-cardgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.cg-deck__foot {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.cg-deck__foot .btn { flex: 1 1 auto; }
+
+/* ---------------------------------------------------------------------------
+   3. 卡片（DECK / 手牌 / 對手）
+   ------------------------------------------------------------------------- */
+.cg-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  min-height: 96px;
+}
+.cg-card__name {
+  font-weight: 700;
+  font-size: var(--fs-md);
+  line-height: 1.3;
+  word-break: break-word;
+}
+.cg-card__tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.cg-card__tag {
+  font-size: var(--fs-xs);
+  color: var(--txt-2);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 2px 8px;
+}
+.cg-card__foot { margin-top: auto; display: flex; align-items: center; gap: 6px; }
+.cg-card__likes {
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  color: var(--stat-like);
+}
+.cg-card__likes::before { content: "♥ "; }
+
+/* 可選（DECK / 手牌） */
+.cg-card.is-selectable,
+.cg-card.is-playable { cursor: pointer; transition: border-color 0.14s ease, background 0.14s ease, transform 0.06s ease; }
+.cg-card.is-selectable:hover,
+.cg-card.is-playable:hover { background: var(--bg-3); border-color: var(--line-strong); }
+.cg-card.is-selectable:active,
+.cg-card.is-playable:active { transform: scale(0.98); }
+.cg-card.is-selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: var(--sh-1);
+}
+.cg-card.is-selected::after {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--r-pill);
+  background: var(--accent-grad);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cg-card.is-disabled { opacity: 0.4; pointer-events: none; }
+
+/* 對手大卡 */
+.cg-card--lg { min-height: 110px; border-color: var(--line-strong); }
+.cg-card--lg .cg-card__name { font-size: var(--fs-lg); }
+.cg-card--lg .cg-card__likes { font-size: var(--fs-md); }
+
+/* ---------------------------------------------------------------------------
+   4. BATTLE — HUD / 對手列 / 組合 banner / 手牌 / log
+   ------------------------------------------------------------------------- */
+.cg-hud {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
+}
+.cg-hud__bars {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.cg-hud__side { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cg-hud__side--opp { align-items: flex-end; text-align: right; }
+.cg-hud__who {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--txt-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.cg-hud__vs {
+  font-weight: 800;
+  font-size: var(--fs-md);
+  color: var(--txt-3);
+  padding: 0 4px;
+}
+.cg-hud__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 8px;
+  font-size: var(--fs-sm);
+  color: var(--txt-1);
+}
+.cg-hud__round { font-weight: 800; color: var(--txt-0); }
+.cg-hud__phase {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+}
+
+/* HP bar */
+.cg-hpbar {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background: var(--bg-0);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.cg-hpbar--sm { height: 6px; }
+.cg-hpbar__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: var(--r-pill);
+  transition: width 0.32s ease;
+}
+.cg-hpbar[data-side="player"] .cg-hpbar__fill { background: var(--ok); }
+.cg-hpbar[data-side="opp"] .cg-hpbar__fill { background: var(--immoral); }
+.cg-hpbar.is-low .cg-hpbar__fill { background: var(--warn); }
+.cg-hpbar__txt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--txt-0);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+.cg-hpbar--sm .cg-hpbar__txt { display: none; }
+
+/* 對手出牌列 */
+.cg-opp {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cg-opp__card { flex: 1 1 auto; min-width: 0; }
+.cg-opp__action {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 6px;
+  min-width: 120px;
+}
+.cg-opp__hint { font-size: var(--fs-xs); color: var(--txt-2); text-align: center; }
+
+/* 組合效果 banner（EFFECT 佔位，dim） */
+.cg-combo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md);
+  color: var(--txt-3);
+  font-size: var(--fs-sm);
+  background: var(--bg-1);
+  margin-bottom: 4px;
+}
+.cg-combo.is-disabled { opacity: 0.6; }
+.cg-combo::before { content: "✦"; color: var(--accent-2); opacity: 0.6; }
+
+/* 手牌列 */
+.cg-hand {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+/* 回合 log */
+.cg-log {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+.cg-log__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  padding: 7px 10px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+}
+.cg-log__round { font-weight: 800; color: var(--txt-2); flex: 0 0 auto; min-width: 30px; }
+.cg-log__detail { flex: 1 1 auto; color: var(--txt-1); }
+.cg-log__dmg { flex: 0 0 auto; font-weight: 800; }
+.cg-log__dmg.is-opp { color: var(--ok); }
+.cg-log__dmg.is-player { color: var(--bad); }
+.cg-log__dmg.is-none { color: var(--txt-3); }
+
+/* ---------------------------------------------------------------------------
+   5. SETTLEMENT — 勝負橫幅 + 獎勵
+   ------------------------------------------------------------------------- */
+.cg-settle {
+  text-align: center;
+  padding: 24px 18px;
+  border-radius: var(--r-md);
+  margin-bottom: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.cg-settle__title { font-size: var(--fs-xxl); font-weight: 800; margin-bottom: 4px; }
+.cg-settle__sub { font-size: var(--fs-sm); color: var(--txt-2); }
+.cg-settle.is-win { border-color: var(--ok); }
+.cg-settle.is-win .cg-settle__title { color: var(--ok); }
+.cg-settle.is-lose { border-color: var(--bad); }
+.cg-settle.is-lose .cg-settle__title { color: var(--bad); }
+
+.cg-rewards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.cg-reward {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.cg-reward__title { font-weight: 800; font-size: var(--fs-md); }
+.cg-reward__desc { font-size: var(--fs-sm); color: var(--txt-2); flex: 1 1 auto; }
+.cg-reward__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cg-reward.is-disabled { opacity: 0.5; }
+
+.cg-settle__foot {
+  display: flex;
+  gap: 10px;
+}
+.cg-settle__foot .btn { flex: 1 1 auto; }
+
+/* ---------------------------------------------------------------------------
+   6. 響應式（max-width:560px）
+   ------------------------------------------------------------------------- */
+@media (max-width: 560px) {
+  /* 排行榜列折成兩行：上＝no+avatar+id；下＝stat+button */
+  .cg-rank {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .cg-rank__id { flex: 1 1 60%; }
+  .cg-rank__stat {
+    flex: 1 1 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+  }
+  .cg-rank__stat .cg-hpbar--sm { flex: 1 1 auto; max-width: 160px; }
+  .cg-rank__btn { margin-left: auto; }
+
+  /* HUD bars 直向堆疊 */
+  .cg-hud__bars { grid-template-columns: 1fr; }
+  .cg-hud__vs { display: none; }
+  .cg-hud__side--opp { align-items: stretch; text-align: left; }
+
+  /* 對手卡 + 按鈕直向堆疊 */
+  .cg-opp { flex-direction: column; }
+  .cg-opp__action { min-width: 0; }
+
+  .cg-hand { overflow-x: visible; }
+}

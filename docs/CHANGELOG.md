@@ -2,6 +2,31 @@
 
 > 本專案（網頁測試版）的更新紀錄，**獨立**於 Unity（`00_Program/.claude/changelog/`）與 Articy 的紀錄系統。
 
+## 2026-06-19
+
+### 修復（排行榜挑戰 — 傷害與對手讚數）
+- **扣血改為「完整讚數差」**：原 `DAMAGE_SCALE = 0.05` 會把傷害縮小（388 vs 115 顯示 −14 而非 −273）。改為 `DAMAGE_SCALE = 1.0`，傷害 = `|雙方讚數總和差|`，符合「對方多 x 讚 → 扣 x 血」的設計。
+- **對手貼文讚數改為依粉絲數 + 基數動態計算**：原本是 roster 烤死的小固定值。改為 `oppLikes = round(OPP_LIKES_BASE + 當前粉絲 × post.frac × OPP_LIKES_FRAC_MULT)`（預設 base 60、mult 2.0），與玩家卡量級相當；對手 **血量也改用當前粉絲** 計算（`round(粉絲 × 0.10)`），奪取粉絲後血量／讚數同步下降。
+- **玩家血量 100 → 6000**：配合「完整讚數差」傷害（量級為數百~數千）重新調整的固定值。模擬（玩家約 520 粉、最佳牌組）：對 rank 10~7（約 ≤4 倍體量）一回合輾壓、對 rank 6（約 16 倍）為約 15 回合的險勝拉鋸、rank ≤5 會被秒。`PLAYER_HP`／`DAMAGE_SCALE`／`OPP_LIKES_BASE`／`OPP_LIKES_FRAC_MULT` 皆為 `SF.CardGame.config` 可調旋鈕。
+- 同步更新 `docs/cardgame-spec.md`（§3 config、§7 平衡）。
+
+### 新增（排行榜挑戰卡牌小遊戲）
+- 新分頁「**排行榜挑戰**」，位置在「動態 Feed」右側（`index.html` 第 5 個 tab / `#panel-cardgame`）。
+- 凍結契約：`docs/cardgame-spec.md`（玩法、引擎 API、對手資料、平衡數值）。
+- 新檔案：
+  - `data/opponents.js` — `window.PIA_OPPONENTS`，10 名對手（粉絲 6.5M→320 的等比階梯，`hp = round(粉絲×10%)`），每人 3~4 篇固定貼文（含 2 個**真實**詞條 name + 讚數）。
+  - `js/cardgame.js` — `SF.CardGame` 引擎（無 DOM）：牌組、排行榜、戰鬥相位機、獎勵、存檔。
+  - `js/cardgame-ui.js` — `SF.CardGameUI` 控制器，4 個子畫面 HOME／DECK／BATTLE／SETTLEMENT。
+  - `styles-cardgame.css` — `cg-*` 樣式（沿用 `styles.css` 的 design tokens，未改動 `styles.css`）。
+- 玩法：
+  - **組成牌庫**：從玩家**自己已發布**的貼文選 7~14 篇；發文不足 7 篇則無法遊玩（阻擋＋提示）。牌庫卡片讚數取自 `SF.Algorithm.compute(...).likes`（牌組組成時的最新狀態，開戰時 snapshot 凍結）。
+  - **排行榜**：依**當前粉絲數**降序排列；含玩家合成列。
+  - **對戰**：玩家血量固定 100；對手血量 = 粉絲×10%。回合相位 `抽牌(5) → 打出(3，其餘回牌庫；對手出 1 張固定貼文且可見) → 效果判定1(佔位) → 比大小(讚數總和、算差) → 效果判定2(佔位) → 狀態改變(依讚數差扣血) → 回合結束(回牌重洗)`。效果判定 1/2 為未來卡片效果保留的 no-op 相位。
+  - **結算**：勝利可三選一獎勵 —— 奪取詞條（隨機 3 選 1，解鎖真實 tag）、奪取粉絲（取對手當前粉絲 10%、下限 50，並自對手扣除）、道具（`ITEM_REWARD_ENABLED:false`，停用「敬請期待」）。對手擊敗後一次性、不可重刷。
+  - 平衡數值集中於 `SF.CardGame.config`（`PLAYER_HP`、`DAMAGE_SCALE`、`STEAL_FOLLOWER_PCT` 等），可日後調參。
+- 確定性：洗牌與對手抽樣皆用 `SF.Algorithm.hash01/seed`（無 `Math.random`/`Date.now`），`file://` 雙擊可玩；存檔獨立鍵 `summerfeed.cardgame.v1`（只存純值＋id：牌組、對手 runtime 粉絲、擊敗旗標）。
+- 引擎防護：`applyReward*` 需「對該對手剛獲勝且未領取」才生效，避免無勝利領獎或雙領；`playablePosts()` 以 `post.id` 去重。
+
 ## 2026-06-17
 
 ### 新增（建立專案）
