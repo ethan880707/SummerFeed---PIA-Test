@@ -366,6 +366,13 @@
 .cg-pill--money { border-color: var(--warn); }
 .cg-pill--money .cg-pill__val { color: var(--warn); }
 .cg-pill--money::before { content: "$"; font-weight: 800; color: var(--warn); }
+.cg-pill--atk { border-color: var(--stat-like); }
+.cg-pill--atk .cg-pill__val { color: var(--stat-like); }
+.cg-pill--atk::before { content: "❤"; font-size: 11px; color: var(--stat-like); }
+.cg-pill--atk.is-charged {
+  background: rgba(255, 107, 129, 0.14);
+  box-shadow: 0 0 0 1px var(--stat-like) inset;
+}
 
 /* 4c. 回合 / 階段指示 */
 .cg-bmeta {

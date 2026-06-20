@@ -161,6 +161,29 @@
       return entry;
     },
 
+    /**
+     * 測試用：一鍵發布（解鎖）全部貼文至 feed（source="player"），忽略「每天一篇」限制。
+     * 與詞條庫存的 unlockAll() 對應；供排行榜挑戰快速備齊牌庫測試。
+     * @returns {number} 本次新增的貼文數
+     */
+    publishAll: function () {
+      var posts = (SF.Data && SF.Data.posts) ? SF.Data.posts : [];
+      var existing = Object.create(null);
+      for (var i = 0; i < this.feed.length; i++) existing[this.feed[i].postId] = true;
+      var now = this.nowTicks();
+      var snap = this.followers();
+      var added = 0;
+      for (var j = 0; j < posts.length; j++) {
+        var p = posts[j];
+        if (!p || typeof p.id !== "string" || existing[p.id]) continue;
+        this.feed.push({ postId: p.id, postedTick: now, source: "player", followersAtPost: snap });
+        existing[p.id] = true;
+        added++;
+      }
+      if (added > 0) { this.recompute(); emit(); }
+      return added;
+    },
+
     // ---- 漲粉重算（§4.5） --------------------------------------------------
     /**
      * followerDelta = Σ(各 feed 貼文之 Algorithm.compute(...).followerGain) 於當下時間。

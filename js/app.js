@@ -262,6 +262,25 @@
     head.appendChild(el("p", "panel__hint", "從已解鎖詞條組合配方，命中後可發布（每天一篇）。"));
     root.appendChild(head);
 
+    // 工具列：一鍵解鎖（發布）全部貼文（測試用，對應詞條庫存的「一鍵全解」）。
+    var toolbar = el("div", "toolbar");
+    var publishedCount = 0;
+    for (var fi = 0; fi < SF.State.feed.length; fi++) {
+      if (SF.State.feed[fi].source === "player") publishedCount++;
+    }
+    toolbar.appendChild(el("span", "muted", "已發布 " + publishedCount + " / " + SF.Data.posts.length + " 篇"));
+    toolbar.appendChild(el("span", "spacer"));
+    var pubAllBtn = el("button", "btn btn--primary btn--sm", "一鍵解鎖全部貼文");
+    pubAllBtn.onclick = function () {
+      var added = SF.State.publishAll();
+      SF.State.save();
+      toast(added > 0 ? ("已解鎖 " + added + " 篇貼文") : "已全部解鎖", "ok");
+      renderCompose();
+      renderTopbar();
+    };
+    toolbar.appendChild(pubAllBtn);
+    root.appendChild(toolbar);
+
     var grid = el("div", "compose");
 
     // ---- 左：詞條池 ----

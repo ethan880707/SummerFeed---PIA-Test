@@ -499,6 +499,10 @@
     var pills = el("div", "cg-pills");
     pills.appendChild(resPill("shield", "鐵粉", (typeof u.shield === "number") ? u.shield : 0));
     pills.appendChild(resPill("money", "金錢", (typeof u.money === "number") ? u.money : 0));
+    // 本回合累積讚數（攻擊）：回合結束才一次結算傷害。
+    var atkPill = resPill("atk", "本回合讚數", (typeof u.turnAtk === "number") ? u.turnAtk : 0);
+    if ((u.turnAtk || 0) > 0) atkPill.className += " is-charged";
+    pills.appendChild(atkPill);
     n.appendChild(pills);
     return n;
   }

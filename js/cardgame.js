@@ -711,38 +711,60 @@
     return "DONE";
   }
 
-  // finishCardAttack：effects 全跑完後的攻擊/防禦 + 傷害 + lifesteal + WINCHECK。
+  // finishCardAttack：effects 全跑完後處理「攻擊/防禦」。
+  // ★ 改版：攻擊不再「立即造成傷害」，而是把本卡讚數累進該側 turnAtk（狀態欄顯示），
+  //   待該側回合結束時由 settleTurnDamage 一次結算。防禦卡（_isDefenseOnly）仍即時加鐵粉。
   function finishCardAttack(b, side, card) {
     var effLikes = computeEffLikes(b, side, card);
     var lp = {
       side: sideName(b, side), card: card, effLikes: effLikes,
-      dealt: 0, toShield: 0, toHp: 0, reflected: 0, log: []
+      dealt: 0, toShield: 0, toHp: 0, reflected: 0, accumulated: 0, log: []
     };
     b.lastPlay = lp;
 
     if (card._isDefenseOnly) {
       side.shield += effLikes;
-      lp.dealt = 0;
       logEvt(b, sideName(b, side) + " 防禦 +" + effLikes + " 鐵粉");
     } else {
-      var def = otherSide(b, side);
-      var dmg = dealDamage(b, side, def, effLikes);
-      lp.dealt = dmg.amount;
-      lp.toShield = dmg.toShield;
-      lp.toHp = dmg.toHp;
-      lp.reflected = dmg.reflected;
-      logEvt(b, sideName(b, side) + " 攻擊 " + effLikes +
-        "（破鐵粉 " + dmg.toShield + "，扣粉絲團 " + dmg.toHp + "）" +
-        (dmg.reflected ? "；反傷 " + dmg.reflected : ""));
-      // lifesteal（atk_to_followers）：依實際打入 hp 的量回粉（不封頂）。
-      if (card._lifestealRatio) {
-        var heal = round(dmg.toHp * card._lifestealRatio);
-        if (heal > 0) { side.hp += heal; logEvt(b, sideName(b, side) + " 吸取粉絲團 +" + heal); }
+      side.turnAtk = (side.turnAtk || 0) + effLikes;             // 累積本回合讚數
+      lp.accumulated = effLikes;
+      if (card._lifestealRatio) {                                 // 吸血量先依攻擊累積，結算時回粉
+        side.turnLifestealHeal = (side.turnLifestealHeal || 0) + round(effLikes * card._lifestealRatio);
       }
+      logEvt(b, sideName(b, side) + " 累積讚數 +" + effLikes + "（本回合共 " + side.turnAtk + "）");
     }
 
     side.playedThisTurn++;
-    checkWin(b); // 每次傷害事件後檢查（reflect 可能反殺攻方）
+    // 此處不再造成傷害，故不需 WINCHECK（傷害結算在 settleTurnDamage）。
+  }
+
+  // settleTurnDamage：回合結束時，將某側本回合累積的 turnAtk 一次性結算為傷害。
+  //   套用對方反傷（反傷讀 shield 前金額）、攻方吸血回復；結算後清空累積並 WINCHECK。
+  function settleTurnDamage(b, side) {
+    if (!b || b.phase === "ENDED") return;
+    var amount = round(side.turnAtk || 0);
+    var heal = round(side.turnLifestealHeal || 0);
+    side.turnAtk = 0;
+    side.turnLifestealHeal = 0;
+    if (amount <= 0 && heal <= 0) return;
+
+    if (amount > 0) {
+      var def = otherSide(b, side);
+      var dmg = dealDamage(b, side, def, amount);
+      // 更新既有 lastPlay（保留剛打出的卡，供對手揭示面板顯示正確卡片），補上結算傷害。
+      var sn = sideName(b, side);
+      var lp = (b.lastPlay && b.lastPlay.side === sn) ? b.lastPlay
+             : (b.lastPlay = { side: sn, card: null, log: [] });
+      lp.effLikes = amount;
+      lp.dealt = dmg.amount; lp.toShield = dmg.toShield; lp.toHp = dmg.toHp;
+      lp.reflected = dmg.reflected; lp.settle = true; lp.accumulated = 0;
+      logEvt(b, sn + " 回合結算：造成 " + amount +
+        " 傷害（破鐵粉 " + dmg.toShield + "，扣粉絲團 " + dmg.toHp + "）" +
+        (dmg.reflected ? "；反傷 " + dmg.reflected : ""));
+    }
+    if (heal > 0) { side.hp += heal; logEvt(b, sideName(b, side) + " 吸取粉絲團 +" + heal); }
+
+    checkWin(b);
   }
 
   // §2.3 WINCHECK（同時致死 → 玩家勝）。
@@ -822,13 +844,17 @@
         hand: [],
         discard: [],
         playedThisTurn: 0,
-        reshuffleCount: 0
+        reshuffleCount: 0,
+        turnAtk: 0,            // 本回合累積讚數（攻擊），回合結束一次結算
+        turnLifestealHeal: 0   // 本回合累積吸血回復量
       },
       opponent: {
         hp: oppHpMax, hpMax: oppHpMax, shield: 0, money: 0,
         posts: buildOpponentPosts(opp),
         nextPostIdx: 0,
-        playedThisTurn: 0
+        playedThisTurn: 0,
+        turnAtk: 0,
+        turnLifestealHeal: 0
       },
 
       buffs: {
@@ -869,6 +895,8 @@
     // P_DRAW：補牌至 HAND_SIZE。
     drawN(b, b.player, cfg.HAND_SIZE - b.player.hand.length);
     b.player.playedThisTurn = 0;
+    b.player.turnAtk = 0;            // 重置本回合累積讚數
+    b.player.turnLifestealHeal = 0;
     b.phase = "P_PLAY";
     return b;
   }
@@ -994,6 +1022,10 @@
     if (b.phase !== "P_PLAY") return b;
     if (b.pending) return b;
 
+    // ★ 回合結束：一次結算本回合累積的攻擊讚數 → 對手。若就此分出勝負則結束。
+    settleTurnDamage(b, b.player);
+    if (b.phase === "ENDED") return b;
+
     var keep = [];
     for (var i = 0; i < b.player.hand.length; i++) {
       var c = b.player.hand[i];
@@ -1040,6 +1072,8 @@
       _addBuff: 0, _mulBuff: 1, _isDefenseOnly: false
     };
     opp.playedThisTurn = 0;
+    opp.turnAtk = 0;                 // 重置對手本回合累積讚數
+    opp.turnLifestealHeal = 0;
     b._pendingCard = card;
     b.phase = "O_RESOLVE";
 
@@ -1050,6 +1084,10 @@
     }
     b._pendingCard = null;
 
+    if (b.phase === "ENDED") return b;
+
+    // ★ 對手回合結束：一次結算對手累積的攻擊讚數 → 玩家。
+    settleTurnDamage(b, b.opponent);
     if (b.phase === "ENDED") return b;
 
     // O_END：清對手回合 buff（reflect 保留）。
