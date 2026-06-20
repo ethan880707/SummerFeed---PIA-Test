@@ -44,6 +44,7 @@
   var _view = "HOME";   // "HOME" | "DECK" | "BATTLE" | "SETTLEMENT"
   var _draft = null;    // DECK 編輯中暫存（postId 陣列）；null = 尚未進編輯
   var _rewardTag = null; // SETTLEMENT 已選的詞條名稱
+  var _scryPick = [];   // BATTLE scry 待決：已選卡 uid 陣列
 
   // ---- HP bar 元件（§6.3） -------------------------------------------------
   function hpBar(side, now, max, small) {
@@ -198,7 +199,8 @@
   function startBattle(opponentId) {
     var b = SF.CardGame.startBattle(opponentId);
     if (!b) { toast("無法開始挑戰（牌庫不符或對手已擊敗）", "bad"); return; }
-    SF.CardGame.drawPhase();
+    // v2：startBattle 建立 ROUND_START 狀態，beginRound 推進至 P_DRAW（流量/金錢 tick + 發牌）。
+    if (typeof SF.CardGame.beginRound === "function") SF.CardGame.beginRound();
     _rewardTag = null;
     _view = "BATTLE";
     render();
@@ -330,8 +332,42 @@
   }
 
   // ===========================================================================
-  // BATTLE — HUD / 對手 / 組合 banner / 手牌 / log
+  // BATTLE（v2）— 流量條 / 雙方資源 / 手牌（效果標籤）/ 出牌 / 對手揭示 / 待決選擇
+  //   完全依引擎 transient state（SF.CardGame.battle，SPEC §3）驅動，只讀不改。
+  //   流程：startBattle → beginRound(P_DRAW) → playCard×≤3 / resolveChoice
+  //         → endPlayerTurn(O_PLAY) → runOpponentTurn(O_END) → advance(下一 ROUND_START)
   // ===========================================================================
+
+  // effLikes：手牌卡的「當前攻擊＝讚數」。優先用引擎提供的計算（流量/buff live），
+  // 退而求其次估算 round(baseLikes * (1+traffic/100) * mulBuff + addBuff)。
+  function effLikesOf(b, side, card) {
+    if (SF.CardGame && typeof SF.CardGame.effLikes === "function") {
+      try { return SF.CardGame.effLikes(side, card); } catch (e) { /* fall through */ }
+    }
+    var base = (card && typeof card.baseLikes === "number") ? card.baseLikes
+             : (card && typeof card.likes === "number") ? card.likes : 0;
+    var traffic = (b && typeof b.traffic === "number") ? b.traffic : 0;
+    var addBuff = (card && typeof card._addBuff === "number") ? card._addBuff : 0;
+    var mulBuff = (card && typeof card._mulBuff === "number") ? card._mulBuff : 1;
+    var sb = b && b.buffs && b.buffs[side];
+    if (sb) {
+      addBuff += (typeof sb.addBuff === "number" ? sb.addBuff : 0);
+      mulBuff *= (typeof sb.mulBuff === "number" ? sb.mulBuff : 1);
+    }
+    var v = Math.round(base * (1 + traffic / 100) * mulBuff + addBuff);
+    return v < 0 ? 0 : v;
+  }
+
+  function likeMultOf(b) {
+    var traffic = (b && typeof b.traffic === "number") ? b.traffic : 0;
+    return 1 + traffic / 100;
+  }
+
+  // 是否處於玩家可出牌階段。
+  function isPlayerPlayPhase(b) {
+    return b.turn === "PLAYER" && (b.phase === "P_PLAY" || b.phase === "P_DRAW");
+  }
+
   function renderBattle() {
     var b = SF.CardGame.battle;
     if (!b) { _view = "HOME"; renderHome(); return; }
@@ -345,163 +381,449 @@
 
     var opp = SF.CardGame.opponentById(b.opponentId);
     var oppName = opp ? opp.name : "對手";
+    var pending = (typeof SF.CardGame.hasPending === "function" && SF.CardGame.hasPending())
+                ? b.pending : null;
 
-    // HUD
-    var hud = el("div", "cg-hud");
-    var bars = el("div", "cg-hud__bars");
+    // ---- 流量條（共享） ----
+    _stage.appendChild(trafficBar(b));
 
-    var pSide = el("div", "cg-hud__side cg-hud__side--player");
-    pSide.appendChild(el("div", "cg-hud__who", "你"));
-    pSide.appendChild(hpBar("player", b.playerHp, b.playerHpMax, false));
-    bars.appendChild(pSide);
+    // ---- 雙方資源面板 ----
+    var sides = el("div", "cg-sides");
+    sides.appendChild(sidePanel(b, "PLAYER", "你", null));
+    sides.appendChild(el("div", "cg-sides__vs", "VS"));
+    sides.appendChild(sidePanel(b, "OPPONENT", oppName, opp));
+    _stage.appendChild(sides);
 
-    bars.appendChild(el("div", "cg-hud__vs", "VS"));
+    // ---- 回合 / 階段指示 ----
+    var meta = el("div", "cg-bmeta");
+    meta.appendChild(el("span", "cg-bmeta__round", "第 " + b.round + " 回合"));
+    meta.appendChild(el("span", "cg-bmeta__turn cg-bmeta__turn--" + (b.turn === "PLAYER" ? "p" : "o"),
+      b.turn === "PLAYER" ? "我方回合" : "對手回合"));
+    meta.appendChild(el("span", "cg-bmeta__phase", phaseLabel(b.phase)));
+    _stage.appendChild(meta);
 
-    var oSide = el("div", "cg-hud__side cg-hud__side--opp");
-    oSide.appendChild(el("div", "cg-hud__who", oppName));
-    oSide.appendChild(hpBar("opp", b.oppHp, b.oppHpMax, false));
-    bars.appendChild(oSide);
-
-    hud.appendChild(bars);
-
-    var meta = el("div", "cg-hud__meta");
-    meta.appendChild(el("span", "cg-hud__round", "第 " + b.round + " 回合"));
-    meta.appendChild(el("span", "cg-hud__phase", phaseLabel(b.phase)));
-    hud.appendChild(meta);
-    _stage.appendChild(hud);
-
-    // 對手出牌列
-    var oppWrap = el("div", "cg-opp");
-    var oppCardBox = el("div", "cg-opp__card");
-    if (b.oppCard) {
-      oppCardBox.appendChild(cardEl(b.oppCard, { large: true, tags: oppCardTags(opp, b) }));
-    } else {
-      oppCardBox.appendChild(el("div", "cg-card cg-card--lg", "—"));
+    // ---- 待決選擇（最優先，阻擋其餘互動） ----
+    if (pending) {
+      _stage.appendChild(pendingPanel(b, pending));
     }
-    oppWrap.appendChild(oppCardBox);
 
-    var action = el("div", "cg-opp__action");
-    action.appendChild(buildActionButton(b));
-    oppWrap.appendChild(action);
-    _stage.appendChild(oppWrap);
+    // ---- 對手揭示面板（O_* 階段） ----
+    if (b.turn === "OPPONENT" || b.phase === "O_PLAY" || b.phase === "O_RESOLVE" || b.phase === "O_END") {
+      _stage.appendChild(opponentRevealPanel(b, opp));
+    }
 
-    // 組合效果 banner（EFFECT 佔位）
-    _stage.appendChild(el("div", "cg-combo is-disabled", "詞條與詞條間有組合效果"));
+    // ---- 手牌（我方回合） ----
+    if (b.turn === "PLAYER") {
+      _stage.appendChild(handSection(b, !!pending));
+    }
 
-    // 手牌
+    // ---- 動作列 ----
+    if (!pending) _stage.appendChild(actionBar(b));
+
+    // ---- 戰鬥記錄 ----
+    _stage.appendChild(logSection(b));
+  }
+
+  // ---- 流量條 -------------------------------------------------------------
+  function trafficBar(b) {
+    var traffic = (typeof b.traffic === "number") ? b.traffic : 0;
+    if (traffic < 0) traffic = 0; if (traffic > 100) traffic = 100;
+    var lvl = traffic >= 67 ? "high" : (traffic >= 34 ? "med" : "low");
+    var wrap = el("div", "cg-traffic cg-traffic--" + lvl);
+
+    var head = el("div", "cg-traffic__head");
+    head.appendChild(el("span", "cg-traffic__label", "流量"));
+    head.appendChild(el("span", "cg-traffic__pct", traffic + "%"));
+    var mult = likeMultOf(b);
+    head.appendChild(el("span", "cg-traffic__mult", "讚數 ×" + mult.toFixed(2)));
+    wrap.appendChild(head);
+
+    var track = el("div", "cg-traffic__track");
+    var fill = el("div", "cg-traffic__fill");
+    fill.style.width = traffic + "%";
+    track.appendChild(fill);
+    wrap.appendChild(track);
+    return wrap;
+  }
+
+  // ---- 單側資源面板（HP / 鐵粉 / 金錢） -----------------------------------
+  function sidePanel(b, side, name, opp) {
+    var u = (side === "PLAYER") ? b.player : b.opponent;
+    u = u || {};
+    var cls = "cg-side cg-side--" + (side === "PLAYER" ? "player" : "opp");
+    var n = el("div", cls);
+
+    var head = el("div", "cg-side__head");
+    if (opp) {
+      head.appendChild(el("div", "cg-side__avatar", opp.avatar || "?"));
+    } else {
+      head.appendChild(el("div", "cg-side__avatar cg-side__avatar--you", "你"));
+    }
+    var idBox = el("div", "cg-side__id");
+    idBox.appendChild(el("div", "cg-side__name", name || "?"));
+    if (opp) idBox.appendChild(el("div", "cg-side__handle", opp.handle || ""));
+    head.appendChild(idBox);
+    n.appendChild(head);
+
+    var hpNow = (typeof u.hp === "number") ? u.hp : 0;
+    var hpMax = (typeof u.hpMax === "number") ? u.hpMax : hpNow;
+    var hpRow = el("div", "cg-side__hp");
+    hpRow.appendChild(el("span", "cg-side__hplab", "粉絲團"));
+    hpRow.appendChild(hpBar(side === "PLAYER" ? "player" : "opp", hpNow, hpMax, false));
+    n.appendChild(hpRow);
+
+    var pills = el("div", "cg-pills");
+    pills.appendChild(resPill("shield", "鐵粉", (typeof u.shield === "number") ? u.shield : 0));
+    pills.appendChild(resPill("money", "金錢", (typeof u.money === "number") ? u.money : 0));
+    n.appendChild(pills);
+    return n;
+  }
+
+  function resPill(kind, label, value) {
+    var p = el("div", "cg-pill cg-pill--" + kind);
+    p.appendChild(el("span", "cg-pill__lab", label));
+    p.appendChild(el("span", "cg-pill__val", abbr(value)));
+    return p;
+  }
+
+  // ---- 手牌區 -------------------------------------------------------------
+  function handSection(b, locked) {
     var cfg = SF.CardGame.config;
-    _stage.appendChild(el("div", "section-label", "你的手牌（選 " + cfg.PLAY_SIZE + " 張）"));
+    var played = (typeof (b.player && b.player.playedThisTurn) === "number") ? b.player.playedThisTurn : 0;
+    var canPlay = isPlayerPlayPhase(b) && played < cfg.PLAY_SIZE && !locked;
+
+    var wrap = el("div");
+    wrap.appendChild(el("div", "section-label",
+      "你的手牌（本回合已出 " + played + " / " + cfg.PLAY_SIZE + "）"));
+
     var hand = el("div", "cg-hand");
-    var pickedSet = Object.create(null);
-    for (var p = 0; p < b.picked.length; p++) pickedSet[b.picked[p]] = true;
-    var canPick = (b.phase === "PLAY");
-    for (var i = 0; i < b.hand.length; i++) {
+    var cards = (b.player && b.player.hand) ? b.player.hand : [];
+    if (!cards.length) {
+      hand.appendChild(el("div", "cg-hand__empty", "手牌為空"));
+    }
+    for (var i = 0; i < cards.length; i++) {
       (function (idx) {
-        var c = b.hand[idx];
-        var selected = !!pickedSet[idx];
-        var full = b.picked.length >= cfg.PLAY_SIZE;
-        hand.appendChild(cardEl(c, {
-          playable: true,
-          selected: selected,
-          disabled: !canPick || (!selected && full),
-          onClick: function () { SF.CardGame.pickCard(idx); render(); }
+        var c = cards[idx];
+        hand.appendChild(handCard(b, c, {
+          disabled: !canPlay,
+          onClick: function () {
+            if (typeof SF.CardGame.playCard === "function") SF.CardGame.playCard(idx);
+            render();
+          }
         }));
       })(i);
     }
-    _stage.appendChild(hand);
-
-    // log
-    if (b.log && b.log.length) {
-      _stage.appendChild(el("div", "section-label", "回合紀錄"));
-      var logWrap = el("div", "cg-log");
-      for (var L = b.log.length - 1; L >= 0; L--) {
-        logWrap.appendChild(logRow(b.log[L]));
-      }
-      _stage.appendChild(logWrap);
-    }
+    wrap.appendChild(hand);
+    return wrap;
   }
 
-  // 動作按鈕：依 phase 改變文字 / disabled，不切 _view。
-  function buildActionButton(b) {
-    var cfg = SF.CardGame.config;
-    var btn = el("button", "btn btn--primary cg-opp__btn");
+  // 手牌卡：名稱 + 攻擊（effLikes，live）+ 各效果中文標籤 + RETAIN/TEMP 標記。
+  function handCard(b, card, opts) {
+    opts = opts || {};
+    var cls = "cg-card cg-card--battle is-playable";
+    if (opts.disabled) cls += " is-disabled";
+    if (card && card.retain) cls += " is-retain";
+    if (card && card.temp) cls += " is-temp";
+    var n = el("div", cls);
 
-    if (b.phase === "PLAY") {
-      var need = cfg.PLAY_SIZE;
-      var have = b.picked.length;
-      btn.textContent = "打出（" + have + "/" + need + "）";
-      btn.disabled = (have !== need);
-      btn.onclick = function () {
-        SF.CardGame.playPicked();
+    var top = el("div", "cg-card__top");
+    top.appendChild(el("div", "cg-card__name", (card && card.name) || (card && card.postId) || "(無題)"));
+    if (card && card.retain) top.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
+    if (card && card.temp) top.appendChild(el("span", "cg-card__flag cg-card__flag--temp", "暫時"));
+    n.appendChild(top);
+
+    // 效果標籤
+    var effs = (card && card.effects) ? card.effects : [];
+    if (effs.length) {
+      var ew = el("div", "cg-card__effects");
+      for (var i = 0; i < effs.length; i++) {
+        var lab = effs[i] && effs[i].label ? effs[i].label : effKindLabel(effs[i]);
+        ew.appendChild(el("span", "cg-card__eff", lab));
+      }
+      n.appendChild(ew);
+    }
+
+    var foot = el("div", "cg-card__foot");
+    var atk = el("span", "cg-card__atk");
+    atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
+    atk.appendChild(el("b", null, abbr(effLikesOf(b, "PLAYER", card))));
+    foot.appendChild(atk);
+    n.appendChild(foot);
+
+    if (!opts.disabled && typeof opts.onClick === "function") n.onclick = opts.onClick;
+    return n;
+  }
+
+  // ---- 對手揭示面板 -------------------------------------------------------
+  function opponentRevealPanel(b, opp) {
+    var wrap = el("div", "cg-oppturn");
+    wrap.appendChild(el("div", "cg-oppturn__title", "對手出牌"));
+
+    var card = lastPlayCard(b, "OPPONENT") || nextOppCard(b, opp);
+    var body = el("div", "cg-oppturn__body");
+    if (card) {
+      var cardBox = el("div", "cg-card cg-card--lg cg-card--opp");
+      var top = el("div", "cg-card__top");
+      top.appendChild(el("div", "cg-card__name", card.name || card.postId || "對手貼文"));
+      cardBox.appendChild(top);
+      var effs = card.effects || [];
+      if (effs.length) {
+        var ew = el("div", "cg-card__effects");
+        for (var i = 0; i < effs.length; i++) {
+          var lab = effs[i] && effs[i].label ? effs[i].label : effKindLabel(effs[i]);
+          ew.appendChild(el("span", "cg-card__eff", lab));
+        }
+        cardBox.appendChild(ew);
+      }
+      var foot = el("div", "cg-card__foot");
+      var atk = el("span", "cg-card__atk");
+      atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
+      var atkVal = (b.lastPlay && b.lastPlay.side === "OPPONENT" && typeof b.lastPlay.effLikes === "number")
+                 ? b.lastPlay.effLikes : effLikesOf(b, "OPPONENT", card);
+      atk.appendChild(el("b", null, abbr(atkVal)));
+      foot.appendChild(atk);
+      cardBox.appendChild(foot);
+      body.appendChild(cardBox);
+    } else {
+      body.appendChild(el("div", "cg-card cg-card--lg", "—"));
+    }
+    wrap.appendChild(body);
+
+    // 結算摘要（若 lastPlay 為對手）
+    if (b.lastPlay && b.lastPlay.side === "OPPONENT") {
+      var lp = b.lastPlay;
+      var resTxt = "造成 " + abbr(lp.dealt || 0) + " 傷害";
+      if (typeof lp.toShield === "number" && lp.toShield > 0) resTxt += "（鐵粉吸收 " + abbr(lp.toShield) + "）";
+      if (typeof lp.reflected === "number" && lp.reflected > 0) resTxt += "，反傷 " + abbr(lp.reflected);
+      wrap.appendChild(el("div", "cg-oppturn__res", resTxt));
+    }
+    return wrap;
+  }
+
+  function lastPlayCard(b, side) {
+    if (b.lastPlay && b.lastPlay.side === side && b.lastPlay.card) return b.lastPlay.card;
+    return null;
+  }
+
+  // 預覽：本回合對手即將打出的腳本貼文（O_PLAY 前）。
+  function nextOppCard(b, opp) {
+    if (!b.opponent || !b.opponent.posts || !b.opponent.posts.length) return null;
+    var idx = (typeof b.opponent.nextPostIdx === "number")
+            ? b.opponent.nextPostIdx
+            : ((b.round - 1) % b.opponent.posts.length);
+    return b.opponent.posts[idx] || null;
+  }
+
+  // ---- 待決選擇面板（choose_one / scry） ----------------------------------
+  function pendingPanel(b, pending) {
+    var wrap = el("div", "cg-pending");
+    var d = pending.descriptor || {};
+
+    if (pending.kind === "choose_one") {
+      wrap.appendChild(el("div", "cg-pending__title", "選擇一項效果"));
+      var opts = d.options || d.labels || [];
+      var btns = el("div", "cg-pending__opts");
+      for (var i = 0; i < opts.length; i++) {
+        (function (idx) {
+          var o = opts[idx];
+          var lab = (o && o.label) ? o.label : (typeof o === "string" ? o : effKindLabel(o));
+          var btn = el("button", "btn btn--primary cg-pending__opt", lab);
+          btn.onclick = function () {
+            if (typeof SF.CardGame.resolveChoice === "function") SF.CardGame.resolveChoice(idx);
+            render();
+          };
+          btns.appendChild(btn);
+        })(i);
+      }
+      wrap.appendChild(btns);
+      return wrap;
+    }
+
+    if (pending.kind === "scry") {
+      // descriptor.cards = 牌庫頂端可窺視的卡（含 pos 位置索引）；payload 回傳「位置索引」陣列。
+      var look = Array.isArray(d.cards) ? d.cards : [];
+      var pick = (typeof d.pick === "number") ? d.pick : 1;
+      wrap.appendChild(el("div", "cg-pending__title", "預覽牌庫頂端，挑選 " + pick + " 張入手"));
+      if (!Array.isArray(_scryPick)) _scryPick = [];
+
+      if (look.length === 0) {
+        wrap.appendChild(el("div", "cg-pending__empty", "牌庫頂端沒有可窺視的卡。"));
+      }
+      var grid = el("div", "cg-pending__scry");
+      for (var j = 0; j < look.length; j++) {
+        (function (card, pos) {
+          var selected = _scryPick.indexOf(pos) !== -1;
+          var c = el("div", "cg-card cg-card--battle cg-card--scry is-playable" + (selected ? " is-selected" : ""));
+          var top = el("div", "cg-card__top");
+          top.appendChild(el("div", "cg-card__name", (card && card.name) || (card && card.postId) || "?"));
+          c.appendChild(top);
+          var foot = el("div", "cg-card__foot");
+          var atk = el("span", "cg-card__atk");
+          atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
+          atk.appendChild(el("b", null, abbr(effLikesOf(b, "PLAYER", card))));
+          foot.appendChild(atk);
+          c.appendChild(foot);
+          c.onclick = function () {
+            var at = _scryPick.indexOf(pos);
+            if (at !== -1) { _scryPick.splice(at, 1); }
+            else { if (_scryPick.length >= pick) { toast("已達上限 " + pick + " 張", "warn"); return; } _scryPick.push(pos); }
+            render();
+          };
+          grid.appendChild(c);
+        })(look[j], (typeof look[j].pos === "number" ? look[j].pos : j));
+      }
+      wrap.appendChild(grid);
+
+      // 可選張數受限於實際可窺視張數（牌庫不足 pick 時，選滿可選數即可確認，避免卡死）。
+      var effPick = Math.min(pick, look.length);
+      var confirm = el("button", "btn btn--primary cg-pending__confirm",
+        "確認（" + _scryPick.length + " / " + effPick + "）");
+      confirm.disabled = (_scryPick.length !== effPick);
+      confirm.onclick = function () {
+        var payload = _scryPick.slice();
+        _scryPick = [];
+        if (typeof SF.CardGame.resolveChoice === "function") SF.CardGame.resolveChoice(payload);
         render();
       };
-    } else if (b.phase === "ROUND_END") {
+      wrap.appendChild(confirm);
+      return wrap;
+    }
+
+    // 未知 pending 類型：提供略過鈕，避免卡死。
+    wrap.appendChild(el("div", "cg-pending__title", "待決事件"));
+    var skip = el("button", "btn cg-pending__opt", "繼續");
+    skip.onclick = function () {
+      if (typeof SF.CardGame.resolveChoice === "function") SF.CardGame.resolveChoice(0);
+      render();
+    };
+    wrap.appendChild(skip);
+    return wrap;
+  }
+
+  // ---- 動作列：依 turn / phase 推進 v2 state machine ----------------------
+  function actionBar(b) {
+    var holder = el("div", "cg-actions");
+    var btn = el("button", "btn btn--primary cg-actions__main");
+
+    // 純依 phase 推進（不依賴 turn，避免 ROUND_START/OPPONENT 殘留導致卡死）。
+    if (b.phase === "P_PLAY") {
+      // 我方出牌中：可在 3 張前提早結束我方回合。
+      btn.textContent = "結束我方回合";
+      btn.onclick = function () {
+        if (typeof SF.CardGame.endPlayerTurn === "function") SF.CardGame.endPlayerTurn();
+        render();
+      };
+    } else if (b.phase === "O_PLAY") {
+      // 對手出牌待揭示。
+      btn.textContent = "對手出牌";
+      btn.onclick = function () {
+        if (typeof SF.CardGame.runOpponentTurn === "function") SF.CardGame.runOpponentTurn();
+        render();
+      };
+    } else if (b.phase === "ROUND_START") {
+      // 進入下一回合（流量/金錢 tick + 發牌）。
       btn.textContent = "下一回合";
       btn.onclick = function () {
-        SF.CardGame.nextRound();
-        SF.CardGame.drawPhase();
+        if (typeof SF.CardGame.beginRound === "function") SF.CardGame.beginRound();
         render();
       };
-    } else if (b.phase === "ENDED") {
-      btn.textContent = "查看結算";
-      btn.onclick = function () { _view = "SETTLEMENT"; render(); };
     } else {
-      // DRAW 等過渡態：補一次 draw
-      btn.textContent = "繼續";
+      // 其他過渡相位（WINCHECK 等）：推進，必要時補 beginRound。
+      btn.textContent = "下一回合";
       btn.onclick = function () {
-        if (b.phase === "DRAW") SF.CardGame.drawPhase();
+        if (typeof SF.CardGame.advance === "function") SF.CardGame.advance();
+        var nb = SF.CardGame.battle;
+        if (nb && nb.phase === "ROUND_START" && typeof SF.CardGame.beginRound === "function") {
+          SF.CardGame.beginRound();
+        }
         render();
       };
     }
+    holder.appendChild(btn);
 
-    // 放棄按鈕
-    var giveUp = el("button", "btn btn--danger btn--sm", "放棄挑戰");
+    var giveUp = el("button", "btn btn--danger btn--sm cg-actions__give", "放棄挑戰");
     giveUp.onclick = function () {
       if (global.confirm && !global.confirm("確定放棄這場挑戰？不會獲得獎勵。")) return;
       SF.CardGame.endBattle();
       _view = "HOME";
       render();
     };
-
-    var holder = el("div", "cg-opp__btnholder");
-    holder.appendChild(btn);
     holder.appendChild(giveUp);
     return holder;
   }
 
   function phaseLabel(phase) {
     switch (phase) {
-      case "DRAW":      return "抽牌";
-      case "PLAY":      return "出牌";
-      case "EFFECT_1":  return "效果";
-      case "COMPARE":   return "比拼";
-      case "EFFECT_2":  return "效果";
-      case "RESOLVE":   return "結算";
-      case "ROUND_END": return "回合結束";
-      case "ENDED":     return "戰鬥結束";
-      default:          return phase || "";
+      case "ROUND_START":   return "回合開始";
+      case "P_DRAW":        return "抽牌";
+      case "P_PLAY":        return "出牌";
+      case "P_RESOLVE_CARD":return "結算卡片";
+      case "P_END":         return "我方結束";
+      case "O_PLAY":        return "對手出牌";
+      case "O_RESOLVE":     return "對手結算";
+      case "O_END":         return "對手結束";
+      case "WINCHECK":      return "勝負判定";
+      case "ENDED":         return "戰鬥結束";
+      default:              return phase || "";
     }
   }
 
-  function oppCardTags(opp, b) {
-    if (!opp || !opp.posts || !b.oppCard) return [];
-    for (var i = 0; i < opp.posts.length; i++) {
-      if (opp.posts[i].id === b.oppCard.postId) return (opp.posts[i].tags || []).slice(0, 3);
-    }
-    return [];
+  // 效果 kind → 中文 fallback 標籤（理應 card-effects.js 已附 label）。
+  function effKindLabel(eff) {
+    if (!eff) return "效果";
+    var map = {
+      add_shield: "增加鐵粉", heal: "回復粉絲團", shield_to_hp: "鐵粉轉粉絲團",
+      followers_to_atk: "粉絲轉攻擊", atk_to_followers: "攻擊吸粉", reflect: "反傷",
+      traffic_add: "提升流量", traffic_sub: "降低流量",
+      atk_from_traffic: "流量加攻", atk_from_low_traffic: "低流量加攻",
+      traffic_to_money: "流量換金錢", gen_money: "獲得金錢",
+      money_to_traffic: "金錢換流量", money_to_followers: "金錢換粉絲",
+      money_to_shield: "金錢換鐵粉", money_to_atk: "金錢加攻",
+      parity: "奇偶效果", combo: "連動效果", retain: "保留手牌",
+      choose_one: "二選一", temp_card: "生成臨時卡", buff: "強化攻擊",
+      draw: "抽牌", scry: "預覽選牌", repeat: "重複效果"
+    };
+    return map[eff.kind] || (eff.kind || "效果");
   }
 
+  // ---- 戰鬥記錄 -----------------------------------------------------------
+  function logSection(b) {
+    var wrap = el("div");
+    var log = (b.log && b.log.length) ? b.log : null;
+    if (!log) return wrap;
+    wrap.appendChild(el("div", "section-label", "戰鬥記錄"));
+    var logWrap = el("div", "cg-log");
+    for (var L = log.length - 1; L >= 0; L--) {
+      logWrap.appendChild(logRow(b.log[L]));
+    }
+    wrap.appendChild(logWrap);
+    return wrap;
+  }
+
+  // log entry 容忍兩種形態：字串、或 {round?, side?, text?/msg?} 物件。
   function logRow(entry) {
     var n = el("div", "cg-log__row");
-    n.appendChild(el("div", "cg-log__round", "R" + entry.round));
-    var detail = "你 " + abbr(entry.playerSum) + " vs 對手 " + abbr(entry.oppLikes);
-    n.appendChild(el("div", "cg-log__detail", detail));
-    var dmgCls = "cg-log__dmg is-" + entry.target;
-    var dmgTxt;
-    if (entry.target === "opp") dmgTxt = "對手 −" + entry.dmg;
-    else if (entry.target === "player") dmgTxt = "你 −" + entry.dmg;
-    else dmgTxt = "平手";
-    n.appendChild(el("div", dmgCls, dmgTxt));
+    if (typeof entry === "string") {
+      n.appendChild(el("div", "cg-log__detail", entry));
+      return n;
+    }
+    if (entry && typeof entry.round === "number") {
+      n.appendChild(el("div", "cg-log__round", "R" + entry.round));
+    }
+    var side = entry && entry.side;
+    if (side) {
+      n.classList.add(side === "PLAYER" ? "is-player" : "is-opp");
+    }
+    var txt = (entry && (entry.text || entry.msg || entry.detail)) || "";
+    if (!txt && entry) {
+      // 退而求其次：以 lastPlay 樣式描述。
+      if (typeof entry.dealt === "number") {
+        txt = (side === "PLAYER" ? "你" : "對手") + " 出牌，造成 " + abbr(entry.dealt) + " 傷害";
+      } else {
+        txt = JSON.stringify(entry);
+      }
+    }
+    n.appendChild(el("div", "cg-log__detail", txt));
     return n;
   }
 

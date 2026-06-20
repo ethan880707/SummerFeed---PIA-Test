@@ -234,57 +234,162 @@
 .cg-card--lg .cg-card__likes { font-size: var(--fs-md); }
 
 /* ---------------------------------------------------------------------------
-   4. BATTLE — HUD / 對手列 / 組合 banner / 手牌 / log
+   4. BATTLE v2 — 流量條 / 雙方資源 / 手牌（效果）/ 對手揭示 / 待決 / log
    ------------------------------------------------------------------------- */
-.cg-hud {
+
+/* 4a. 流量條（共享） */
+.cg-traffic {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 6px;
+  padding: 10px 14px;
   background: var(--bg-2);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
-.cg-hud__bars {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 12px;
+.cg-traffic__head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
-.cg-hud__side { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.cg-hud__side--opp { align-items: flex-end; text-align: right; }
-.cg-hud__who {
+.cg-traffic__label { font-size: var(--fs-sm); font-weight: 800; color: var(--txt-1); }
+.cg-traffic__pct { font-size: var(--fs-lg); font-weight: 800; color: var(--txt-0); }
+.cg-traffic__mult {
+  margin-left: auto;
   font-size: var(--fs-xs);
   font-weight: 700;
+  color: var(--txt-2);
+  background: var(--bg-3);
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+}
+.cg-traffic__track {
+  position: relative;
+  height: 12px;
+  background: var(--bg-0);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.cg-traffic__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: var(--r-pill);
+  transition: width 0.32s ease, background 0.32s ease;
+  background: var(--traffic-low);
+}
+.cg-traffic--low  .cg-traffic__fill { background: var(--traffic-low); }
+.cg-traffic--med  .cg-traffic__fill { background: var(--traffic-med); }
+.cg-traffic--high .cg-traffic__fill { background: var(--traffic-high); }
+.cg-traffic--med  .cg-traffic__pct { color: var(--traffic-med); }
+.cg-traffic--high .cg-traffic__pct { color: var(--traffic-high); }
+
+/* 4b. 雙方資源面板 */
+.cg-sides {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.cg-sides__vs {
+  align-self: center;
+  font-weight: 800;
+  font-size: var(--fs-md);
+  color: var(--txt-3);
+}
+.cg-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.cg-side--player { border-color: var(--accent); }
+.cg-side--opp { border-color: var(--immoral); }
+.cg-side__head { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.cg-side__avatar {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: var(--fs-sm);
+  background: var(--bg-3);
+  border: 1px solid var(--line-strong);
+  color: var(--txt-0);
+}
+.cg-side__avatar--you { border-color: var(--accent); color: var(--accent); }
+.cg-side__id { min-width: 0; flex: 1 1 auto; }
+.cg-side__name {
+  font-weight: 800;
+  font-size: var(--fs-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cg-side__handle {
+  font-size: var(--fs-xs);
   color: var(--txt-2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
 }
-.cg-hud__vs {
-  font-weight: 800;
-  font-size: var(--fs-md);
-  color: var(--txt-3);
-  padding: 0 4px;
+.cg-side__hp { display: flex; flex-direction: column; gap: 3px; }
+.cg-side__hplab { font-size: var(--fs-xs); font-weight: 700; color: var(--txt-2); }
+
+/* 資源 pill（鐵粉 / 金錢） */
+.cg-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.cg-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  font-size: var(--fs-xs);
 }
-.cg-hud__meta {
+.cg-pill__lab { color: var(--txt-2); font-weight: 700; }
+.cg-pill__val { color: var(--txt-0); font-weight: 800; }
+.cg-pill--shield { border-color: var(--accent-2); }
+.cg-pill--shield .cg-pill__val { color: var(--accent-2); }
+.cg-pill--shield::before { content: "🛡"; font-size: 11px; }
+.cg-pill--money { border-color: var(--warn); }
+.cg-pill--money .cg-pill__val { color: var(--warn); }
+.cg-pill--money::before { content: "$"; font-weight: 800; color: var(--warn); }
+
+/* 4c. 回合 / 階段指示 */
+.cg-bmeta {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border-top: 1px solid var(--line-soft);
-  padding-top: 8px;
+  margin-bottom: 12px;
   font-size: var(--fs-sm);
-  color: var(--txt-1);
 }
-.cg-hud__round { font-weight: 800; color: var(--txt-0); }
-.cg-hud__phase {
+.cg-bmeta__round { font-weight: 800; color: var(--txt-0); }
+.cg-bmeta__turn {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+}
+.cg-bmeta__turn--p { color: var(--accent); background: var(--accent-soft); }
+.cg-bmeta__turn--o { color: var(--immoral); background: var(--traffic-high-bg); }
+.cg-bmeta__phase {
   font-size: var(--fs-xs);
   letter-spacing: 0.5px;
-  color: var(--accent);
-  background: var(--accent-soft);
+  color: var(--txt-2);
+  background: var(--bg-3);
   border-radius: var(--r-pill);
   padding: 2px 10px;
 }
@@ -324,47 +429,114 @@
 }
 .cg-hpbar--sm .cg-hpbar__txt { display: none; }
 
-/* 對手出牌列 */
-.cg-opp {
-  display: flex;
-  align-items: stretch;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.cg-opp__card { flex: 1 1 auto; min-width: 0; }
-.cg-opp__action {
+/* 4d. 戰鬥用卡片（手牌 / scry）：效果標籤 + 攻擊腳註 */
+.cg-card--battle { gap: 8px; }
+.cg-card__top { display: flex; align-items: flex-start; gap: 6px; }
+.cg-card__top .cg-card__name { flex: 1 1 auto; }
+.cg-card__flag {
   flex: 0 0 auto;
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  border-radius: var(--r-pill);
+  padding: 1px 8px;
+  white-space: nowrap;
+}
+.cg-card__flag--retain { color: var(--ok); background: rgba(52, 211, 153, 0.14); }
+.cg-card__flag--temp { color: var(--txt-3); background: var(--bg-3); }
+.cg-card--battle.is-retain { border-color: var(--ok); }
+.cg-card--battle.is-temp { border-style: dashed; }
+
+.cg-card__effects { display: flex; flex-direction: column; gap: 4px; }
+.cg-card__eff {
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--txt-1);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent-2);
+  border-radius: var(--r-sm);
+  padding: 3px 8px;
+}
+.cg-card__atk {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.cg-card__atklab { font-size: var(--fs-xs); color: var(--txt-2); font-weight: 700; }
+.cg-card__atk b { font-size: var(--fs-md); font-weight: 800; color: var(--stat-like); }
+.cg-card__atk b::before { content: "♥ "; font-size: var(--fs-xs); }
+
+/* 4e. 對手揭示面板 */
+.cg-oppturn {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  gap: 6px;
-  min-width: 120px;
-}
-.cg-opp__hint { font-size: var(--fs-xs); color: var(--txt-2); text-align: center; }
-
-/* 組合效果 banner（EFFECT 佔位，dim） */
-.cg-combo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border: 1px dashed var(--line-strong);
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--immoral);
   border-radius: var(--r-md);
-  color: var(--txt-3);
-  font-size: var(--fs-sm);
-  background: var(--bg-1);
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
-.cg-combo.is-disabled { opacity: 0.6; }
-.cg-combo::before { content: "✦"; color: var(--accent-2); opacity: 0.6; }
+.cg-oppturn__title { font-size: var(--fs-sm); font-weight: 800; color: var(--immoral); }
+.cg-oppturn__body { display: flex; }
+.cg-oppturn__body .cg-card { flex: 1 1 auto; }
+.cg-card--opp { border-color: var(--immoral); }
+.cg-oppturn__res {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--txt-1);
+  padding: 8px 10px;
+  background: var(--bg-1);
+  border-radius: var(--r-sm);
+}
+
+/* 4f. 待決選擇（choose_one / scry）— 覆蓋式強調，阻擋其餘互動 */
+.cg-pending {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--accent);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-2);
+  margin-bottom: 12px;
+}
+.cg-pending__title { font-size: var(--fs-md); font-weight: 800; color: var(--txt-0); }
+.cg-pending__opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.cg-pending__opt { flex: 1 1 200px; }
+.cg-pending__scry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.cg-card--scry { min-height: 80px; }
+.cg-pending__confirm { align-self: flex-start; }
+
+/* 4g. 動作列 */
+.cg-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 4px 0 12px;
+}
+.cg-actions__main { flex: 1 1 auto; }
+.cg-actions__give { flex: 0 0 auto; }
 
 /* 手牌列 */
 .cg-hand {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 10px;
+}
+.cg-hand__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px;
+  color: var(--txt-3);
+  font-size: var(--fs-sm);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md);
 }
 
 /* 回合 log */
@@ -386,10 +558,8 @@
 }
 .cg-log__round { font-weight: 800; color: var(--txt-2); flex: 0 0 auto; min-width: 30px; }
 .cg-log__detail { flex: 1 1 auto; color: var(--txt-1); }
-.cg-log__dmg { flex: 0 0 auto; font-weight: 800; }
-.cg-log__dmg.is-opp { color: var(--ok); }
-.cg-log__dmg.is-player { color: var(--bad); }
-.cg-log__dmg.is-none { color: var(--txt-3); }
+.cg-log__row.is-player { border-left: 3px solid var(--accent); }
+.cg-log__row.is-opp { border-left: 3px solid var(--immoral); }
 
 /* ---------------------------------------------------------------------------
    5. SETTLEMENT — 勝負橫幅 + 獎勵
@@ -455,14 +625,13 @@
   .cg-rank__stat .cg-hpbar--sm { flex: 1 1 auto; max-width: 160px; }
   .cg-rank__btn { margin-left: auto; }
 
-  /* HUD bars 直向堆疊 */
-  .cg-hud__bars { grid-template-columns: 1fr; }
-  .cg-hud__vs { display: none; }
-  .cg-hud__side--opp { align-items: stretch; text-align: left; }
+  /* 雙方資源面板直向堆疊（移除中央 VS） */
+  .cg-sides { grid-template-columns: 1fr; }
+  .cg-sides__vs { display: none; }
 
-  /* 對手卡 + 按鈕直向堆疊 */
-  .cg-opp { flex-direction: column; }
-  .cg-opp__action { min-width: 0; }
+  /* 動作列直向堆疊 */
+  .cg-actions { flex-direction: column; align-items: stretch; }
+  .cg-actions__give { width: 100%; }
 
   .cg-hand { overflow-x: visible; }
 }

@@ -1,0 +1,3545 @@
+{
+  "A1": {
+    "category": [
+      "共通",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "draw",
+        "n": 1,
+        "label": "抽 1 張牌"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "A2": {
+    "category": [
+      "女A",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "A3a": {
+    "category": [
+      "女A",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "A3b": {
+    "category": [
+      "女A",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "A4": {
+    "category": [
+      "女A",
+      "女A",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "A5a": {
+    "category": [
+      "女A",
+      "女A"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      }
+    ]
+  },
+  "A5b": {
+    "category": [
+      "女A",
+      "女A"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      }
+    ]
+  },
+  "A6": {
+    "category": [
+      "女A",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "A7": {
+    "category": [
+      "女A",
+      "女A"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      }
+    ]
+  },
+  "A8": {
+    "category": [
+      "女A"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      }
+    ]
+  },
+  "B1": {
+    "category": [
+      "女B",
+      "自宅",
+      "理髮"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "B2": {
+    "category": [
+      "女B",
+      "街道",
+      "公司"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_add",
+        "pct": 15,
+        "label": "流量 +15%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "B3": {
+    "category": [
+      "女B",
+      "理髮"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      }
+    ]
+  },
+  "B4": {
+    "category": [
+      "女B",
+      "女B",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "B5a": {
+    "category": [
+      "女B",
+      "理髮"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      }
+    ]
+  },
+  "B5b": {
+    "category": [
+      "女B",
+      "理髮"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      }
+    ]
+  },
+  "B6": {
+    "category": [
+      "女B",
+      "理髮",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "B7a": {
+    "category": [
+      "女B"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      }
+    ]
+  },
+  "B7b": {
+    "category": [
+      "女B"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      }
+    ]
+  },
+  "C1": {
+    "category": [
+      "女C",
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      },
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      }
+    ]
+  },
+  "C2": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C3": {
+    "category": [
+      "女C",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "C4a": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C4b": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C4c": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C5a": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C5b": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C6": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "C7a": {
+    "category": [
+      "女C"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      }
+    ]
+  },
+  "C7b": {
+    "category": [
+      "女C"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      }
+    ]
+  },
+  "C7c": {
+    "category": [
+      "女C"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      }
+    ]
+  },
+  "D1": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      }
+    ]
+  },
+  "D2": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      }
+    ]
+  },
+  "D3": {
+    "category": [
+      "女D",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "D4": {
+    "category": [
+      "女D",
+      "女D"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      }
+    ]
+  },
+  "D5a": {
+    "category": [
+      "女D",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "temp_card",
+        "cardRef": "__BASE_STRIKE__",
+        "label": "生成一張臨時打擊卡（回合結束消失）"
+      },
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      }
+    ]
+  },
+  "D5b": {
+    "category": [
+      "女D",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "repeat",
+        "times": 2,
+        "effect": {
+          "kind": "gen_money",
+          "amount": 1,
+          "label": "金錢 +1"
+        },
+        "label": "重複 2 次：金錢 +1（共 +2）"
+      },
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      }
+    ]
+  },
+  "D6a": {
+    "category": [
+      "女D",
+      "女D",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "D6b": {
+    "category": [
+      "女D",
+      "女D",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "D7a": {
+    "category": [
+      "女D"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      }
+    ]
+  },
+  "D7b": {
+    "category": [
+      "女D"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      }
+    ]
+  },
+  "D7c": {
+    "category": [
+      "女D"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      }
+    ]
+  },
+  "E01": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "temp_card",
+        "cardRef": "__BASE_STRIKE__",
+        "label": "生成一張臨時打擊卡（回合結束消失）"
+      }
+    ]
+  },
+  "E02": {
+    "category": [
+      "女A",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E03": {
+    "category": [
+      "女A",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E04": {
+    "category": [
+      "女A",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "E05": {
+    "category": [
+      "女B",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E06": {
+    "category": [
+      "女B",
+      "公司"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_add",
+        "pct": 15,
+        "label": "流量 +15%"
+      }
+    ]
+  },
+  "E07": {
+    "category": [
+      "女B",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E08": {
+    "category": [
+      "女C",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E09": {
+    "category": [
+      "女C",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E10": {
+    "category": [
+      "女C",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E11": {
+    "category": [
+      "女D",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E12": {
+    "category": [
+      "女D",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E13": {
+    "category": [
+      "女D",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E14": {
+    "category": [
+      "健身",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "draw",
+        "n": 1,
+        "label": "抽 1 張牌"
+      },
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "E15": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "E16": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E17": {
+    "category": [
+      "學校",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "E18": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E19": {
+    "category": [
+      "女D",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E20": {
+    "category": [
+      "女B",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      },
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      }
+    ]
+  },
+  "E21": {
+    "category": [
+      "女C",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E22": {
+    "category": [
+      "女C",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E23": {
+    "category": [
+      "共通",
+      "理髮"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      }
+    ]
+  },
+  "E24": {
+    "category": [
+      "健身",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E25": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      }
+    ]
+  },
+  "E26": {
+    "category": [
+      "自宅",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E27": {
+    "category": [
+      "女D",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "E28": {
+    "category": [
+      "健身",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "E29": {
+    "category": [
+      "健身",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      },
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "W01": {
+    "category": [
+      "街道",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W02": {
+    "category": [
+      "公司",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      },
+      {
+        "kind": "traffic_add",
+        "pct": 15,
+        "label": "流量 +15%"
+      }
+    ]
+  },
+  "W03": {
+    "category": [
+      "共通",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      },
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "W04": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "draw",
+        "n": 1,
+        "label": "抽 1 張牌"
+      }
+    ]
+  },
+  "W05": {
+    "category": [
+      "學妹",
+      "共通"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "draw",
+        "n": 1,
+        "label": "抽 1 張牌"
+      },
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "W06": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "W07": {
+    "category": [
+      "公司",
+      "公司"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "traffic_add",
+        "pct": 15,
+        "label": "流量 +15%"
+      }
+    ]
+  },
+  "W08": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W09": {
+    "category": [
+      "阿姨",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "draw",
+        "n": 1,
+        "label": "抽 1 張牌"
+      },
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      }
+    ]
+  },
+  "W10": {
+    "category": [
+      "女A",
+      "女A"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      }
+    ]
+  },
+  "W11": {
+    "category": [
+      "學妹",
+      "圖書"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      },
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "W12": {
+    "category": [
+      "阿姨",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "temp_card",
+        "cardRef": "__BASE_STRIKE__",
+        "label": "生成一張臨時打擊卡（回合結束消失）"
+      },
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      }
+    ]
+  },
+  "W13": {
+    "category": [
+      "女D",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W14": {
+    "category": [
+      "女D",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W15": {
+    "category": [
+      "女D",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "gen_money",
+        "amount": 2,
+        "label": "金錢 +2"
+      },
+      {
+        "kind": "money_to_traffic",
+        "ratio": 1,
+        "sign": 1,
+        "label": "消耗全部金錢，每 1 元流量 +1%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W16": {
+    "category": [
+      "女C",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "choose_one",
+        "options": [
+          {
+            "kind": "buff",
+            "atkFrac": 0.5,
+            "scope": "turn",
+            "target": "self",
+            "label": "本卡攻擊 +50%"
+          },
+          {
+            "kind": "add_shield",
+            "pct": 0.5,
+            "label": "獲得鐵粉 = 本卡讚數 50%"
+          }
+        ],
+        "label": "二選一：本卡攻擊 +50% 或 鐵粉 = 讚數 50%"
+      },
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      }
+    ]
+  },
+  "W17": {
+    "category": [
+      "女C",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "temp_card",
+        "cardRef": "__BASE_STRIKE__",
+        "label": "生成一張臨時打擊卡（回合結束消失）"
+      },
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      }
+    ]
+  },
+  "W18": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "W19": {
+    "category": [
+      "女B",
+      "公司"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_add",
+        "pct": 15,
+        "label": "流量 +15%"
+      }
+    ]
+  },
+  "W20": {
+    "category": [
+      "女B",
+      "公司"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "traffic_add",
+        "pct": 15,
+        "label": "流量 +15%"
+      }
+    ]
+  },
+  "W21": {
+    "category": [
+      "女C",
+      "圖書"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.3,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +30%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.4,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 40%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +30% / 偶數張鐵粉 = 讚數 40%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "W22": {
+    "category": [
+      "學妹",
+      "學妹"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "W23": {
+    "category": [
+      "學妹",
+      "共通"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "repeat",
+        "times": 2,
+        "effect": {
+          "kind": "gen_money",
+          "amount": 1,
+          "label": "金錢 +1"
+        },
+        "label": "重複 2 次：金錢 +1（共 +2）"
+      },
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "W24": {
+    "category": [
+      "阿姨",
+      "阿姨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      }
+    ]
+  },
+  "W25": {
+    "category": [
+      "阿姨",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "W26": {
+    "category": [
+      "女B",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "traffic_to_money",
+        "ratio": 1.0,
+        "label": "依流量級距換取金錢（不消耗流量）"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W27": {
+    "category": [
+      "巨巨",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      },
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      }
+    ]
+  },
+  "W28": {
+    "category": [
+      "學妹",
+      "共通"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      },
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "W29": {
+    "category": [
+      "阿姨",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      },
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "W30": {
+    "category": [
+      "巨巨",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "F01": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      }
+    ]
+  },
+  "F02": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      }
+    ]
+  },
+  "F03": {
+    "category": [
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "F04": {
+    "category": [
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "F05": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "repeat",
+        "times": 2,
+        "effect": {
+          "kind": "gen_money",
+          "amount": 1,
+          "label": "金錢 +1"
+        },
+        "label": "重複 2 次：金錢 +1（共 +2）"
+      }
+    ]
+  },
+  "F06": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "temp_card",
+        "cardRef": "__BASE_STRIKE__",
+        "label": "生成一張臨時打擊卡（回合結束消失）"
+      }
+    ]
+  },
+  "F07": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      }
+    ]
+  },
+  "F08": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      }
+    ]
+  },
+  "F09": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "choose_one",
+        "options": [
+          {
+            "kind": "buff",
+            "atkFrac": 0.5,
+            "scope": "turn",
+            "target": "self",
+            "label": "本卡攻擊 +50%"
+          },
+          {
+            "kind": "add_shield",
+            "pct": 0.5,
+            "label": "獲得鐵粉 = 本卡讚數 50%"
+          }
+        ],
+        "label": "二選一：本卡攻擊 +50% 或 鐵粉 = 讚數 50%"
+      }
+    ]
+  },
+  "F10": {
+    "category": [
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "scry",
+        "look": 3,
+        "pick": 1,
+        "label": "查看牌庫頂 3 張，挑 1 張入手牌"
+      }
+    ]
+  },
+  "N01": {
+    "category": [
+      "巨巨",
+      "巨巨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      }
+    ]
+  },
+  "N02": {
+    "category": [
+      "巨巨",
+      "巨巨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      }
+    ]
+  },
+  "N03": {
+    "category": [
+      "巨巨",
+      "巨巨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      }
+    ]
+  },
+  "N04": {
+    "category": [
+      "巨巨",
+      "巨巨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      }
+    ]
+  },
+  "N05": {
+    "category": [
+      "學妹",
+      "共通"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "repeat",
+        "times": 2,
+        "effect": {
+          "kind": "gen_money",
+          "amount": 1,
+          "label": "金錢 +1"
+        },
+        "label": "重複 2 次：金錢 +1（共 +2）"
+      },
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "N06": {
+    "category": [
+      "學妹",
+      "學妹"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "N07": {
+    "category": [
+      "學妹",
+      "學妹"
+    ],
+    "retain": true,
+    "effects": [
+      {
+        "kind": "retain",
+        "label": "保留：本卡回合結束後留在手牌"
+      }
+    ]
+  },
+  "N08": {
+    "category": [
+      "阿姨",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "buff",
+        "atkFrac": 0.2,
+        "scope": "turn",
+        "target": "self",
+        "label": "本卡攻擊 +20%"
+      },
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      }
+    ]
+  },
+  "N09": {
+    "category": [
+      "阿姨",
+      "阿姨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      }
+    ]
+  },
+  "N10": {
+    "category": [
+      "阿姨",
+      "阿姨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "atk_from_low_traffic",
+        "pctPer10": 0.1,
+        "label": "流量每缺 10% 本卡攻擊 +讚數 10%"
+      }
+    ]
+  },
+  "OPP01-P1": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP01-P2": {
+    "category": [
+      "女A",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "OPP01-P3": {
+    "category": [
+      "女A",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      }
+    ]
+  },
+  "OPP01-P4": {
+    "category": [
+      "學校",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "OPP02-P1": {
+    "category": [
+      "健身",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "OPP02-P2": {
+    "category": [
+      "健身",
+      "巨巨"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      },
+      {
+        "kind": "followers_to_atk",
+        "ratio": 0.0008,
+        "k": 1,
+        "label": "消耗 0.08% 粉絲團轉為本卡攻擊"
+      },
+      {
+        "kind": "atk_to_followers",
+        "ratio": 0.05,
+        "label": "造成傷害的 5% 回復為粉絲團（吸血）"
+      },
+      {
+        "kind": "reflect",
+        "pct": 50,
+        "rounds": 1,
+        "label": "50% 反傷，持續 1 回合"
+      }
+    ]
+  },
+  "OPP02-P3": {
+    "category": [
+      "健身",
+      "健身"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      }
+    ]
+  },
+  "OPP03-P1": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP03-P2": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP03-P3": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "OPP03-P4": {
+    "category": [
+      "共通",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "OPP04-P1": {
+    "category": [
+      "共通",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP04-P2": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "OPP04-P3": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP05-P1": {
+    "category": [
+      "自宅",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "OPP05-P2": {
+    "category": [
+      "自宅",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "OPP05-P3": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "OPP05-P4": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": []
+  },
+  "OPP06-P1": {
+    "category": [
+      "共通",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "OPP06-P2": {
+    "category": [
+      "健身",
+      "理髮"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "heal",
+        "pct": 0.5,
+        "label": "回復粉絲團 = 本卡讚數 50%（上限封頂）"
+      },
+      {
+        "kind": "traffic_sub",
+        "pct": 15,
+        "label": "流量 -15%"
+      }
+    ]
+  },
+  "OPP06-P3": {
+    "category": [
+      "學校",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "OPP07-P1": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "OPP07-P2": {
+    "category": [
+      "咖啡",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      }
+    ]
+  },
+  "OPP07-P3": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": []
+  },
+  "OPP07-P4": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP08-P1": {
+    "category": [
+      "女A",
+      "自宅"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "shield_to_hp",
+        "amount": "all",
+        "label": "將全部鐵粉轉為粉絲團"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  },
+  "OPP08-P2": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP08-P3": {
+    "category": [
+      "街道",
+      "街道"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "money_to_followers",
+        "perMoneyPct": 0.25,
+        "label": "消耗全部金錢，每 1 元粉絲團 +讚數 25%"
+      },
+      {
+        "kind": "money_to_shield",
+        "perMoneyPct": 0.4,
+        "label": "消耗全部金錢，每 1 元鐵粉 +讚數 40%（金錢已先被前項耗盡時為 0）"
+      }
+    ]
+  },
+  "OPP09-P1": {
+    "category": [
+      "共通",
+      "共通"
+    ],
+    "retain": false,
+    "effects": []
+  },
+  "OPP09-P2": {
+    "category": [
+      "圖書",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "gen_money",
+          "amount": 2,
+          "label": "金錢 +2"
+        },
+        "label": "連段（非本回合第一張）：金錢 +2"
+      },
+      {
+        "kind": "combo",
+        "effect": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "本卡攻擊 +25%"
+        },
+        "label": "連段（非本回合第一張）：本卡攻擊 +25%"
+      }
+    ]
+  },
+  "OPP09-P3": {
+    "category": [
+      "學校",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "OPP10-P1": {
+    "category": [
+      "學校",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "OPP10-P2": {
+    "category": [
+      "學校",
+      "學校"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "OPP10-P3": {
+    "category": [
+      "學校",
+      "共通"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "add_shield",
+        "pct": 0.5,
+        "label": "獲得鐵粉 = 本卡讚數 50%"
+      }
+    ]
+  },
+  "OPP10-P4": {
+    "category": [
+      "自宅",
+      "咖啡"
+    ],
+    "retain": false,
+    "effects": [
+      {
+        "kind": "parity",
+        "odd": {
+          "kind": "buff",
+          "atkFrac": 0.25,
+          "scope": "turn",
+          "target": "self",
+          "label": "（奇數張）本卡攻擊 +25%"
+        },
+        "even": {
+          "kind": "add_shield",
+          "pct": 0.3,
+          "label": "（偶數張）獲得鐵粉 = 本卡讚數 30%"
+        },
+        "label": "單雙數張效果：奇數張攻擊 +25% / 偶數張鐵粉 = 讚數 30%"
+      },
+      {
+        "kind": "money_to_atk",
+        "perMoneyPct": 0.2,
+        "label": "消耗全部金錢，每 1 元本卡攻擊 +讚數 20%"
+      }
+    ]
+  }
+}

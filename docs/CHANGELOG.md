@@ -2,6 +2,42 @@
 
 > 本專案（網頁測試版）的更新紀錄，**獨立**於 Unity（`00_Program/.claude/changelog/`）與 Articy 的紀錄系統。
 
+## 2026-06-20（續：v2.1 效果調整）
+
+### 修改（效果固定值 → 本卡讚數的 %）
+- 多數效果原為**固定整數**（增加攻擊、回復血量、鐵粉等），高讚卡時顯得雞肋；改為**該貼文讚數的百分比**，由引擎於出牌當下以該卡 live 讚數動態計算：
+  - 引擎新增 `amountOf`/`perMoneyOf` 與每張卡的 `_anchorLikes`（出牌當下讚數基準），效果改讀 `pct`/`perMoneyPct`/`pctPer10`（沿用舊 `amount`/`perMoney`/`kPer10` 為後備）。
+  - 套用範圍：學校/咖啡廳/女C 的 `add_shield`、健身房 `heal`、女B/阿姨 `atk_from_traffic(_low)`、街道 `money_to_followers`/`money_to_shield`、自宅 `money_to_atk`、共通 base 二選一的 `add_shield`。
+  - 預設百分比（可於 `gen_card_effects.py` 調整）：鐵粉 50%、回復 50%、流量每 10% 攻擊 +讚數 10%、錢轉粉絲 25%/元、錢轉鐵粉 40%/元、錢轉攻擊 20%/元、女C 偶數鐵粉 40%、咖啡偶數 30%。
+  - 已是相對值者（buff 的 `atkFrac`、巨巨 ratio、反傷、流量增減、`gen_money`）維持不變。
+  - 卡面與 Excel 標籤改為顯示「= 本卡讚數 X%」。
+- **scry（查看牌庫挑卡）洗牌時機**：牌庫數量為 **0** 才先重洗棄牌堆再查看；剩 1~（查看數-1）張則**不重洗**，直接看現有的（`cardgame.js` scry case）。
+- 重新生成 `data/card-effects.js` + `_card_effects.json` + Excel 對照表（156 張）。
+  - ⚠️ 原 Excel `SummerFeed_卡牌效果對照表.xlsx` 產生當下被 Excel 開啟鎖定，更新版暫存為 `SummerFeed_卡牌效果對照表_NEW.xlsx`；關閉舊檔後重跑 `python gen_card_effects.py` 即可覆蓋回正名。
+
+## 2026-06-20
+
+### 新增 / 重構（排行榜挑戰 v2 — 回合制大改版）
+- **凍結契約**：`docs/cardgame-v2-spec.md`。`localStorage` 鍵升至 `summerfeed.cardgame.v2`。
+- **新資源系統**：
+  - **流量(traffic)**：共享值，第 1 回合 0%、每回合 +10%、上限 100%；雙方卡牌讚數 ×(1+流量/100)，100% 時為 2 倍。
+  - **粉絲團 = 血量(HP)**：玩家 HP = 粉絲數（下限 `PLAYER_HP_FLOOR=300`）；對手 HP = 粉絲 × `OPP_HP_FOLLOWER_RATIO`。
+  - **鐵粉 = 護盾(shield)**：僅由卡牌效果增加；受擊先扣鐵粉後扣血。
+  - **金錢(money)**：每回合 +1，作為「錢轉X」效果的純轉換媒介。
+  - **讚數 = 攻擊力**；可由 buff/debuff 調整基礎讚數。
+- **回合流程**：抽 5 →（每張先觸發效果、後結算攻防，最多 3 張）→ 棄手牌 → 對手回合（腳本出 1 張固定貼文：效果＋攻擊）。棄牌堆＋空牌堆種子重洗（含「抽 3 重洗再抽 2」分段抽牌）。暫時卡回合末消失、學妹保留卡不棄。
+- **卡牌效果引擎**：依貼文「組成詞條的分類」決定效果，涵蓋 16 家族（共通/女A/學校/健身房/巨巨/女B/公司/理髮廳/阿姨/女C/咖啡廳/圖書館/學妹/女D/街道/自宅）＋ 6 base 屬性（攻擊/二選一/暫時卡/buff/抽牌含查看X選1/重複X次）。
+- **效果資料 + Excel 對照表**：由單一來源 `02_WebDemo/Data/gen_card_effects.py` 生成 `data/card-effects.js`（`window.PIA_CARD_EFFECTS`，156 張＝121 玩家＋35 對手）、`data/_card_effects.json`，以及對照表 `02_WebDemo/Data/SummerFeed_卡牌效果對照表.xlsx`（4 分頁：卡牌效果/效果說明/README/fallbacks）。
+- 改寫 `js/cardgame.js`（v2 引擎）、`js/cardgame-ui.js`（BATTLE 子畫面）、`styles-cardgame.css`；`index.html` 載入 `data/card-effects.js`。HOME/DECK/SETTLEMENT 與獎勵（奪詞條/奪粉絲）沿用。
+
+### 修復（v2 審查後）
+- **scry（查看X選1）卡死**：引擎的 scry pending 現帶 `descriptor.cards`（牌庫頂端可窺視卡），UI 改以「位置索引」回傳並對齊 `applyScry`；牌庫不足時可選張數收斂為實際可選數，避免確認鈕永遠 disabled。
+- **對手回合卡死**：`advance()` 進入下一回合時 `turn` 先歸 `PLAYER`；動作列改為「純依 phase」推進（P_PLAY→結束我方回合 / O_PLAY→對手出牌 / ROUND_START→下一回合），消除 `turn==="OPPONENT"` 殘留導致的無限迴圈。
+- **`effLikes` 別名**：引擎補上 `SF.CardGame.effLikes`（＝`computeEffLikes`），UI 攻擊顯示改用引擎權威值，避免重算漂移。
+
+### 調整（對手加強，配合 v2）
+- `OPP_HP_FOLLOWER_RATIO` 0.10 → **4.0**（對手血量 ×40）。原本 v2 攻擊量級為數百~數千，對手 0.10 倍血量會「秒殺」（第 1 回合結束）；4.0 讓同量級對戰成為 2~4 回合可勝的拉鋸（模擬調校）。遠大於玩家的對手仍會一回合壓制玩家（攻擊=讚數隨其粉絲放大）＝刻意的成長硬門檻。
+
 ## 2026-06-19
 
 ### 修復（排行榜挑戰 — 傷害與對手讚數）
