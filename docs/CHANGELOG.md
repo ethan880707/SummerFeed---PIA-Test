@@ -2,6 +2,18 @@
 
 > 本專案（網頁測試版）的更新紀錄，**獨立**於 Unity（`00_Program/.claude/changelog/`）與 Articy 的紀錄系統。
 
+## 2026-06-20（續：v2.2 效果顯示與保留修正）
+
+### 新增（卡牌效果顯示）
+- **發文分頁預覽**：預覽貼文時一併顯示該貼文對應的卡牌效果（`app.js` `buildCardEffects`，讀 `window.PIA_CARD_EFFECTS`），含「保留」旗標；無效果者顯示「僅基礎攻擊＝讚數」。
+- **組牌（編組牌庫）**：每張可選卡也顯示其效果標籤與「保留」旗標（`cardgame-ui.js` `cardEl` 改讀 `opts.effects` + `cardFxFor`）。
+- 樣式 `post__fx*` 加於 `styles-cardgame.css`（不改 `styles.css`）。
+
+### 修復（保留 retain）
+- **打出後的 retain 牌改入棄牌堆**：原 `finishPlayerCard` 會把已打出的 retain 牌放回手牌（bug，打出後仍留在手上）。修正為「打出的牌一律入棄牌堆（temp 例外消失）」；`retain` 旗標只影響「回合結束時仍在手、未打出的牌」是否保留。
+- **保留牌跨回合清暫態**：`endPlayerTurn` 保留未打出的 retain 牌時，清除其 `_addBuff/_mulBuff/_anchorLikes` 等暫態，下回合以乾淨狀態重算。
+- **抽牌補滿至 5**：抽牌階段為「補滿至 HAND_SIZE」（`HAND_SIZE − 手牌數`），手上有保留牌時只補不足數（如保留 1 張則抽 4 張＝共 5 張）。此前「抽到 6 張」是上述 retain bug 的連帶現象，已隨之修正（模擬驗證：保留 3 張＋補 2 張＝5）。
+
 ## 2026-06-20（續：v2.1 效果調整）
 
 ### 修改（效果固定值 → 本卡讚數的 %）

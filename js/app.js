@@ -486,6 +486,31 @@
     return wrap;
   }
 
+  // 卡牌效果區塊：讀 window.PIA_CARD_EFFECTS[postId]，列出各效果中文標籤 + 「保留」旗標。
+  function buildCardEffects(postId) {
+    var wrap = el("div", "post__fx");
+    var FX = global.PIA_CARD_EFFECTS || {};
+    var rec = FX[postId];
+    var effs = (rec && rec.effects) ? rec.effects : [];
+
+    var head = el("div", "post__fx-head");
+    head.appendChild(el("span", "post__fx-title", "卡牌效果"));
+    if (rec && rec.retain) head.appendChild(el("span", "post__fx-retain", "保留"));
+    wrap.appendChild(head);
+
+    if (!effs.length) {
+      wrap.appendChild(el("div", "post__fx-empty", "（無特殊效果，僅基礎攻擊＝讚數）"));
+      return wrap;
+    }
+    var list = el("div", "post__fx-list");
+    for (var i = 0; i < effs.length; i++) {
+      var lab = (effs[i] && effs[i].label) ? effs[i].label : (effs[i] && effs[i].kind) || "效果";
+      list.appendChild(el("span", "post__fx-eff", lab));
+    }
+    wrap.appendChild(list);
+    return wrap;
+  }
+
   // 預覽卡（id/name/type/traffic/immoral/unlock/prereq）。
   function buildPostPreview(post) {
     var card = el("div", "post post--preview");
@@ -521,6 +546,9 @@
       badges.appendChild(el("span", "badge badge--immoral", "背德證據"));
     }
     card.appendChild(badges);
+
+    // 卡牌效果（排行榜挑戰用）：顯示此貼文對應的卡牌效果（window.PIA_CARD_EFFECTS）。
+    card.appendChild(buildCardEffects(post.id));
 
     // meta：route / unlockChunk / prereq
     var meta = el("div", "post__meta");

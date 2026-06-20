@@ -898,15 +898,15 @@
     return b;
   }
 
-  // 玩家卡 resolve 完成後：歸位（discard，除非 retain/temp）＋回到 P_PLAY 或維持（UI 決定是否 endPlayerTurn）。
+  // 玩家卡 resolve 完成後：打出的牌一律入棄牌堆（temp 例外：消失，不入任何堆）。
+  // 注意：retain（保留）旗標只影響「回合結束時仍在手上、未打出的牌」是否保留，
+  //   與「已打出的牌」無關 → 已打出的 retain 牌一樣進棄牌堆（修正先前誤放回手牌的 bug）。
   function finishPlayerCard(b, card) {
     if (b.phase === "ENDED") { b._pendingCard = null; return; }
-    if (!card.retain && !card.temp) {
+    if (!card.temp) {
       var idx = findDeckIndex(b.player, card.postId);
       if (idx >= 0) b.player.discard.push(idx);
     }
-    // retain → 放回手牌；temp → 消失（不入任何堆）。
-    if (card.retain) b.player.hand.push(card);
     b._pendingCard = null;
     b.phase = "P_PLAY";
   }
@@ -997,8 +997,14 @@
     var keep = [];
     for (var i = 0; i < b.player.hand.length; i++) {
       var c = b.player.hand[i];
-      if (c.retain) { keep.push(c); continue; }
-      if (c.temp) continue; // 消失
+      if (c.retain && !c.temp) {
+        // 保留：未打出的 retain 牌留在手牌跨回合；清掉暫態加成，下回合以乾淨狀態重算。
+        c._addBuff = 0; c._mulBuff = 1; c._anchorLikes = null;
+        c._lifestealRatio = 0; c._isDefenseOnly = false;
+        keep.push(c);
+        continue;
+      }
+      if (c.temp) continue; // 暫時卡：消失，不入任何堆
       var idx = findDeckIndex(b.player, c.postId);
       if (idx >= 0) b.player.discard.push(idx);
     }

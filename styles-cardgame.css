@@ -457,6 +457,27 @@
   border-radius: var(--r-sm);
   padding: 3px 8px;
 }
+
+/* 發文預覽中的「卡牌效果」區塊（app.js buildCardEffects；放此檔以免改 styles.css） */
+.post__fx { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.post__fx-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.post__fx-title { font-size: var(--fs-sm); font-weight: 800; color: var(--accent-2); letter-spacing: .04em; }
+.post__fx-retain {
+  font-size: var(--fs-xs); font-weight: 800; color: var(--ok);
+  background: rgba(52, 211, 153, 0.14); border-radius: var(--r-pill); padding: 1px 8px;
+}
+.post__fx-empty { font-size: var(--fs-xs); color: var(--txt-3); }
+.post__fx-list { display: flex; flex-direction: column; gap: 4px; }
+.post__fx-eff {
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--txt-1);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent-2);
+  border-radius: var(--r-sm);
+  padding: 3px 8px;
+}
 .cg-card__atk {
   display: inline-flex;
   align-items: baseline;

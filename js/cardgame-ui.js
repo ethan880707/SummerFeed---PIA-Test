@@ -69,6 +69,12 @@
 
   // ---- 卡片元件 ------------------------------------------------------------
   // card: { postId/name/likes }；opts: { tags?, selectable?, selected?, onClick?, large?, disabled? }
+  // 取某貼文的卡牌效果定義（window.PIA_CARD_EFFECTS，含 effects[] 與 retain）。
+  function cardFxFor(postId) {
+    var FX = global.PIA_CARD_EFFECTS || {};
+    return FX[postId] || null;
+  }
+
   function cardEl(card, opts) {
     opts = opts || {};
     var cls = "cg-card";
@@ -80,12 +86,27 @@
     var n = el("div", cls);
     n.appendChild(el("div", "cg-card__name", card.name || card.postId || "(無題)"));
 
+    if (card.retain || opts.retain) {
+      n.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
+    }
+
     if (opts.tags && opts.tags.length) {
       var tw = el("div", "cg-card__tags");
       for (var i = 0; i < opts.tags.length; i++) {
         tw.appendChild(el("span", "cg-card__tag", opts.tags[i]));
       }
       n.appendChild(tw);
+    }
+
+    // 卡牌效果標籤（card-effects.js）：組牌/預覽時也看得到。
+    var effs = opts.effects || (card && card.effects) || [];
+    if (effs.length) {
+      var ew = el("div", "cg-card__effects");
+      for (var e = 0; e < effs.length; e++) {
+        var lab = effs[e] && effs[e].label ? effs[e].label : effKindLabel(effs[e]);
+        ew.appendChild(el("span", "cg-card__eff", lab));
+      }
+      n.appendChild(ew);
     }
 
     var foot = el("div", "cg-card__foot");
@@ -262,10 +283,13 @@
         var postId = rec.post.id;
         var selected = !!draftSet[postId];
         var atMax = _draft.length >= cfg.DECK_MAX;
+        var fx = cardFxFor(postId);
         var card = cardEl(
           { postId: postId, name: cardName(rec.post), likes: rec.likes },
           {
             tags: postTags(rec.post),
+            effects: fx ? fx.effects : [],
+            retain: !!(fx && fx.retain),
             selectable: true,
             selected: selected,
             disabled: (!selected && atMax),
