@@ -2,6 +2,19 @@
 
 > 本專案（網頁測試版）的更新紀錄，**獨立**於 Unity（`00_Program/.claude/changelog/`）與 Articy 的紀錄系統。
 
+## 2026-06-21（v3：依「貼文配方表」重做卡牌效果）
+
+### 修改（玩家貼文效果改採設計表）
+- 玩家所有貼文效果改由 `02_WebDemo/Data/貼文配方表.xlsx`（『能力（效果展開）』欄）定義，由新腳本 `Data/gen_from_table.py` 解析（122 筆全數解析、0 未識別）→ 重生 `data/card-effects.js` + `_card_effects.json` + 對照表 `Data/SummerFeed_卡牌效果對照表.xlsx`。對手卡沿用既有效果。`posts.json` 的 `D4` 自動沿用表中 `D4a` 效果（覆蓋全部 121 篇）。
+- **代幣（金錢）**：初始 **10**、每回合 **+5**（首回合維持初始值，不加）。新增匯率：`MONEY_ATK_FRAC=0.05`（花費 1 代幣 = 該卡讚數 5%）、`TRAFFIC_ATK_FRAC=0.01`（消耗 1% 流量 = 讚數 1%）。
+- **引擎效果大擴充**（`cardgame.js`）：新增 43 種效果 kind 處理，含
+  - 增益／轉換：`gain_atk`、`likes_to_shield`、`shield_to_atk`、`shield_to_hp(%)`、`hp_to_atk`、`hp_to_shield`、`traffic_to_atk/hp/money(%)`、`money_to_atk(花費%)`、`money_mult`、`money_pack(+代幣&永久增加)`、`gain_money`。
+  - 條件／回合：`cond_traffic`（當流量高於 Y%）、`turn_double`（本回合 讚數/鐵粉/粉絲 兩倍，經乘區結算）、`hand_size_up`（最大手牌+N）。
+  - 集中式 `gainShield/gainHp/gainAtk/gainMoney` 套用「本回合兩倍」乘區與「取消對手下一次獲得」。
+  - 進階近似：`nth_card_amp`／`next_amp`（第N張／下一個奇偶效果放大）、`nth_card_repeat`（第N張發動多次）、`all_in`（隨機 50~100% 代幣換 2×）、`random_gain`、`random_post`（生成臨時卡）、`copy_last`（複製上一張）、`cancel_opponent`（取消對手下一次獲得）、`draw_discard`、`retain_n`（保留N張手牌）、`retain_gain`（學妹：被保留額外加成）。標為近似，後續可精修。
+- 驗證：全檔 `node --check` 通過、無 `Math.random`/`Date.now`；天梯與多場對戰 0 卡死。
+- 註：玩家卡偏防禦/利用型，貪心 AI（只出最高攻擊）下勝帶較窄（F≈626 約勝 OPP10/09）；實際策略運用（護盾/回復/轉換/代幣爆發）應更強。如需再調平衡（如 `OPP_HP_FOLLOWER_RATIO`）再告知。
+
 ## 2026-06-20（續：v2.3 結算時機與測試工具）
 
 ### 修改（出牌改為「回合結算傷害」）

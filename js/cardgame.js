@@ -36,7 +36,10 @@
       TRAFFIC_PER_ROUND: 10,
       TRAFFIC_MAX: 100,
       // ---- 金錢 ----
-      MONEY_PER_ROUND: 1,
+      MONEY_START: 10,                 // 代幣初始值
+      MONEY_PER_ROUND: 5,              // 代幣每回合 +5
+      MONEY_ATK_FRAC: 0.05,            // 代幣轉換匯率：花費 1 代幣 = 該卡讚數的 5%（轉攻擊/粉絲/鐵粉）
+      TRAFFIC_ATK_FRAC: 0.01,          // 流量轉換：消耗 1% 流量 = 該卡讚數的 1%
       // ---- HP ----
       PLAYER_HP_FLOOR: 300,            // 玩家起始 hp = max(followers, this)
       OPP_HP_FOLLOWER_RATIO: 4.0,      // 對手 hp = round(followers × this)。v2 攻擊=讚數(數百~千)，
@@ -467,16 +470,42 @@
    * ========================================================================= */
   function logEvt(b, msg) { b.log.push(msg); if (b.lastPlay) b.lastPlay.log.push(msg); }
 
-  // 「% of 本卡讚數」量值：pct 存在則取 round(anchorLikes×pct)，否則沿用舊式固定 amount。
+  // 「% of 本卡讚數」量值：pct 存在則取 round(anchorLikes×pct×amp)，否則沿用舊式固定 amount×amp。
   function amountOf(ctx, eff, pctField, amtField) {
-    if (eff[pctField] != null) return Math.max(0, round((ctx.anchorLikes || 0) * (Number(eff[pctField]) || 0)));
-    return Math.max(0, round(eff[amtField]));
+    var amp = ctx.amp || 1;
+    if (eff[pctField] != null) return Math.max(0, round((ctx.anchorLikes || 0) * (Number(eff[pctField]) || 0) * amp));
+    return Math.max(0, round((eff[amtField] || 0) * amp));
   }
   // 「每 1 元 = 讚數×perMoneyPct」單位量；否則沿用舊式固定 perMoney。
   function perMoneyOf(ctx, eff) {
     if (eff.perMoneyPct != null) return Math.max(0, round((ctx.anchorLikes || 0) * (Number(eff.perMoneyPct) || 0)));
     return Math.max(0, round(eff.perMoney));
   }
+
+  // ---- 集中式「獲得」助手：套用本回合乘區（turnXMult）與「取消對手下一次獲得」(cancelGain) ----
+  function consumeCancel(side, what, amt) {
+    if (amt > 0 && side.cancelGain && side.cancelGain[what] > 0) {
+      side.cancelGain[what] -= 1;
+      return 0; // 本次獲得被取消
+    }
+    return amt;
+  }
+  function gainShield(b, side, amt) {
+    amt = consumeCancel(side, "shield", Math.max(0, round(amt)));
+    if (amt > 0) side.shield += Math.round(amt * (side.turnShieldMult || 1));
+  }
+  function gainHp(b, side, amt, clamp) {
+    amt = consumeCancel(side, "hp", Math.max(0, round(amt)));
+    if (amt <= 0) return;
+    side.hp += Math.round(amt * (side.turnHpMult || 1));
+    if (clamp && side.hp > side.hpMax) side.hp = side.hpMax;
+  }
+  // 攻擊加成寫入 card._addBuff；本回合讚數乘區於結算時整體套用（不在此乘）。
+  function gainAtk(b, side, card, amt) {
+    amt = consumeCancel(side, "atk", Math.max(0, round(amt)));
+    if (amt > 0 && card) card._addBuff = (card._addBuff || 0) + amt;
+  }
+  function gainMoney(b, side, amt) { side.money += Math.max(0, round(amt)); }
 
   function runEffect(eff, ctx) {
     var b = ctx.b, side = ctx.side, card = ctx.card;
@@ -486,20 +515,73 @@
     switch (eff.kind) {
 
       case "add_shield":
-        side.shield += amountOf(ctx, eff, "pct", "amount"); // % of 本卡讚數
+        gainShield(b, side, amountOf(ctx, eff, "pct", "amount")); // 獲得鐵粉 = % of 本卡讚數
         break;
 
-      case "heal": {
-        var h = amountOf(ctx, eff, "pct", "amount"); // % of 本卡讚數
-        side.hp = Math.min(side.hpMax, side.hp + h); // clamped
+      case "gain_atk":
+        gainAtk(b, side, card, amountOf(ctx, eff, "pct", "amount")); // 獲得讚數（本卡攻擊 +）
+        break;
+
+      case "heal":
+        gainHp(b, side, amountOf(ctx, eff, "pct", "amount"), true); // 回復粉絲團（封頂）
+        break;
+
+      case "shield_to_hp": {
+        // 鐵粉X%轉粉絲：pct 為「目前鐵粉」的百分比；舊式 amount/"all" 仍支援。
+        var conv;
+        if (eff.pct != null) conv = round(side.shield * Number(eff.pct));
+        else conv = (eff.amount === "all") ? side.shield : Math.min(side.shield, Math.max(0, round(eff.amount)));
+        conv = Math.min(side.shield, Math.max(0, conv));
+        side.shield -= conv;
+        gainHp(b, side, conv, false); // 轉換：不封頂
         break;
       }
 
-      case "shield_to_hp": {
-        var conv = (eff.amount === "all") ? side.shield : Math.min(side.shield, Math.max(0, round(eff.amount)));
-        if (conv < 0) conv = 0;
-        side.shield -= conv;
-        side.hp += conv; // 轉換：不封頂
+      case "shield_to_atk": {           // 鐵粉X%轉讚數
+        var sa = round(side.shield * (Number(eff.pct) || 0));
+        sa = Math.min(side.shield, Math.max(0, sa));
+        side.shield -= sa;
+        gainAtk(b, side, card, sa);
+        break;
+      }
+
+      case "likes_to_shield": {         // 讚數X%轉鐵粉（消耗本卡攻擊轉為鐵粉）
+        var ls = round((ctx.anchorLikes || 0) * (Number(eff.pct) || 0) * (ctx.amp || 1));
+        card._addBuff = (card._addBuff || 0) - ls; // 本卡攻擊減少
+        gainShield(b, side, ls);
+        break;
+      }
+
+      case "hp_to_atk": {               // 粉絲X%轉讚數（巨巨）
+        var ha = round(side.hp * (Number(eff.pct) || 0));
+        if (ha < 0) ha = 0;
+        side.hp = Math.max(1, side.hp - ha); // 留 1 防自殺
+        gainAtk(b, side, card, ha);
+        break;
+      }
+
+      case "hp_to_shield": {            // 粉絲X%轉鐵粉
+        var hs = round(side.hp * (Number(eff.pct) || 0));
+        if (hs < 0) hs = 0;
+        side.hp = Math.max(1, side.hp - hs);
+        gainShield(b, side, hs);
+        break;
+      }
+
+      case "traffic_to_atk": {          // 流量X%轉讚數（阿姨；dumpAll=歸0）
+        var taPct = (eff.dumpAll ? 1 : (Number(eff.pct) || 0));
+        var taC = Math.round(b.traffic * taPct);
+        if (taC < 0) taC = 0; if (taC > b.traffic) taC = b.traffic;
+        b.traffic -= taC;
+        gainAtk(b, side, card, taC * (cfg.TRAFFIC_ATK_FRAC || 0.01) * (ctx.anchorLikes || 0));
+        break;
+      }
+
+      case "traffic_to_hp": {           // 流量X%轉粉絲
+        var thC = Math.round(b.traffic * (Number(eff.pct) || 0));
+        if (thC < 0) thC = 0; if (thC > b.traffic) thC = b.traffic;
+        b.traffic -= thC;
+        gainHp(b, side, thC * (cfg.TRAFFIC_ATK_FRAC || 0.01) * (ctx.anchorLikes || 0), false);
         break;
       }
 
@@ -543,9 +625,17 @@
       }
 
       case "traffic_to_money": {
-        var gain = Math.floor(Math.floor(b.traffic / 10) * (Number(eff.ratio) || 0));
-        if (gain < 0) gain = 0;
-        side.money += gain; // 只讀流量，不消耗
+        var gain;
+        if (eff.pct != null) {            // 流量X%轉代幣：消耗流量、換小額代幣（每 10% 流量 = 1 代幣）
+          var tcons = Math.round(b.traffic * Number(eff.pct));
+          if (tcons < 0) tcons = 0; if (tcons > b.traffic) tcons = b.traffic;
+          b.traffic -= tcons;
+          gain = Math.max(0, Math.round(tcons / 10));
+        } else {                          // 舊式：只讀流量、不消耗
+          gain = Math.floor(Math.floor(b.traffic / 10) * (Number(eff.ratio) || 0));
+          if (gain < 0) gain = 0;
+        }
+        gainMoney(b, side, gain);
         break;
       }
 
@@ -577,9 +667,16 @@
       }
 
       case "money_to_atk": {
-        var sp3 = Math.floor(side.money); if (sp3 < 0) sp3 = 0;
-        side.money -= sp3;
-        card._addBuff += sp3 * perMoneyOf(ctx, eff);
+        if (eff.pctSpend != null) {       // 代幣X%轉讚數（新：花費 X% 代幣，每 1 元 = 讚數×MONEY_ATK_FRAC）
+          var spA = Math.floor(side.money * Number(eff.pctSpend));
+          if (spA < 0) spA = 0; if (spA > side.money) spA = side.money;
+          side.money -= spA;
+          gainAtk(b, side, card, spA * (cfg.MONEY_ATK_FRAC || 0.05) * (ctx.anchorLikes || 0));
+        } else {                          // 舊式（對手）：花光代幣、每 1 元 = 讚數×perMoneyPct
+          var sp3 = Math.floor(side.money); if (sp3 < 0) sp3 = 0;
+          side.money -= sp3;
+          card._addBuff = (card._addBuff || 0) + sp3 * perMoneyOf(ctx, eff);
+        }
         break;
       }
 
@@ -678,6 +775,131 @@
         break;
       }
 
+      // ===== 表格新增效果（貼文配方表） =====
+      case "gain_money":
+        gainMoney(b, side, amountOf(ctx, eff, "moneyPct", "amount")); // 獲得代幣（小額整數）
+        break;
+
+      case "money_pack":                  // 代幣+X%，永久增加Y%
+        gainMoney(b, side, Math.max(0, round(eff.gain)));
+        side.moneyPerRoundBonus = (side.moneyPerRoundBonus || 0) + Math.max(0, round(eff.perRound));
+        break;
+
+      case "money_mult":                  // 代幣變為 N 倍
+        side.money = round((side.money || 0) * (Number(eff.factor) || 1));
+        break;
+
+      case "all_in": {                    // ALL IN：花費隨機 50~100% 代幣，換 mult× 之 攻/粉/鐵
+        var pctSpend = 0.5 + 0.5 * rand01("cg:allin:" + (card ? card.uid : "") + ":" + side.money, side.playedThisTurn);
+        var spent = Math.floor((side.money || 0) * pctSpend);
+        if (spent < 0) spent = 0; if (spent > side.money) spent = side.money;
+        side.money -= spent;
+        var unit = spent * (cfg.MONEY_ATK_FRAC || 0.05) * (ctx.anchorLikes || 0) * (Number(eff.mult) || 1);
+        if (eff.target === "hp") gainHp(b, side, unit, false);
+        else if (eff.target === "shield") gainShield(b, side, unit);
+        else gainAtk(b, side, card, unit);
+        break;
+      }
+
+      case "turn_double": {               // 本回合 X 獲得兩倍
+        if (eff.what === "shield") side.turnShieldMult = (side.turnShieldMult || 1) * 2;
+        else if (eff.what === "hp") side.turnHpMult = (side.turnHpMult || 1) * 2;
+        else side.turnAtkMult = (side.turnAtkMult || 1) * 2;
+        break;
+      }
+
+      case "cond_traffic":                // 當流量高於 above% → 觸發 effect
+        if (b.traffic > (Number(eff.above) || 0) && eff.effect) return runEffect(eff.effect, ctx);
+        break;
+
+      case "hand_size_up":                // 增加最大手牌數量 +N（持久）
+        side.handSizeBonus = (side.handSizeBonus || 0) + Math.max(0, round(eff.n));
+        break;
+
+      case "retain_n":                    // 保留 N 張手牌（回合結束保留）；boost = 被保留牌效果加成
+        side.retainHand = Math.max(side.retainHand || 0, Math.max(0, round(eff.n)));
+        if (eff.boost) side.retainBoost = Math.max(side.retainBoost || 0, Number(eff.boost));
+        break;
+
+      case "retain_gain":                 // 學妹：base 增益 + 本卡保留 +（被保留時額外加成近似為直接給予）
+        if (eff.base) runEffect(eff.base, ctx);
+        card.retain = true;
+        if (eff.bonusPct && card._wasRetained) {
+          // 若本卡此前曾被保留，額外再給一次 base 量（近似）
+          runEffect(eff.base, ctx);
+        }
+        break;
+
+      case "random_gain": {               // 隨機獲得 +X% 之 讚數/鐵粉/粉絲/代幣
+        var pick4 = Math.floor(rand01("cg:rnd:" + (card ? card.uid : ""), side.playedThisTurn) * 4) % 4;
+        var amtR = round((ctx.anchorLikes || 0) * (Number(eff.pct) || 0) * (ctx.amp || 1));
+        if (pick4 === 0) gainAtk(b, side, card, amtR);
+        else if (pick4 === 1) gainShield(b, side, amtR);
+        else if (pick4 === 2) gainHp(b, side, amtR, false);
+        else gainMoney(b, side, Math.max(1, round((Number(eff.pct) || 0) * 10)));
+        break;
+      }
+
+      case "random_post": {               // 隨機獲得一張 N 星臨時貼文（近似：生成一張臨時打擊卡，攻擊隨星級）
+        var starMul = 0.5 + 0.5 * (Number(eff.stars) || 1); // 1★→1.0, 2★→1.5, 3★→2.0
+        var tcAtk = round((ctx.anchorLikes || 0) * starMul);
+        var tc = makeBaseStrikeCard(tcAtk);
+        tc.name = (eff.stars || 1) + "★ 臨時貼文";
+        side.hand.push(tc);
+        break;
+      }
+
+      case "copy_last": {                 // 複製上一張（近似：把上一張打出的卡作為臨時卡加入手牌）
+        var last = (b.lastPlay && b.lastPlay.card) ? b.lastPlay.card : null;
+        if (last) {
+          var cp = mintHandInstance({ postId: last.postId, name: last.name, baseLikes: last.baseLikes, effects: last.effects, retain: false });
+          cp.temp = true; cp.name = (last.name || "貼文") + "（複製）";
+          side.hand.push(cp);
+        }
+        break;
+      }
+
+      case "cancel_opponent": {           // 取消對手下一次獲得 X
+        var foe = otherSide(b, side);
+        var w = eff.what || "shield";
+        if (foe.cancelGain) foe.cancelGain[w] = (foe.cancelGain[w] || 0) + 1;
+        break;
+      }
+
+      case "draw_discard": {              // 抽N丟M（近似：抽 N，再棄掉手牌中攻擊最低的 M 張）
+        drawN(b, side, Math.max(0, round(eff.draw)));
+        var dm = Math.max(0, round(eff.discard));
+        for (var dd = 0; dd < dm && side.hand.length > 0; dd++) {
+          var lowI = 0, lowV = Infinity;
+          for (var hh = 0; hh < side.hand.length; hh++) {
+            var v = computeEffLikes(b, side, side.hand[hh]);
+            if (v < lowV) { lowV = v; lowI = hh; }
+          }
+          var dc = side.hand.splice(lowI, 1)[0];
+          if (dc && !dc.temp) { var di = findDeckIndex(side, dc.postId); if (di >= 0) side.discard.push(di); }
+        }
+        break;
+      }
+
+      case "nth_card_amp":                // 本回合第 N 張效果 +X%（放大器）
+        side.amp.nth = { n: Math.max(1, round(eff.n)), pct: Number(eff.pct) || 0 };
+        break;
+
+      case "nth_card_repeat":             // 本回合第 N 張效果發動 T 次
+        side.amp.repeat = { n: Math.max(1, round(eff.n)), times: Math.max(1, round(eff.times)) };
+        break;
+
+      case "next_amp":                    // 下一個 奇/偶 效果 +X%
+        side.amp.nextParity = { parity: (eff.parity === "even" ? "even" : "odd"), pct: Number(eff.pct) || 0 };
+        break;
+
+      case "next_money_extra":            // 下一張代幣額外發動 T 次（近似：旗標，暫無消費點，記錄供未來）
+        side.amp.nextMoneyExtra = Math.max(0, round(eff.times));
+        break;
+
+      case "noop":
+        break;
+
       default:
         // 未知 kind：忽略（防禦；shipped 資料不應出現）。
         break;
@@ -692,21 +914,52 @@
     // 不含本卡自身效果後續的加成）；作為 add_shield/heal 等「% of 讚數」效果的基準。
     // 只算一次並存於 card，pending 續跑時沿用同一基準。
     if (card._anchorLikes == null) card._anchorLikes = computeEffLikes(b, side, card);
+
+    // 放大器：本卡是本回合第 pos 張。nth/nextParity 提供倍率 amp；repeat 提供總執行次數。
+    var pos = side.playedThisTurn + 1;
+    var amp = 1;
+    if (side.amp) {
+      if (side.amp.nth && side.amp.nth.n === pos) amp += (side.amp.nth.pct || 0);
+      if (side.amp.nextParity) {
+        var par = (pos % 2 === 1) ? "odd" : "even";
+        if (side.amp.nextParity.parity === par) amp += (side.amp.nextParity.pct || 0);
+      }
+    }
     var ctx = {
       b: b,
       side: side,
       card: card,
       anchorLikes: card._anchorLikes,
+      amp: amp,
       isFirstPlay: (side.playedThisTurn === 0)
     };
+
+    var times = (side.amp && side.amp.repeat && side.amp.repeat.n === pos) ? Math.max(1, side.amp.repeat.times) : 1;
+    var pass = card._repPass || 0;
     var i = startIdx || 0;
-    for (; i < card.effects.length; i++) {
-      var r = runEffect(card.effects[i], ctx);
-      if (r === "PENDING") {
-        b.pending.resumeIdx = i + 1; // 此 effect 已 push pending；續跑從下一個開始
-        return "PENDING";
+    for (; pass < times; pass++) {
+      for (; i < card.effects.length; i++) {
+        var r = runEffect(card.effects[i], ctx);
+        if (r === "PENDING") {
+          b.pending.resumeIdx = i + 1; // 此 effect 已 push pending；續跑從下一個開始
+          card._repPass = pass;         // 記住目前重複輪次
+          return "PENDING";
+        }
       }
+      i = 0; // 下一輪從頭
     }
+    card._repPass = 0;
+
+    // 消費一次性放大器旗標。
+    if (side.amp) {
+      if (side.amp.nextParity) {
+        var par2 = (pos % 2 === 1) ? "odd" : "even";
+        if (side.amp.nextParity.parity === par2) side.amp.nextParity = null;
+      }
+      if (side.amp.nth && side.amp.nth.n === pos) side.amp.nth = null;
+      if (side.amp.repeat && side.amp.repeat.n === pos) side.amp.repeat = null;
+    }
+
     finishCardAttack(b, side, card);
     return "DONE";
   }
@@ -742,7 +995,7 @@
   //   套用對方反傷（反傷讀 shield 前金額）、攻方吸血回復；結算後清空累積並 WINCHECK。
   function settleTurnDamage(b, side) {
     if (!b || b.phase === "ENDED") return;
-    var amount = round(side.turnAtk || 0);
+    var amount = round((side.turnAtk || 0) * (side.turnAtkMult || 1)); // 本回合讚數兩倍於此整體套用
     var heal = round(side.turnLifestealHeal || 0);
     side.turnAtk = 0;
     side.turnLifestealHeal = 0;
@@ -838,7 +1091,7 @@
       playerHpMax: playerHpMax,
 
       player: {
-        hp: playerHpMax, hpMax: playerHpMax, shield: 0, money: 0,
+        hp: playerHpMax, hpMax: playerHpMax, shield: 0, money: (CardGame.config.MONEY_START || 0),
         deck: deck,
         drawPile: shuffledInitial(opponentId, nonce, deck.length),
         hand: [],
@@ -846,15 +1099,26 @@
         playedThisTurn: 0,
         reshuffleCount: 0,
         turnAtk: 0,            // 本回合累積讚數（攻擊），回合結束一次結算
-        turnLifestealHeal: 0   // 本回合累積吸血回復量
+        turnLifestealHeal: 0,  // 本回合累積吸血回復量
+        turnAtkMult: 1, turnShieldMult: 1, turnHpMult: 1, // 本回合「獲得X兩倍」乘區（每回合重置）
+        handSizeBonus: 0,      // 最大手牌加成（持久）
+        moneyPerRoundBonus: 0, // 代幣每回合額外增加（持久，「永久增加」）
+        retainHand: 0, retainBoost: 0,                    // 保留N張手牌 / 被保留牌效果加成（每回合）
+        cancelGain: { shield: 0, atk: 0, hp: 0 },         // 被取消的「下一次獲得」計數
+        amp: { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 } // 進階放大器旗標
       },
       opponent: {
-        hp: oppHpMax, hpMax: oppHpMax, shield: 0, money: 0,
+        hp: oppHpMax, hpMax: oppHpMax, shield: 0, money: (CardGame.config.MONEY_START || 0),
         posts: buildOpponentPosts(opp),
         nextPostIdx: 0,
         playedThisTurn: 0,
         turnAtk: 0,
-        turnLifestealHeal: 0
+        turnLifestealHeal: 0,
+        turnAtkMult: 1, turnShieldMult: 1, turnHpMult: 1,
+        handSizeBonus: 0, moneyPerRoundBonus: 0,
+        retainHand: 0, retainBoost: 0,
+        cancelGain: { shield: 0, atk: 0, hp: 0 },
+        amp: { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 }
       },
 
       buffs: {
@@ -871,6 +1135,23 @@
     return battle;
   }
 
+  // 重置某側「每回合」暫態（累積讚數、各乘區、放大器、保留設定）。
+  // 持久值（handSizeBonus / moneyPerRoundBonus / cancelGain）不在此重置。
+  function resetTurnState(side) {
+    side.turnAtk = 0;
+    side.turnLifestealHeal = 0;
+    side.turnAtkMult = 1; side.turnShieldMult = 1; side.turnHpMult = 1;
+    side.retainHand = 0; side.retainBoost = 0;
+    side.amp = { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 };
+  }
+
+  // 保留一張手牌跨回合：清掉暫態加成，並標記 _wasRetained（供 retain_gain 額外加成判定）。
+  function keepRetained(c) {
+    c._addBuff = 0; c._mulBuff = 1; c._anchorLikes = null;
+    c._lifestealRatio = 0; c._isDefenseOnly = false; c._repPass = 0;
+    c._wasRetained = true;
+  }
+
   // ROUND_START → P_DRAW：流量 +10（首回合 +0，cap 100）、雙方金錢 +1、buff 重置、reflect 倒數、發牌。
   function beginRound() {
     var b = CardGame.battle;
@@ -880,8 +1161,11 @@
     var add = (b.round === 1) ? 0 : cfg.TRAFFIC_PER_ROUND;
     b.traffic = Math.min(cfg.TRAFFIC_MAX, b.traffic + add);
 
-    b.player.money += cfg.MONEY_PER_ROUND;
-    b.opponent.money += cfg.MONEY_PER_ROUND;
+    // 代幣：初始 MONEY_START（startBattle 已給），每回合 +MONEY_PER_ROUND（首回合不加，維持初始值）。
+    if (b.round > 1) {
+      b.player.money += cfg.MONEY_PER_ROUND + (b.player.moneyPerRoundBonus || 0);
+      b.opponent.money += cfg.MONEY_PER_ROUND + (b.opponent.moneyPerRoundBonus || 0);
+    }
 
     // 重置回合 buff（addBuff/mulBuff）；reflect 倒數，歸零則移除。
     tickReflect(b.buffs.PLAYER);
@@ -892,11 +1176,11 @@
     b.turn = "PLAYER";
     b.phase = "P_DRAW";
 
-    // P_DRAW：補牌至 HAND_SIZE。
-    drawN(b, b.player, cfg.HAND_SIZE - b.player.hand.length);
+    // P_DRAW：補牌至 HAND_SIZE（含手牌上限加成）。
+    resetTurnState(b.player);
+    var handTarget = cfg.HAND_SIZE + (b.player.handSizeBonus || 0);
+    drawN(b, b.player, handTarget - b.player.hand.length);
     b.player.playedThisTurn = 0;
-    b.player.turnAtk = 0;            // 重置本回合累積讚數
-    b.player.turnLifestealHeal = 0;
     b.phase = "P_PLAY";
     return b;
   }
@@ -1026,19 +1310,25 @@
     settleTurnDamage(b, b.player);
     if (b.phase === "ENDED") return b;
 
+    // 回合結束棄牌：retain 旗標牌一律保留；另由 retainHand(保留N張) 保留 others 中價值最高的 N 張。
     var keep = [];
+    var others = [];
     for (var i = 0; i < b.player.hand.length; i++) {
       var c = b.player.hand[i];
-      if (c.retain && !c.temp) {
-        // 保留：未打出的 retain 牌留在手牌跨回合；清掉暫態加成，下回合以乾淨狀態重算。
-        c._addBuff = 0; c._mulBuff = 1; c._anchorLikes = null;
-        c._lifestealRatio = 0; c._isDefenseOnly = false;
-        keep.push(c);
-        continue;
+      if (c.temp && !c.retain) continue;     // 暫時卡：消失
+      if (c.retain) { keepRetained(c); keep.push(c); continue; }
+      others.push(c);
+    }
+    var retainN = b.player.retainHand || 0;
+    if (retainN > 0 && others.length > 0) {
+      others.sort(function (a, bb) { return computeEffLikes(b, b.player, bb) - computeEffLikes(b, b.player, a); });
+    }
+    for (var j = 0; j < others.length; j++) {
+      if (j < retainN) { keepRetained(others[j]); keep.push(others[j]); }
+      else {
+        var idx = findDeckIndex(b.player, others[j].postId);
+        if (idx >= 0) b.player.discard.push(idx);
       }
-      if (c.temp) continue; // 暫時卡：消失，不入任何堆
-      var idx = findDeckIndex(b.player, c.postId);
-      if (idx >= 0) b.player.discard.push(idx);
     }
     b.player.hand = keep;
 
@@ -1071,9 +1361,8 @@
       temp: false, retain: false,
       _addBuff: 0, _mulBuff: 1, _isDefenseOnly: false
     };
+    resetTurnState(opp);            // 重置對手本回合暫態
     opp.playedThisTurn = 0;
-    opp.turnAtk = 0;                 // 重置對手本回合累積讚數
-    opp.turnLifestealHeal = 0;
     b._pendingCard = card;
     b.phase = "O_RESOLVE";
 
