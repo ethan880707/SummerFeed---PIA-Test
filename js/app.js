@@ -514,6 +514,7 @@
 
     var head = el("div", "post__fx-head");
     head.appendChild(el("span", "post__fx-title", "卡牌效果"));
+    if (rec && rec.support) head.appendChild(el("span", "post__fx-support", "輔助"));
     if (rec && rec.retain) head.appendChild(el("span", "post__fx-retain", "保留"));
     wrap.appendChild(head);
 
@@ -1083,9 +1084,11 @@
     var resetBtn = $("btnResetSave");
     if (resetBtn) {
       resetBtn.onclick = function () {
-        if (global.confirm && !global.confirm("確定要重置存檔？所有解鎖與貼文將清空。")) return;
+        if (global.confirm && !global.confirm("確定要重置存檔？所有解鎖、貼文與排行榜挑戰進度將清空。")) return;
         _selected = [];
         SF.State.reset();
+        // 同時重置排行榜挑戰（牌庫、對手 runtime 粉絲、擊敗旗標）。
+        if (SF.CardGame && typeof SF.CardGame.reset === "function") SF.CardGame.reset();
         toast("已重置存檔", "ok");
         renderAll();
       };

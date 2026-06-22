@@ -5,6 +5,7 @@
  "A1": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -16,6 +17,7 @@
  "A2": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "add_shield",
@@ -27,6 +29,7 @@
  "A3a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -43,6 +46,7 @@
  "A3b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -59,6 +63,7 @@
  "A4": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -70,6 +75,7 @@
  "A5a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -86,6 +92,7 @@
  "A5b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -107,6 +114,7 @@
  "A6": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "shield_to_atk",
@@ -118,6 +126,7 @@
  "A7": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -139,6 +148,7 @@
  "A8": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -160,6 +170,7 @@
  "B1": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -176,6 +187,7 @@
  "B2": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -192,6 +204,7 @@
  "B3": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -203,6 +216,7 @@
  "B4": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -214,6 +228,7 @@
  "B5a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_money",
@@ -230,6 +245,7 @@
  "B5b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_money",
@@ -251,6 +267,7 @@
  "B6": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -272,6 +289,7 @@
  "B7a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -298,6 +316,7 @@
  "B7b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -324,6 +343,7 @@
  "C1": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -344,6 +364,7 @@
  "C2": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -364,6 +385,7 @@
  "C3": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "hand_size_up",
@@ -375,6 +397,7 @@
  "C4a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -401,6 +424,7 @@
  "C4b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -427,6 +451,7 @@
  "C4c": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -444,6 +469,7 @@
  "C5a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -470,6 +496,7 @@
  "C5b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -512,6 +539,7 @@
  "C6": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -532,6 +560,7 @@
  "C7a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -574,6 +603,7 @@
  "C7b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -616,6 +646,7 @@
  "C7c": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -658,6 +689,7 @@
  "D1": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -670,6 +702,7 @@
  "D2": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -682,6 +715,7 @@
  "D3": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -693,6 +727,7 @@
  "D4a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",
@@ -710,6 +745,7 @@
  "D4b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",
@@ -727,6 +763,7 @@
  "D5a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",
@@ -745,6 +782,7 @@
  "D5b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",
@@ -763,6 +801,7 @@
  "D6a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",
@@ -780,6 +819,7 @@
  "D6b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",
@@ -802,6 +842,7 @@
  "D7a": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_mult",
@@ -823,6 +864,7 @@
  "D7b": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_mult",
@@ -844,6 +886,7 @@
  "D7c": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_mult",
@@ -865,6 +908,7 @@
  "E01": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -876,6 +920,7 @@
  "E02": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -892,6 +937,7 @@
  "E03": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -912,6 +958,7 @@
  "E04": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -924,6 +971,7 @@
  "E05": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "heal",
@@ -935,6 +983,7 @@
  "E06": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "add_shield",
@@ -946,6 +995,7 @@
  "E07": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -957,6 +1007,7 @@
  "E08": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "hand_size_up",
@@ -968,6 +1019,7 @@
  "E09": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "retain_n",
@@ -979,6 +1031,7 @@
  "E10": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -990,6 +1043,7 @@
  "E11": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1006,6 +1060,7 @@
  "E12": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -1026,6 +1081,7 @@
  "E13": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -1038,6 +1094,7 @@
  "E14": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -1058,6 +1115,7 @@
  "E15": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -1070,6 +1128,7 @@
  "E16": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -1081,6 +1140,7 @@
  "E17": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "heal",
@@ -1092,6 +1152,7 @@
  "E18": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_sub",
@@ -1103,6 +1164,7 @@
  "E19": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "shield_to_atk",
@@ -1119,6 +1181,7 @@
  "E20": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1145,6 +1208,7 @@
  "E21": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -1179,6 +1243,7 @@
  "E22": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_mult",
@@ -1196,6 +1261,7 @@
  "E23": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "heal",
@@ -1212,6 +1278,7 @@
  "E24": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -1228,6 +1295,7 @@
  "E25": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "random_post",
@@ -1244,6 +1312,7 @@
  "E26": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -1265,6 +1334,7 @@
  "E27": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1301,6 +1371,7 @@
  "E28": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "heal",
@@ -1322,6 +1393,7 @@
  "E29": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "random_post",
@@ -1343,6 +1415,7 @@
  "F01": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "draw_discard",
@@ -1355,6 +1428,7 @@
  "F02": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "draw",
@@ -1366,6 +1440,7 @@
  "F03": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "scry",
@@ -1378,6 +1453,7 @@
  "F04": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1389,6 +1465,7 @@
  "F05": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1400,6 +1477,7 @@
  "F06": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1411,6 +1489,7 @@
  "F07": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "draw_discard",
@@ -1423,6 +1502,7 @@
  "F08": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "draw_discard",
@@ -1440,6 +1520,7 @@
  "F09": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "draw",
@@ -1457,6 +1538,7 @@
  "F10": {
   "category": [],
   "retain": false,
+  "support": true,
   "effects": [
    {
     "kind": "draw",
@@ -1472,6 +1554,7 @@
  "W01": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -1483,6 +1566,7 @@
  "W02": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -1499,6 +1583,7 @@
  "W03": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -1520,6 +1605,7 @@
  "W04": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1536,6 +1622,7 @@
  "W05": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1562,6 +1649,7 @@
  "W06": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1593,6 +1681,7 @@
  "W07": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -1613,6 +1702,7 @@
  "W08": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -1633,6 +1723,7 @@
  "W09": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "parity",
@@ -1667,6 +1758,7 @@
  "W10": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -1679,6 +1771,7 @@
  "W11": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -1696,6 +1789,7 @@
  "W12": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_mult",
@@ -1718,6 +1812,7 @@
  "W13": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -1729,6 +1824,7 @@
  "W14": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -1745,6 +1841,7 @@
  "W15": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -1766,6 +1863,7 @@
  "W16": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -1777,6 +1875,7 @@
  "W17": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -1788,6 +1887,7 @@
  "W18": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_hp",
@@ -1804,6 +1904,7 @@
  "W19": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "retain_gain",
@@ -1821,6 +1922,7 @@
  "W20": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "retain_gain",
@@ -1849,6 +1951,7 @@
  "W21": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "retain_gain",
@@ -1883,6 +1986,7 @@
  "W22": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "add_shield",
@@ -1894,6 +1998,7 @@
  "W23": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -1905,6 +2010,7 @@
  "W24": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "retain_n",
@@ -1916,6 +2022,7 @@
  "W25": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "heal",
@@ -1927,6 +2034,7 @@
  "W26": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -1938,6 +2046,7 @@
  "W27": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_sub",
@@ -1949,6 +2058,7 @@
  "W28": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "hand_size_up",
@@ -1960,6 +2070,7 @@
  "W29": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "random_gain",
@@ -1971,6 +2082,7 @@
  "W30": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "random_post",
@@ -1987,6 +2099,7 @@
  "N01": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -1998,6 +2111,7 @@
  "N02": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -2014,6 +2128,7 @@
  "N03": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -2035,6 +2150,7 @@
  "N04": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "turn_double",
@@ -2056,6 +2172,7 @@
  "N05": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2068,6 +2185,7 @@
  "N06": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2085,6 +2203,7 @@
  "N07": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2107,6 +2226,7 @@
  "N08": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2119,6 +2239,7 @@
  "N09": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2137,6 +2258,7 @@
  "N10": {
   "category": [],
   "retain": true,
+  "support": false,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2166,6 +2288,7 @@
  "D4": {
   "category": [],
   "retain": false,
+  "support": false,
   "effects": [
    {
     "kind": "all_in",

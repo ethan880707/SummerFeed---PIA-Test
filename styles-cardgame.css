@@ -450,8 +450,15 @@
 }
 .cg-card__flag--retain { color: var(--ok); background: rgba(52, 211, 153, 0.14); }
 .cg-card__flag--temp { color: var(--txt-3); background: var(--bg-3); }
+.cg-card__flag--support { color: var(--accent); background: rgba(91, 140, 255, 0.16); }
 .cg-card--battle.is-retain { border-color: var(--ok); }
 .cg-card--battle.is-temp { border-style: dashed; }
+.cg-card.is-support, .cg-card--battle.is-support { border-color: var(--accent); border-style: dashed; }
+.cg-card__support-note { font-size: var(--fs-xs); font-weight: 700; color: var(--accent); }
+.post__fx-support {
+  font-size: var(--fs-xs); font-weight: 800; color: var(--accent);
+  background: rgba(91, 140, 255, 0.16); border-radius: var(--r-pill); padding: 1px 8px;
+}
 
 .cg-card__effects { display: flex; flex-direction: column; gap: 4px; }
 .cg-card__eff {

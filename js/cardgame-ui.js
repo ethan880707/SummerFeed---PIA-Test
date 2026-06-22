@@ -83,9 +83,13 @@
     if (opts.playable) cls += " is-playable";
     if (opts.selected) cls += " is-selected";
     if (opts.disabled) cls += " is-disabled";
+    if (card.support || opts.support) cls += " is-support";
     var n = el("div", cls);
     n.appendChild(el("div", "cg-card__name", card.name || card.postId || "(無題)"));
 
+    if (card.support || opts.support) {
+      n.appendChild(el("span", "cg-card__flag cg-card__flag--support", "輔助"));
+    }
     if (card.retain || opts.retain) {
       n.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
     }
@@ -110,7 +114,11 @@
     }
 
     var foot = el("div", "cg-card__foot");
-    foot.appendChild(el("span", "cg-card__likes", abbr(card.likes || 0)));
+    if (card.support || opts.support) {
+      foot.appendChild(el("span", "cg-card__support-note", "輔助牌（無讚數）"));
+    } else {
+      foot.appendChild(el("span", "cg-card__likes", abbr(card.likes || 0)));
+    }
     n.appendChild(foot);
 
     if ((opts.selectable || opts.playable) && typeof opts.onClick === "function" && !opts.disabled) {
@@ -290,6 +298,7 @@
             tags: postTags(rec.post),
             effects: fx ? fx.effects : [],
             retain: !!(fx && fx.retain),
+            support: !!(fx && fx.support),
             selectable: true,
             selected: selected,
             disabled: (!selected && atMax),
@@ -529,11 +538,14 @@
     if (!cards.length) {
       hand.appendChild(el("div", "cg-hand__empty", "手牌為空"));
     }
+    // 出牌階段且未鎖定即可操作；輔助牌不受「已出 3 張」限制。
+    var canAct = isPlayerPlayPhase(b) && !locked;
     for (var i = 0; i < cards.length; i++) {
       (function (idx) {
         var c = cards[idx];
+        var cardDisabled = !canAct || (!(c && c.support) && played >= cfg.PLAY_SIZE);
         hand.appendChild(handCard(b, c, {
-          disabled: !canPlay,
+          disabled: cardDisabled,
           onClick: function () {
             if (typeof SF.CardGame.playCard === "function") SF.CardGame.playCard(idx);
             render();
@@ -552,10 +564,12 @@
     if (opts.disabled) cls += " is-disabled";
     if (card && card.retain) cls += " is-retain";
     if (card && card.temp) cls += " is-temp";
+    if (card && card.support) cls += " is-support";
     var n = el("div", cls);
 
     var top = el("div", "cg-card__top");
     top.appendChild(el("div", "cg-card__name", (card && card.name) || (card && card.postId) || "(無題)"));
+    if (card && card.support) top.appendChild(el("span", "cg-card__flag cg-card__flag--support", "輔助"));
     if (card && card.retain) top.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
     if (card && card.temp) top.appendChild(el("span", "cg-card__flag cg-card__flag--temp", "暫時"));
     n.appendChild(top);
@@ -572,10 +586,14 @@
     }
 
     var foot = el("div", "cg-card__foot");
-    var atk = el("span", "cg-card__atk");
-    atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
-    atk.appendChild(el("b", null, abbr(effLikesOf(b, "PLAYER", card))));
-    foot.appendChild(atk);
+    if (card && card.support) {
+      foot.appendChild(el("span", "cg-card__support-note", "輔助牌 · 不消耗出牌次數"));
+    } else {
+      var atk = el("span", "cg-card__atk");
+      atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
+      atk.appendChild(el("b", null, abbr(effLikesOf(b, "PLAYER", card))));
+      foot.appendChild(atk);
+    }
     n.appendChild(foot);
 
     if (!opts.disabled && typeof opts.onClick === "function") n.onclick = opts.onClick;

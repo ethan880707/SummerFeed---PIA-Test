@@ -5,9 +5,9 @@
  * 架構：STATEFUL singleton（鏡像 SF.State）。持有一份持久化 root state
  *   （deck、opponent runtime overrides）＋ 至多一個 transient 的進行中 battle。
  *
- * 確定性（MANDATORY）：所有「隨機」（洗牌、重洗、scry 順序、對手二選一、奪詞條抽樣）皆由
- *   SF.Algorithm.hash01(SF.Algorithm.seed(seedStr, salt)) 推導。
- *   不使用任何亂數 API、不使用任何系統時間 API。
+ * 隨機性：洗牌/抽牌以每場「隨機 nonce」起始（startBattle 使用 Math.random，使重新挑戰同一對手
+ *   也會有不同手牌；對戰為暫態、不持久化）。其餘衍生隨機（重洗、scry 順序、對手二選一、奪詞條抽樣）
+ *   皆由 SF.Algorithm.hash01(SF.Algorithm.seed(seedStr, salt)) 自該 nonce 推導，確保單場內可重現。
  *
  * 無 DOM：本檔不引用 document / UI。資料來源 window.PIA_OPPONENTS、
  *   window.PIA_CARD_EFFECTS；依賴 SF.State（帳號/粉絲/詞條/feed/時鐘）、
@@ -143,22 +143,28 @@
 
   // ---- 玩家牌組（讚數 live 由 SF.Algorithm.compute 計算） ------------------
   function playablePosts() {
-    var out = [];
     var feed = (SF.State && SF.State.feed) ? SF.State.feed : [];
     var account = SF.State ? SF.State.account : null;
     var now = SF.State ? SF.State.nowTicks() : 0;
-    var seen = Object.create(null);
+    // 同一 postId 可能被重複發布 → 取「讚數最高」的那筆作為牌庫卡數值（保出現序）。
+    var byId = Object.create(null);
+    var order = [];
     for (var i = 0; i < feed.length; i++) {
       var entry = feed[i];
       if (!entry || entry.source !== "player") continue;
       var post = (SF.Data && SF.Data.postById) ? SF.Data.postById(entry.postId) : null;
       if (!post) continue;
-      if (seen[post.id]) continue;
-      seen[post.id] = true;
       var r = SF.Algorithm.compute(entry, account, now);
       var likes = (r && typeof r.likes === "number") ? r.likes : 0;
-      out.push({ entry: entry, post: post, likes: likes });
+      if (byId[post.id]) {
+        if (likes > byId[post.id].likes) { byId[post.id].entry = entry; byId[post.id].likes = likes; }
+      } else {
+        byId[post.id] = { entry: entry, post: post, likes: likes };
+        order.push(post.id);
+      }
     }
+    var out = [];
+    for (var k = 0; k < order.length; k++) out.push(byId[order[k]]);
     return out;
   }
 
@@ -265,25 +271,28 @@
   // 由 postId 取得 effects / retain（player 與 opponent 共用 PIA_CARD_EFFECTS）。
   function effectsForPost(postId) {
     var rec = effectsData()[postId];
-    if (!rec) return { effects: [], retain: false, category: [] };
+    if (!rec) return { effects: [], retain: false, support: false, category: [] };
     return {
       effects: cloneEffects(rec.effects),
       retain: !!rec.retain,
+      support: !!rec.support, // 輔助牌（詞條配方為「共通」）：純功能、不消耗出牌次數、無讚數
       category: Array.isArray(rec.category) ? rec.category.slice() : []
     };
   }
 
   // 建立一張玩家 CardInstance（從 deck postId + 凍結讚數）。
+  // 輔助牌 baseLikes 視為 0（無攻擊數值）。
   function makePlayerCard(postId, name, baseLikes) {
     var rec = effectsForPost(postId);
     return {
       uid: "c" + (++_uidSeq),
       postId: postId,
       name: name,
-      baseLikes: baseLikes,
+      baseLikes: rec.support ? 0 : baseLikes,
       effects: rec.effects,
       temp: false,
       retain: !!rec.retain,
+      support: !!rec.support,
       _addBuff: 0,
       _mulBuff: 1,
       _isDefenseOnly: false
@@ -393,6 +402,7 @@
       effects: cloneEffects(card.effects),
       temp: false,
       retain: !!card.retain,
+      support: !!card.support,
       _addBuff: 0,
       _mulBuff: 1,
       _isDefenseOnly: false
@@ -968,6 +978,16 @@
   // ★ 改版：攻擊不再「立即造成傷害」，而是把本卡讚數累進該側 turnAtk（狀態欄顯示），
   //   待該側回合結束時由 settleTurnDamage 一次結算。防禦卡（_isDefenseOnly）仍即時加鐵粉。
   function finishCardAttack(b, side, card) {
+    // 輔助牌：純功能，無攻擊數值、不消耗出牌次數（playedThisTurn 不增）。效果已於 resolveCard 觸發。
+    if (card.support) {
+      b.lastPlay = {
+        side: sideName(b, side), card: card, effLikes: 0,
+        dealt: 0, toShield: 0, toHp: 0, reflected: 0, accumulated: 0, support: true, log: []
+      };
+      logEvt(b, sideName(b, side) + " 打出輔助牌：" + (card.name || card.postId) + "（不消耗出牌次數）");
+      return;
+    }
+
     var effLikes = computeEffLikes(b, side, card);
     var lp = {
       side: sideName(b, side), card: card, effLikes: effLikes,
@@ -1071,9 +1091,12 @@
     var deck = snapshotDeckCards(_deck);
     if (deck.length < cfg.DECK_MIN) return null;
 
+    // 隨機 nonce：讓每場對戰（含重新挑戰同一對手）的洗牌/抽牌都不同。
+    // 對戰為暫態、不持久化，故此處刻意使用亂數（與資料生成的確定性需求無關）。
     var nowTicks = SF.State ? SF.State.nowTicks() : 0;
     var oppSeed = SF.Algorithm.seed("cg:" + opponentId + ":nonce", 0) | 0;
-    var nonce = (nowTicks ^ oppSeed) | 0;
+    var rnd = (Math.floor(Math.random() * 0x7fffffff) ^ (++_uidSeq)) | 0;
+    var nonce = (nowTicks ^ oppSeed ^ rnd) | 0;
 
     var playerHpMax = Math.max(SF.State ? SF.State.followers() : 0, cfg.PLAYER_HP_FLOOR);
     var oppHpMax = opp.hp;
@@ -1198,7 +1221,9 @@
     if (!b || b.phase !== "P_PLAY") return b;
     if (b.pending) return b; // 有 pending 未解：禁止
     if (typeof handIdx !== "number" || handIdx < 0 || handIdx >= b.player.hand.length) return b;
-    if (b.player.playedThisTurn >= CardGame.config.PLAY_SIZE) return b;
+    // 輔助牌不受「每回合 3 張」限制；非輔助牌才檢查出牌上限。
+    var peek = b.player.hand[handIdx];
+    if (!(peek && peek.support) && b.player.playedThisTurn >= CardGame.config.PLAY_SIZE) return b;
 
     var card = b.player.hand.splice(handIdx, 1)[0];
     b._pendingCard = card;
