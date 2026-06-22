@@ -779,7 +779,8 @@
         var peek = [];
         for (var pk = 0; pk < lookN; pk++) {
           var dcard = side.deck[side.drawPile[pk]];
-          if (dcard) peek.push({ pos: pk, postId: dcard.postId, name: dcard.name, baseLikes: dcard.baseLikes });
+          if (dcard) peek.push({ pos: pk, postId: dcard.postId, name: dcard.name, baseLikes: dcard.baseLikes,
+                                 cost: dcard.cost, effects: dcard.effects, exhaust: dcard.exhaust, retain: dcard.retain });
         }
         // pending：UI 從這 look 張中挑 pick 張入手（payload = 位置索引陣列）；其餘置底。
         b.pending = {
@@ -1294,10 +1295,8 @@
     if (!b || b.phase !== "P_PLAY") return b;
     if (b.pending) return b; // 有 pending 未解：禁止
     if (typeof handIdx !== "number" || handIdx < 0 || handIdx >= b.player.hand.length) return b;
-    // 輔助牌不受「每回合 3 張」限制；非輔助牌才檢查出牌上限。
+    // 已取消「每回合最多 3 張」限制：出牌只受「費用（能量）」限制。
     var peek = b.player.hand[handIdx];
-    if (!(peek && peek.support) && b.player.playedThisTurn >= CardGame.config.PLAY_SIZE) return b;
-    // 費用檢查：能量不足以支付卡片費用 → 不能出。
     var peekCost = (peek && typeof peek.cost === "number") ? peek.cost : 0;
     if (peekCost > (b.player.energy || 0)) return b;
 

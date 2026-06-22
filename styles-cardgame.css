@@ -471,6 +471,14 @@
   background: rgba(91, 140, 255, 0.16); border-radius: var(--r-pill); padding: 1px 8px;
 }
 
+/* 發文詞條 chip 上的編號（code，如 #健身01） */
+.chip__code {
+  font-family: var(--mono-stack, monospace);
+  font-size: var(--fs-xs); color: var(--txt-3);
+  background: var(--bg-3); border-radius: var(--r-sm);
+  padding: 0 5px; margin-left: 2px;
+}
+
 .cg-card__effects { display: flex; flex-direction: column; gap: 4px; }
 .cg-card__eff {
   font-size: var(--fs-xs);

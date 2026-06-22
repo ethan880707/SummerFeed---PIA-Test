@@ -418,6 +418,8 @@
 
     var chip = el("button", cls);
     chip.appendChild(el("span", null, tag.name));
+    // 詞條編號（code，如 #健身01），方便與配方表對照。
+    if (tag.code && tag.code !== tag.name) chip.appendChild(el("span", "chip__code", tag.code));
     if (tag.type) chip.appendChild(el("span", "chip__type", tag.type));
 
     if (isSelected) {
@@ -455,6 +457,8 @@
         (function (name) {
           var chip = el("button", "chip is-selected chip--removable");
           chip.appendChild(el("span", null, name));
+          var t = SF.Data.tagByName(name);
+          if (t && t.code && t.code !== name) chip.appendChild(el("span", "chip__code", t.code));
           chip.appendChild(el("span", "chip__x", "×"));
           chip.onclick = function () { toggleSelect(name); };
           body.appendChild(chip);

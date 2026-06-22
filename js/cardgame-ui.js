@@ -366,6 +366,18 @@
     if (card.postId && nm !== card.postId) nm += "（" + card.postId + "）";
     return nm;
   }
+
+  // 把卡片效果做成標籤區塊（給 scry/discard 等選牌面板顯示效果）；無效果回傳 null。
+  function cardEffectChips(card) {
+    var effs = (card && card.effects) ? card.effects : [];
+    if (!effs.length) return null;
+    var ew = el("div", "cg-card__effects");
+    for (var i = 0; i < effs.length; i++) {
+      var lab = (effs[i] && effs[i].label) ? effs[i].label : effKindLabel(effs[i]);
+      ew.appendChild(el("span", "cg-card__eff", lab));
+    }
+    return ew;
+  }
   function postTags(post) {
     if (!post) return [];
     var t = post.tags || post.tagNames || null;
@@ -544,27 +556,25 @@
 
   // ---- 手牌區 -------------------------------------------------------------
   function handSection(b, locked) {
-    var cfg = SF.CardGame.config;
     var played = (typeof (b.player && b.player.playedThisTurn) === "number") ? b.player.playedThisTurn : 0;
-    var canPlay = isPlayerPlayPhase(b) && played < cfg.PLAY_SIZE && !locked;
+    var energy = (b.player && typeof b.player.energy === "number") ? b.player.energy : 0;
 
     var wrap = el("div");
     wrap.appendChild(el("div", "section-label",
-      "你的手牌（本回合已出 " + played + " / " + cfg.PLAY_SIZE + "）"));
+      "你的手牌（本回合已出 " + played + " 張 · 費用剩 " + energy + "）"));
 
     var hand = el("div", "cg-hand");
     var cards = (b.player && b.player.hand) ? b.player.hand : [];
     if (!cards.length) {
       hand.appendChild(el("div", "cg-hand__empty", "手牌為空"));
     }
-    // 出牌階段且未鎖定即可操作；輔助牌不受「已出 3 張」限制；費用不足不能出。
+    // 出牌階段且未鎖定即可操作；已取消 3 張上限，只受「費用不足」限制。
     var canAct = isPlayerPlayPhase(b) && !locked;
-    var energy = (b.player && typeof b.player.energy === "number") ? b.player.energy : 0;
     for (var i = 0; i < cards.length; i++) {
       (function (idx) {
         var c = cards[idx];
         var cCost = (c && typeof c.cost === "number") ? c.cost : 0;
-        var cardDisabled = !canAct || (!(c && c.support) && played >= cfg.PLAY_SIZE) || (cCost > energy);
+        var cardDisabled = !canAct || (cCost > energy);
         hand.appendChild(handCard(b, c, {
           disabled: cardDisabled,
           onClick: function () {
@@ -726,8 +736,13 @@
           var selected = _scryPick.indexOf(pos) !== -1;
           var c = el("div", "cg-card cg-card--battle cg-card--scry is-playable" + (selected ? " is-selected" : ""));
           var top = el("div", "cg-card__top");
+          var scost = (card && typeof card.cost === "number") ? card.cost : 0;
+          top.appendChild(el("span", "cg-card__cost", scost + "費"));
           top.appendChild(el("div", "cg-card__name", battleCardName(card)));
+          if (card && card.exhaust) top.appendChild(el("span", "cg-card__flag cg-card__flag--exhaust", "消耗"));
+          if (card && card.retain) top.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
           c.appendChild(top);
+          var sef = cardEffectChips(card); if (sef) c.appendChild(sef);
           var foot = el("div", "cg-card__foot");
           var atk = el("span", "cg-card__atk");
           atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
@@ -775,7 +790,10 @@
           var cst = (c && typeof c.cost === "number") ? c.cost : 0;
           top.appendChild(el("span", "cg-card__cost", cst + "費"));
           top.appendChild(el("div", "cg-card__name", battleCardName(c)));
+          if (c && c.exhaust) top.appendChild(el("span", "cg-card__flag cg-card__flag--exhaust", "消耗"));
+          if (c && c.retain) top.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
           ce.appendChild(top);
+          var def = cardEffectChips(c); if (def) ce.appendChild(def);
           var ft = el("div", "cg-card__foot");
           var atk = el("span", "cg-card__atk");
           atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
