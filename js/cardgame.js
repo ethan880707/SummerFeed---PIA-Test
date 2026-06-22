@@ -805,24 +805,33 @@
       }
 
       // ===== 表格新增效果（貼文配方表） =====
-      case "gain_money":
-        gainMoney(b, side, amountOf(ctx, eff, "moneyPct", "amount")); // 獲得代幣（小額整數）
+      case "gain_money": {                // 獲得代幣 = 現有代幣的 pct%（pct 缺則沿用舊式固定 amount）
+        for (var gt = 0; gt <= (ctx.moneyExtra || 0); gt++) { // next_money_extra：額外發動
+          var gm = (eff.pct != null) ? round((side.money || 0) * (Number(eff.pct) || 0))
+                                     : amountOf(ctx, eff, "moneyPct", "amount");
+          gainMoney(b, side, gm);
+        }
         break;
+      }
 
       case "money_pack":                  // 舊式：代幣+X%，永久增加Y%（每回合）
         gainMoney(b, side, Math.max(0, round(eff.gain)));
         side.moneyPerRoundBonus = (side.moneyPerRoundBonus || 0) + Math.max(0, round(eff.perRound));
         break;
 
-      case "money_escalate": {            // 代幣+X%，永久增加Y% → 每打出一次本卡，%再 +Y%
+      case "money_escalate": {            // 代幣+X%，永久增加Y% → 每打出一次本卡，%再 +Y%（取現有代幣的該%）
         var pcM = (card && side.playCounts && side.playCounts[card.postId]) || 0; // 此前已打出次數
         var mPct = (Number(eff.basePct) || 0) + (Number(eff.incPct) || 0) * pcM;
-        gainMoney(b, side, Math.max(1, round(mPct * 10))); // 維持小額池（%×10）
+        for (var et = 0; et <= (ctx.moneyExtra || 0); et++) {  // next_money_extra：額外發動
+          gainMoney(b, side, round((side.money || 0) * mPct)); // = 現有代幣 ×（base + inc×已打次數）
+        }
         break;
       }
 
       case "money_mult":                  // 代幣變為 N 倍
-        side.money = round((side.money || 0) * (Number(eff.factor) || 1));
+        for (var mt = 0; mt <= (ctx.moneyExtra || 0); mt++) { // next_money_extra：額外發動
+          side.money = round((side.money || 0) * (Number(eff.factor) || 1));
+        }
         break;
 
       case "all_in": {                    // ALL IN：花費隨機 50~100% 代幣，換 mult× 之 攻/粉/鐵
@@ -881,10 +890,10 @@
       case "random_gain": {               // 隨機獲得 +X% 之 讚數/鐵粉/粉絲/代幣
         var pick4 = Math.floor(rand01("cg:rnd:" + (card ? card.uid : ""), side.playedThisTurn) * 4) % 4;
         var amtR = round((ctx.anchorLikes || 0) * (Number(eff.pct) || 0) * (ctx.amp || 1));
-        if (pick4 === 0) gainAtk(b, side, card, amtR);
+        if (pick4 === 0) gainAtk(b, side, card, amtR);          // 讚數/鐵粉/粉絲：本卡讚數的 X%
         else if (pick4 === 1) gainShield(b, side, amtR);
         else if (pick4 === 2) gainHp(b, side, amtR, false);
-        else gainMoney(b, side, Math.max(1, round((Number(eff.pct) || 0) * 10)));
+        else gainMoney(b, side, round((side.money || 0) * (Number(eff.pct) || 0))); // 代幣：現有代幣的 X%
         break;
       }
 
@@ -965,7 +974,7 @@
         side.amp.nextParity = { parity: (eff.parity === "even" ? "even" : "odd"), pct: Number(eff.pct) || 0 };
         break;
 
-      case "next_money_extra":            // 下一張代幣額外發動 T 次（近似：旗標，暫無消費點，記錄供未來）
+      case "next_money_extra":            // 下一張代幣（gain_money/money_escalate/money_mult）額外發動 T 次
         side.amp.nextMoneyExtra = Math.max(0, round(eff.times));
         break;
 
@@ -987,6 +996,12 @@
     // 只算一次並存於 card，pending 續跑時沿用同一基準。
     if (card._anchorLikes == null) card._anchorLikes = computeEffLikes(b, side, card);
 
+    // next_money_extra：消費「上一張卡設定的」代幣額外發動次數，套用到本卡的代幣效果（本卡若再設定則給下一張）。
+    if (card._moneyExtra == null) {
+      card._moneyExtra = (side.amp && side.amp.nextMoneyExtra) ? side.amp.nextMoneyExtra : 0;
+      if (side.amp) side.amp.nextMoneyExtra = 0;
+    }
+
     // 放大器：本卡是本回合第 pos 張。nth/nextParity 提供倍率 amp；repeat 提供總執行次數。
     var pos = side.playedThisTurn + 1;
     var amp = 1;
@@ -1003,6 +1018,7 @@
       card: card,
       anchorLikes: card._anchorLikes,
       amp: amp,
+      moneyExtra: card._moneyExtra || 0,
       isFirstPlay: (side.playedThisTurn === 0)
     };
 
