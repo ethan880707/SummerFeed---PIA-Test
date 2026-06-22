@@ -214,16 +214,22 @@
     if (tier > exposure.length - 1) tier = exposure.length - 1;
     var E = exposure[tier];
 
-    // F = 發布當下粉絲快照（entry.followersAtPost，§4.5）；缺值時退回 account.followers
-    var F;
-    if (entry && typeof entry.followersAtPost === 'number') {
-      F = entry.followersAtPost;
+    // 兩種粉絲基數：
+    //   Fdisp = 帳號「當下」粉絲數（base + delta）→ 顯示數據（reach/views/likes/shares）。
+    //           ★ 修正：舊貼文的流量/讚數會隨帳號粉絲成長而更新，而非永遠停在發文當下的數字。
+    //   Fgrow = 發布當下快照（entry.followersAtPost）→ 漲粉(followerGain)。
+    //           保留快照是為了避免「漲粉 → 粉絲變多 → reach 變大 → 更多漲粉」於 recompute 內循環爆衝。
+    var Fgrow = (entry && typeof entry.followersAtPost === 'number') ? entry.followersAtPost : 0;
+    if (Fgrow < 0) Fgrow = 0;
+    var Fdisp;
+    if (account && (typeof account.baseFollowers === 'number' || typeof account.followerDelta === 'number')) {
+      Fdisp = (account.baseFollowers || 0) + (account.followerDelta || 0);
     } else if (account && typeof account.followers === 'number') {
-      F = account.followers;
+      Fdisp = account.followers; // 容錯：合成 account
     } else {
-      F = 0;
+      Fdisp = Fgrow;
     }
-    if (F < 0) F = 0;
+    if (Fdisp < 0) Fdisp = 0;
 
     // immoral 旗標
     var immoral = !!(post && post.immoralEvidence);
@@ -232,30 +238,26 @@
     var qJit = (hash01(seed(postId, 'q')) * 2 - 1) * 0.15;
     var quality = clamp01(0.5 + (immoral ? p.qualityImmoralBonus : 0) + qJit);
 
-    // seed（起跑觸及）= F * followerReachRate + discoveryFloor * E
-    var seedReach = F * p.followerReachRate + p.discoveryFloor * E;
-    if (seedReach < 1) seedReach = 1; // 防止 logistic 除零 / 容量退化
-
-    // engageRate = clamp( ctrBase * (0.6 + quality), 0, 0.5 )
+    // engageRate / viralK / r（與粉絲基數無關，兩種 reach 共用）
     var engageRate = clamp(p.ctrBase * (0.6 + quality), 0, 0.5);
-
-    // viralK = engageRate * E * viralGain
     var viralK = engageRate * E * p.viralGain;
-
-    // r = baseGrowthRate * (1 + viralK)
     var r = p.baseGrowthRate * (1 + viralK);
 
-    // Carry = seed * (1 + amplifyMax * E * quality)
-    var Carry = seedReach * (1 + p.amplifyMax * E * quality);
-    // 分享迴路：把分享帶來的額外觸及併入容量
-    Carry *= (1 + p.shareRate * p.shareAmplify * quality);
-    if (Carry < seedReach) Carry = seedReach; // 容量至少等於種子
+    // 依給定粉絲基數算 logistic 觸及（seed = Fval*followerReachRate + discoveryFloor*E）。
+    function reachFrom(Fval) {
+      var sr = Fval * p.followerReachRate + p.discoveryFloor * E;
+      if (sr < 1) sr = 1;
+      var carry = sr * (1 + p.amplifyMax * E * quality);
+      carry *= (1 + p.shareRate * p.shareAmplify * quality);
+      if (carry < sr) carry = sr;
+      var rat = (carry - sr) / sr;
+      var rch = carry / (1 + rat * Math.exp(-r * t));
+      if (!isFinite(rch) || rch < sr) rch = sr;
+      return rch;
+    }
 
-    // logistic 擴散（以 seed 為 t=0 值）
-    //   reach(t) = Carry / (1 + ((Carry - seed)/seed) * exp(-r*t))
-    var ratio = (Carry - seedReach) / seedReach;
-    var reach = Carry / (1 + ratio * Math.exp(-r * t));
-    if (!isFinite(reach) || reach < seedReach) reach = seedReach;
+    var reach = reachFrom(Fdisp);       // 顯示用觸及（當下粉絲）
+    var reachGrow = reachFrom(Fgrow);   // 漲粉用觸及（發布快照）
 
     // 互動漏斗（reach → 各指標），含確定性抖動（不含時間 → 隨天數單調）
     var jr = p.jitterRatio;
@@ -266,14 +268,11 @@
     // comments：UI 顯示用，取 round(likes*0.06)，留言不成長
     var comments = Math.round(likes * 0.06);
 
-    // followerGain = 漲粉基數（依流量 E、隨 t 漸進到位）+ 觸及回饋
-    //   base = followerBaseGain * E * (1 - exp(-t / followerRampDays))
-    //   conv = reach * followerConvRate * quality
-    // 基數解決「0 粉起步前期 reach 太小、幾乎不漲粉」；以 E 控制流量越高漲越多。
+    // followerGain = 漲粉基數（依流量 E、隨 t 漸進到位）+ 觸及回饋（用發布快照 reachGrow）
     var rampDays = p.followerRampDays > 0 ? p.followerRampDays : 1;
     var followerSat = 1 - Math.exp(-t / rampDays);          // 0 → 1，隨天數單調
     var followerBase = (p.followerBaseGain || 0) * E * followerSat;
-    var followerGain = Math.round(followerBase + reach * p.followerConvRate * quality);
+    var followerGain = Math.round(followerBase + reachGrow * p.followerConvRate * quality);
 
     return {
       views:        views   < 0 ? 0 : views,

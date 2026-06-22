@@ -452,8 +452,9 @@
 .cg-card__flag--temp { color: var(--txt-3); background: var(--bg-3); }
 .cg-card__flag--support { color: var(--accent); background: rgba(91, 140, 255, 0.16); }
 .cg-card__flag--exhaust { color: var(--warn); background: rgba(251, 191, 36, 0.16); }
+.cg-card__namerow { display: flex; align-items: center; gap: 4px; }
 .cg-card__cost {
-  display: inline-block; min-width: 28px; text-align: center;
+  display: inline-block; min-width: 28px; text-align: center; flex: 0 0 auto;
   font-size: var(--fs-xs); font-weight: 800; color: var(--accent-2);
   background: rgba(139, 108, 255, 0.20); border: 1px solid var(--accent-2);
   border-radius: var(--r-pill); padding: 0 6px; margin-right: 6px;

@@ -8,6 +8,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -22,11 +23,12 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "add_shield",
     "pct": 0.05,
-    "label": "鐵粉+5%"
+    "label": "獲得鐵粉＝本卡讚數 5%"
    }
   ]
  },
@@ -36,6 +38,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -45,7 +48,7 @@
    {
     "kind": "add_shield",
     "pct": 0.1,
-    "label": "鐵粉+10%"
+    "label": "獲得鐵粉＝本卡讚數 10%"
    }
   ]
  },
@@ -55,6 +58,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -65,7 +69,7 @@
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.5,
-    "label": "本回合鐵粉獲得+50%"
+    "label": "本回合後續獲得鐵粉 +50%"
    }
   ]
  },
@@ -75,12 +79,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.5,
-    "label": "本回合鐵粉獲得+50%"
+    "label": "本回合後續獲得鐵粉 +50%"
    }
   ]
  },
@@ -90,17 +95,18 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.75,
-    "label": "本回合鐵粉獲得+75%"
+    "label": "本回合後續獲得鐵粉 +75%"
    },
    {
     "kind": "add_shield",
     "pct": 0.15,
-    "label": "鐵粉+15%"
+    "label": "獲得鐵粉＝本卡讚數 15%"
    }
   ]
  },
@@ -110,12 +116,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.75,
-    "label": "本回合鐵粉獲得+75%"
+    "label": "本回合後續獲得鐵粉 +75%"
    },
    {
     "kind": "shield_to_atk",
@@ -125,7 +132,7 @@
    {
     "kind": "add_shield",
     "pct": 0.15,
-    "label": "鐵粉+15%"
+    "label": "獲得鐵粉＝本卡讚數 15%"
    }
   ]
  },
@@ -135,6 +142,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "shield_to_atk",
@@ -149,12 +157,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "atk",
     "pct": 1.0,
-    "label": "本回合讚數獲得+100%"
+    "label": "本回合後續獲得讚數 +100%"
    },
    {
     "kind": "shield_to_atk",
@@ -164,7 +173,7 @@
    {
     "kind": "add_shield",
     "pct": 0.2,
-    "label": "鐵粉+20%"
+    "label": "獲得鐵粉＝本卡讚數 20%"
    }
   ]
  },
@@ -174,23 +183,24 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "atk",
     "pct": 1.0,
-    "label": "本回合讚數獲得+100%"
+    "label": "本回合後續獲得讚數 +100%"
    },
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 1.0,
-    "label": "本回合鐵粉獲得+100%"
+    "label": "本回合後續獲得鐵粉 +100%"
    },
    {
     "kind": "add_shield",
     "pct": 0.2,
-    "label": "鐵粉+20%"
+    "label": "獲得鐵粉＝本卡讚數 20%"
    }
   ]
  },
@@ -200,6 +210,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -219,6 +230,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -238,6 +250,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_add",
@@ -252,6 +265,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_add",
@@ -266,6 +280,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_to_money",
@@ -285,6 +300,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_to_money",
@@ -309,6 +325,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -333,12 +350,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "atk",
     "pct": 1.0,
-    "label": "本回合從流量獲取的讚數+100%"
+    "label": "本回合後續獲得讚數 +100%"
    },
    {
     "kind": "cond_traffic",
@@ -363,12 +381,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "atk",
     "pct": 1.0,
-    "label": "本回合從流量獲取的讚數+100%"
+    "label": "本回合後續獲得讚數 +100%"
    },
    {
     "kind": "cond_traffic",
@@ -393,18 +412,19 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "gain_atk",
      "pct": 0.2,
-     "label": "獲得20%讚數"
+     "label": "本卡攻擊＋本卡讚數 20%"
     },
     "even": {
      "kind": "add_shield",
      "pct": 0.2,
-     "label": "獲得20%鐵粉"
+     "label": "獲得鐵粉＝本卡讚數 20%"
     },
     "label": "奇:獲得20%讚數 / 偶:獲得20%鐵粉"
    }
@@ -416,13 +436,14 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "heal",
      "pct": 0.2,
-     "label": "獲得20%粉絲"
+     "label": "回復粉絲團＝本卡讚數 20%"
     },
     "even": {
      "kind": "gain_money",
@@ -439,6 +460,7 @@
   "support": false,
   "cost": 1,
   "exhaust": true,
+  "stars": 1,
   "effects": [
    {
     "kind": "hand_size_up",
@@ -453,6 +475,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -465,12 +488,12 @@
     "odd": {
      "kind": "gain_atk",
      "pct": 0.3,
-     "label": "獲得30%讚數"
+     "label": "本卡攻擊＋本卡讚數 30%"
     },
     "even": {
      "kind": "add_shield",
      "pct": 0.3,
-     "label": "獲得30%鐵粉"
+     "label": "獲得鐵粉＝本卡讚數 30%"
     },
     "label": "奇:獲得30%讚數 / 偶:獲得30%鐵粉"
    }
@@ -482,6 +505,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -494,7 +518,7 @@
     "odd": {
      "kind": "heal",
      "pct": 0.3,
-     "label": "獲得30%粉絲"
+     "label": "回復粉絲團＝本卡讚數 30%"
     },
     "even": {
      "kind": "gain_money",
@@ -511,6 +535,7 @@
   "support": false,
   "cost": 2,
   "exhaust": true,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -531,6 +556,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -560,6 +586,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -605,6 +632,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
@@ -628,6 +656,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -673,6 +702,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -701,12 +731,12 @@
     "odd": {
      "kind": "gain_atk",
      "pct": 0.3,
-     "label": "獲得30%讚數"
+     "label": "本卡攻擊＋本卡讚數 30%"
     },
     "even": {
      "kind": "add_shield",
      "pct": 0.3,
-     "label": "獲得30%鐵粉"
+     "label": "獲得鐵粉＝本卡讚數 30%"
     },
     "label": "奇:獲得30%讚數 / 偶:獲得30%鐵粉"
    }
@@ -718,6 +748,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -746,7 +777,7 @@
     "odd": {
      "kind": "heal",
      "pct": 0.3,
-     "label": "獲得30%粉絲"
+     "label": "回復粉絲團＝本卡讚數 30%"
     },
     "even": {
      "kind": "gain_money",
@@ -763,12 +794,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加5%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.05,
+    "label": "獲得代幣（首次 10%、每再打出一次 +5%）"
    }
   ]
  },
@@ -778,12 +810,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加10%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.1,
+    "label": "獲得代幣（首次 10%、每再打出一次 +10%）"
    }
   ]
  },
@@ -793,6 +826,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -807,6 +841,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "all_in",
@@ -827,6 +862,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "all_in",
@@ -847,6 +883,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "all_in",
@@ -867,6 +904,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "all_in",
@@ -875,10 +913,10 @@
     "label": "ALL IN 所有代幣 50~100%轉換為兩倍鐵粉"
    },
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加10%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.1,
+    "label": "獲得代幣（首次 10%、每再打出一次 +10%）"
    }
   ]
  },
@@ -888,6 +926,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "money_mult",
@@ -912,6 +951,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "money_mult",
@@ -924,10 +964,10 @@
     "label": "代幣30%轉讚數"
    },
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加10%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.1,
+    "label": "獲得代幣（首次 10%、每再打出一次 +10%）"
    }
   ]
  },
@@ -937,6 +977,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "money_mult",
@@ -961,6 +1002,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -975,12 +1017,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.5,
-    "label": "本回合鐵粉獲得+50%"
+    "label": "本回合後續獲得鐵粉 +50%"
    }
   ]
  },
@@ -990,6 +1033,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1009,6 +1053,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1028,18 +1073,19 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "gain_atk",
      "pct": 0.2,
-     "label": "獲得20%讚數"
+     "label": "本卡攻擊＋本卡讚數 20%"
     },
     "even": {
      "kind": "add_shield",
      "pct": 0.2,
-     "label": "獲得20%鐵粉"
+     "label": "獲得鐵粉＝本卡讚數 20%"
     },
     "label": "奇:獲得20%讚數 / 偶:獲得20%鐵粉"
    }
@@ -1051,18 +1097,19 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "gain_atk",
      "pct": 0.3,
-     "label": "獲得30%讚數"
+     "label": "本卡攻擊＋本卡讚數 30%"
     },
     "even": {
      "kind": "add_shield",
      "pct": 0.3,
-     "label": "獲得30%鐵粉"
+     "label": "獲得鐵粉＝本卡讚數 30%"
     },
     "label": "奇:獲得30%讚數 / 偶:獲得30%鐵粉"
    }
@@ -1074,12 +1121,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加5%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.05,
+    "label": "獲得代幣（首次 10%、每再打出一次 +5%）"
    }
   ]
  },
@@ -1089,12 +1137,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加10%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.1,
+    "label": "獲得代幣（首次 10%、每再打出一次 +10%）"
    }
   ]
  },
@@ -1104,11 +1153,12 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "heal",
     "pct": 0.05,
-    "label": "粉絲+5%"
+    "label": "回復粉絲團＝本卡讚數 5%"
    }
   ]
  },
@@ -1118,11 +1168,12 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "add_shield",
     "pct": 0.05,
-    "label": "鐵粉+5%"
+    "label": "獲得鐵粉＝本卡讚數 5%"
    }
   ]
  },
@@ -1132,6 +1183,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_add",
@@ -1146,6 +1198,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "retain_n",
@@ -1160,6 +1213,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -1174,13 +1228,14 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "heal",
      "pct": 0.2,
-     "label": "獲得20%粉絲"
+     "label": "回復粉絲團＝本卡讚數 20%"
     },
     "even": {
      "kind": "gain_money",
@@ -1197,6 +1252,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "next_money_extra",
@@ -1211,6 +1267,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_sub",
@@ -1225,11 +1282,12 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "add_shield",
     "pct": 0.1,
-    "label": "鐵粉+10%"
+    "label": "獲得鐵粉＝本卡讚數 10%"
    }
   ]
  },
@@ -1239,6 +1297,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_add",
@@ -1253,6 +1312,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "shield_to_atk",
@@ -1263,7 +1323,7 @@
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.5,
-    "label": "本回合鐵粉獲得+50%"
+    "label": "本回合後續獲得鐵粉 +50%"
    }
   ]
  },
@@ -1273,6 +1333,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1302,6 +1363,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "parity",
@@ -1322,7 +1384,7 @@
     "odd": {
      "kind": "heal",
      "pct": 0.3,
-     "label": "獲得30%粉絲"
+     "label": "回復粉絲團＝本卡讚數 30%"
     },
     "even": {
      "kind": "gain_money",
@@ -1339,6 +1401,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "next_money_extra",
@@ -1358,16 +1421,17 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "heal",
     "pct": 0.15,
-    "label": "粉絲+15%"
+    "label": "回復粉絲團＝本卡讚數 15%"
    },
    {
     "kind": "add_shield",
     "pct": 0.15,
-    "label": "鐵粉+15%"
+    "label": "獲得鐵粉＝本卡讚數 15%"
    }
   ]
  },
@@ -1377,6 +1441,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_add",
@@ -1396,6 +1461,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "random_post",
@@ -1415,18 +1481,19 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "atk",
     "pct": 1.0,
-    "label": "本回合讚數獲得+100%"
+    "label": "本回合後續獲得讚數 +100%"
    },
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 1.0,
-    "label": "本回合鐵粉獲得+100%"
+    "label": "本回合後續獲得鐵粉 +100%"
    },
    {
     "kind": "shield_to_atk",
@@ -1441,6 +1508,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1480,16 +1548,17 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "heal",
     "pct": 0.2,
-    "label": "粉絲+20%"
+    "label": "回復粉絲團＝本卡讚數 20%"
    },
    {
     "kind": "add_shield",
     "pct": 0.2,
-    "label": "鐵粉+20%"
+    "label": "獲得鐵粉＝本卡讚數 20%"
    },
    {
     "kind": "traffic_add",
@@ -1504,6 +1573,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "random_post",
@@ -1525,9 +1595,10 @@
  "F01": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "draw_discard",
@@ -1540,9 +1611,10 @@
  "F02": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "draw",
@@ -1554,9 +1626,10 @@
  "F03": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "scry",
@@ -1569,9 +1642,10 @@
  "F04": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1583,9 +1657,10 @@
  "F05": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1597,9 +1672,10 @@
  "F06": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1611,9 +1687,10 @@
  "F07": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 0,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "gain_energy",
@@ -1625,9 +1702,10 @@
  "F08": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "copy_last",
@@ -1643,9 +1721,10 @@
  "F09": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "draw_discard",
@@ -1664,9 +1743,10 @@
  "F10": {
   "category": [],
   "retain": false,
-  "support": true,
+  "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "draw",
@@ -1687,6 +1767,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -1701,12 +1782,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 0.5,
-    "label": "本回合鐵粉獲得+50%"
+    "label": "本回合後續獲得鐵粉 +50%"
    },
    {
     "kind": "shield_to_atk",
@@ -1721,23 +1803,24 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "atk",
     "pct": 1.0,
-    "label": "本回合讚數獲得+100%"
+    "label": "本回合後續獲得讚數 +100%"
    },
    {
     "kind": "turn_gain_bonus",
     "what": "shield",
     "pct": 1.0,
-    "label": "本回合鐵粉獲得+100%"
+    "label": "本回合後續獲得鐵粉 +100%"
    },
    {
     "kind": "add_shield",
     "pct": 0.2,
-    "label": "鐵粉+20%"
+    "label": "獲得鐵粉＝本卡讚數 20%"
    }
   ]
  },
@@ -1747,6 +1830,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1766,6 +1850,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1795,6 +1880,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1829,13 +1915,14 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "heal",
      "pct": 0.2,
-     "label": "獲得20%粉絲"
+     "label": "回復粉絲團＝本卡讚數 20%"
     },
     "even": {
      "kind": "gain_money",
@@ -1852,13 +1939,14 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "parity",
     "odd": {
      "kind": "heal",
      "pct": 0.3,
-     "label": "獲得30%粉絲"
+     "label": "回復粉絲團＝本卡讚數 30%"
     },
     "even": {
      "kind": "gain_money",
@@ -1875,6 +1963,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "parity",
@@ -1895,12 +1984,12 @@
     "odd": {
      "kind": "gain_atk",
      "pct": 0.3,
-     "label": "獲得30%讚數"
+     "label": "本卡攻擊＋本卡讚數 30%"
     },
     "even": {
      "kind": "add_shield",
      "pct": 0.3,
-     "label": "獲得30%鐵粉"
+     "label": "獲得鐵粉＝本卡讚數 30%"
     },
     "label": "奇:獲得30%讚數 / 偶:獲得30%鐵粉"
    }
@@ -1912,12 +2001,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加10%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.1,
+    "label": "獲得代幣（首次 10%、每再打出一次 +10%）"
    }
   ]
  },
@@ -1927,6 +2017,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "next_money_extra",
@@ -1946,6 +2037,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -1958,10 +2050,10 @@
     "label": "下一張代幣額外發動2次"
    },
    {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加10%"
+    "kind": "money_escalate",
+    "basePct": 0.1,
+    "incPct": 0.1,
+    "label": "獲得代幣（首次 10%、每再打出一次 +10%）"
    }
   ]
  },
@@ -1971,6 +2063,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -1985,6 +2078,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -2004,6 +2098,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "hp_to_shield",
@@ -2018,7 +2113,7 @@
    {
     "kind": "heal",
     "pct": 0.2,
-    "label": "粉絲+20%"
+    "label": "回復粉絲團＝本卡讚數 20%"
    }
   ]
  },
@@ -2028,6 +2123,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2042,6 +2138,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_to_hp",
@@ -2056,6 +2153,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_to_shield",
@@ -2075,6 +2173,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "retain_gain",
@@ -2095,6 +2194,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "retain_gain",
@@ -2126,6 +2226,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "retain_gain",
@@ -2163,11 +2264,12 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "add_shield",
     "pct": 0.1,
-    "label": "鐵粉+10%"
+    "label": "獲得鐵粉＝本卡讚數 10%"
    }
   ]
  },
@@ -2177,6 +2279,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_add",
@@ -2191,6 +2294,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "retain_n",
@@ -2205,11 +2309,12 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "heal",
     "pct": 0.1,
-    "label": "粉絲+10%"
+    "label": "回復粉絲團＝本卡讚數 10%"
    }
   ]
  },
@@ -2219,6 +2324,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -2233,6 +2339,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "traffic_sub",
@@ -2247,6 +2354,7 @@
   "support": false,
   "cost": 1,
   "exhaust": true,
+  "stars": 1,
   "effects": [
    {
     "kind": "hand_size_up",
@@ -2261,6 +2369,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "random_gain",
@@ -2275,6 +2384,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "random_post",
@@ -2294,12 +2404,13 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "hp",
     "pct": 1.0,
-    "label": "本回合粉絲獲得+100%"
+    "label": "本回合後續回復粉絲團 +100%"
    }
   ]
  },
@@ -2309,12 +2420,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "hp",
     "pct": 1.0,
-    "label": "本回合粉絲獲得+100%"
+    "label": "本回合後續回復粉絲團 +100%"
    },
    {
     "kind": "hp_to_atk",
@@ -2329,12 +2441,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "hp",
     "pct": 1.0,
-    "label": "本回合粉絲獲得+100%"
+    "label": "本回合後續回復粉絲團 +100%"
    },
    {
     "kind": "hp_to_atk",
@@ -2348,7 +2461,8 @@
   "retain": false,
   "support": false,
   "cost": 2,
-  "exhaust": true,
+  "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2368,7 +2482,8 @@
   "retain": false,
   "support": false,
   "cost": 2,
-  "exhaust": true,
+  "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2389,6 +2504,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2415,6 +2531,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2441,12 +2558,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "hp",
     "pct": 1.0,
-    "label": "本回合粉絲獲得+100%"
+    "label": "本回合後續回復粉絲團 +100%"
    },
    {
     "kind": "hp_to_shield",
@@ -2456,7 +2574,7 @@
    {
     "kind": "heal",
     "pct": 0.2,
-    "label": "粉絲+20%"
+    "label": "回復粉絲團＝本卡讚數 20%"
    }
   ]
  },
@@ -2465,7 +2583,8 @@
   "retain": false,
   "support": false,
   "cost": 2,
-  "exhaust": true,
+  "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2491,6 +2610,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 3,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2523,6 +2643,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "all_in",
@@ -2543,6 +2664,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": []
  },
  "D7b": {
@@ -2551,6 +2673,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": []
  },
  "D7c": {
@@ -2559,6 +2682,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": []
  },
  "N02": {
@@ -2567,12 +2691,13 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "turn_gain_bonus",
     "what": "hp",
     "pct": 1.0,
-    "label": "本回合粉絲獲得+100%"
+    "label": "本回合後續回復粉絲團 +100%"
    },
    {
     "kind": "hp_to_atk",
@@ -2586,7 +2711,8 @@
   "retain": false,
   "support": false,
   "cost": 2,
-  "exhaust": true,
+  "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2607,6 +2733,7 @@
   "support": false,
   "cost": 2,
   "exhaust": false,
+  "stars": 2,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2633,6 +2760,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": []
  },
  "N09": {
@@ -2641,6 +2769,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": []
  },
  "N10": {
@@ -2649,6 +2778,7 @@
   "support": false,
   "cost": 1,
   "exhaust": false,
+  "stars": 1,
   "effects": []
  },
  "OPP01-P1": {

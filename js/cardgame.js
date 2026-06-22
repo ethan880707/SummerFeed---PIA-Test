@@ -272,13 +272,14 @@
   // 由 postId 取得 effects / retain（player 與 opponent 共用 PIA_CARD_EFFECTS）。
   function effectsForPost(postId) {
     var rec = effectsData()[postId];
-    if (!rec) return { effects: [], retain: false, support: false, cost: 0, exhaust: false, category: [] };
+    if (!rec) return { effects: [], retain: false, support: false, cost: 0, exhaust: false, stars: 1, category: [] };
     return {
       effects: cloneEffects(rec.effects),
       retain: !!rec.retain,
       support: !!rec.support, // 輔助牌（詞條配方為「共通」）：純功能、不消耗出牌次數、無讚數
       cost: (typeof rec.cost === "number") ? rec.cost : 0,   // 費用（能量）
       exhaust: !!rec.exhaust, // 消耗：打出後移除出遊戲（不入棄牌堆）
+      stars: (typeof rec.stars === "number") ? rec.stars : 1, // 星級（隨機獲得貼文配對用）
       category: Array.isArray(rec.category) ? rec.category.slice() : []
     };
   }
@@ -298,6 +299,7 @@
       support: !!rec.support,
       cost: rec.cost,
       exhaust: !!rec.exhaust,
+      stars: rec.stars,
       _addBuff: 0,
       _mulBuff: 1,
       _isDefenseOnly: false
@@ -410,6 +412,7 @@
       support: !!card.support,
       cost: (typeof card.cost === "number") ? card.cost : 0,
       exhaust: !!card.exhaust,
+      stars: (typeof card.stars === "number") ? card.stars : 1,
       _addBuff: 0,
       _mulBuff: 1,
       _isDefenseOnly: false
@@ -805,10 +808,17 @@
         gainMoney(b, side, amountOf(ctx, eff, "moneyPct", "amount")); // 獲得代幣（小額整數）
         break;
 
-      case "money_pack":                  // 代幣+X%，永久增加Y%
+      case "money_pack":                  // 舊式：代幣+X%，永久增加Y%（每回合）
         gainMoney(b, side, Math.max(0, round(eff.gain)));
         side.moneyPerRoundBonus = (side.moneyPerRoundBonus || 0) + Math.max(0, round(eff.perRound));
         break;
+
+      case "money_escalate": {            // 代幣+X%，永久增加Y% → 每打出一次本卡，%再 +Y%
+        var pcM = (card && side.playCounts && side.playCounts[card.postId]) || 0; // 此前已打出次數
+        var mPct = (Number(eff.basePct) || 0) + (Number(eff.incPct) || 0) * pcM;
+        gainMoney(b, side, Math.max(1, round(mPct * 10))); // 維持小額池（%×10）
+        break;
+      }
 
       case "money_mult":                  // 代幣變為 N 倍
         side.money = round((side.money || 0) * (Number(eff.factor) || 1));
@@ -877,12 +887,24 @@
         break;
       }
 
-      case "random_post": {               // 隨機獲得一張 N 星臨時貼文（近似：生成一張臨時打擊卡，攻擊隨星級）
-        var starMul = 0.5 + 0.5 * (Number(eff.stars) || 1); // 1★→1.0, 2★→1.5, 3★→2.0
-        var tcAtk = round((ctx.anchorLikes || 0) * starMul);
-        var tc = makeBaseStrikeCard(tcAtk);
-        tc.name = (eff.stars || 1) + "★ 臨時貼文";
-        side.hand.push(tc);
+      case "random_post": {               // 隨機獲得「牌庫中」一張符合星級的真實貼文（含效果），臨時卡回合結束消失
+        var wMin, wMax;
+        if (typeof eff.starMin === "number") { wMin = eff.starMin; wMax = (typeof eff.starMax === "number") ? eff.starMax : eff.starMin; }
+        else { wMin = wMax = (Number(eff.stars) || 1); }
+        var srcDeck = (side.deck && side.deck.length) ? side.deck : [];
+        var pool = [];
+        for (var di = 0; di < srcDeck.length; di++) {
+          var st = (typeof srcDeck[di].stars === "number") ? srcDeck[di].stars : 1;
+          if (st >= wMin && st <= wMax) pool.push(srcDeck[di]);
+        }
+        if (pool.length === 0) pool = srcDeck.slice(); // 牌庫無此星級 → 整副挑
+        if (pool.length > 0) {
+          var ri = Math.floor(rand01("cg:randpost:" + (card ? card.uid : "x"), side.playedThisTurn + (side.hand.length | 0)) * pool.length);
+          if (ri < 0) ri = 0; if (ri >= pool.length) ri = pool.length - 1;
+          var tc = mintHandInstance(pool[ri]); // 真實卡複本（含效果/讚數/費用）
+          tc.temp = true;                        // 臨時：回合結束消失，不入牌堆
+          side.hand.push(tc);
+        }
         break;
       }
 
@@ -903,9 +925,21 @@
         break;
       }
 
-      case "draw_discard": {              // 抽N丟M（近似：抽 N，再棄掉手牌中攻擊最低的 M 張）
+      case "draw_discard": {              // 抽N丟M：玩家可自選要丟棄哪幾張（對手自動丟最低攻擊）
         drawN(b, side, Math.max(0, round(eff.draw)));
         var dm = Math.max(0, round(eff.discard));
+        if (dm <= 0 || side.hand.length === 0) break;
+        if (side === b.player) {
+          var dlim = Math.min(dm, side.hand.length);
+          b.pending = {
+            kind: "discard",
+            side: sideName(b, side),
+            count: dlim,
+            descriptor: { count: dlim, label: eff.label || ("選擇丟棄 " + dlim + " 張手牌") }
+          };
+          return "PENDING";          // 暫停，待 resolveChoice 接收玩家選擇
+        }
+        // 對手：自動丟攻擊最低的 M 張。
         for (var dd = 0; dd < dm && side.hand.length > 0; dd++) {
           var lowI = 0, lowV = Infinity;
           for (var hh = 0; hh < side.hand.length; hh++) {
@@ -1005,6 +1039,10 @@
   // ★ 改版：攻擊不再「立即造成傷害」，而是把本卡讚數累進該側 turnAtk（狀態欄顯示），
   //   待該側回合結束時由 settleTurnDamage 一次結算。防禦卡（_isDefenseOnly）仍即時加鐵粉。
   function finishCardAttack(b, side, card) {
+    // 累計本場該 postId 的打出次數（money_escalate 等「永久增加」效果用；效果已在此前讀取舊值）。
+    if (card && card.postId && side.playCounts) {
+      side.playCounts[card.postId] = (side.playCounts[card.postId] || 0) + 1;
+    }
     // 輔助牌：純功能，無攻擊數值、不消耗出牌次數（playedThisTurn 不增）。效果已於 resolveCard 觸發。
     if (card.support) {
       b.lastPlay = {
@@ -1156,7 +1194,8 @@
         moneyPerRoundBonus: 0, // 代幣每回合額外增加（持久，「永久增加」）
         retainHand: 0, retainBoost: 0,                    // 保留N張手牌 / 被保留牌效果加成（每回合）
         cancelGain: { shield: 0, atk: 0, hp: 0 },         // 被取消的「下一次獲得」計數
-        amp: { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 } // 進階放大器旗標
+        amp: { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 }, // 進階放大器旗標
+        playCounts: {}                                    // 本場各 postId 已打出次數（永久增加類效果用）
       },
       opponent: {
         hp: oppHpMax, hpMax: oppHpMax, shield: 0, money: (CardGame.config.MONEY_START || 0),
@@ -1170,7 +1209,8 @@
         handSizeBonus: 0, moneyPerRoundBonus: 0,
         retainHand: 0, retainBoost: 0,
         cancelGain: { shield: 0, atk: 0, hp: 0 },
-        amp: { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 }
+        amp: { nth: null, repeat: null, nextParity: null, nextMoneyExtra: 0 },
+        playCounts: {}
       },
 
       buffs: {
@@ -1321,6 +1361,9 @@
     } else if (p.kind === "scry") {
       applyScry(b, side, p, payload);
       b.pending = null;
+    } else if (p.kind === "discard") {
+      applyDiscard(b, side, p, payload);
+      b.pending = null;
     } else {
       b.pending = null;
     }
@@ -1359,6 +1402,38 @@
     }
     // 其餘置底：rest 在前，未撿的 top 在後（置底）。
     side.drawPile = rest.concat(keepBottom);
+  }
+
+  // applyDiscard：玩家從手牌選擇要丟棄的牌（payload = 手牌位置索引陣列），上限 p.count。
+  //   不足時自動補丟攻擊最低者；丟棄入棄牌堆（temp 卡消失、exhaust 卡移除）。
+  function applyDiscard(b, side, p, payload) {
+    var want = Math.min(p.count || 0, side.hand.length);
+    var idxs = [];
+    var seen = Object.create(null);
+    var list = Array.isArray(payload) ? payload : [];
+    for (var i = 0; i < list.length && idxs.length < want; i++) {
+      var k = list[i];
+      if (typeof k === "number" && k >= 0 && k < side.hand.length && !seen[k]) { seen[k] = true; idxs.push(k); }
+    }
+    // 不足：自動補丟攻擊最低的。
+    while (idxs.length < want) {
+      var lowI = -1, lowV = Infinity;
+      for (var hh = 0; hh < side.hand.length; hh++) {
+        if (seen[hh]) continue;
+        var v = computeEffLikes(b, side, side.hand[hh]);
+        if (v < lowV) { lowV = v; lowI = hh; }
+      }
+      if (lowI < 0) break;
+      seen[lowI] = true; idxs.push(lowI);
+    }
+    idxs.sort(function (a, c) { return c - a; }); // 由大到小移除避免位移錯亂
+    for (var j = 0; j < idxs.length; j++) {
+      var dc = side.hand.splice(idxs[j], 1)[0];
+      if (dc && !dc.temp && !dc.exhaust) {
+        var di = findDeckIndex(side, dc.postId);
+        if (di >= 0) side.discard.push(di);
+      }
+    }
   }
 
   // endPlayerTurn：P_END → O_PLAY。棄掉非 retain 的手牌、temp 消失、清玩家回合 buff（reflect 保留）。

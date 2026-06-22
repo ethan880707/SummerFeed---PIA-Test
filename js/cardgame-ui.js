@@ -45,6 +45,7 @@
   var _draft = null;    // DECK 編輯中暫存（postId 陣列）；null = 尚未進編輯
   var _rewardTag = null; // SETTLEMENT 已選的詞條名稱
   var _scryPick = [];   // BATTLE scry 待決：已選卡 uid 陣列
+  var _discardPick = []; // BATTLE discard 待決：已選手牌位置索引陣列
 
   // ---- HP bar 元件（§6.3） -------------------------------------------------
   function hpBar(side, now, max, small) {
@@ -83,12 +84,17 @@
     if (opts.playable) cls += " is-playable";
     if (opts.selected) cls += " is-selected";
     if (opts.disabled) cls += " is-disabled";
-    if (card.support || opts.support) cls += " is-support";
     var n = el("div", cls);
-    n.appendChild(el("div", "cg-card__name", card.name || card.postId || "(無題)"));
 
-    if (card.support || opts.support) {
-      n.appendChild(el("span", "cg-card__flag cg-card__flag--support", "輔助"));
+    // 費用徽章 + 名稱。
+    var nameRow = el("div", "cg-card__namerow");
+    var cost = (typeof opts.cost === "number") ? opts.cost : (card && typeof card.cost === "number" ? card.cost : 0);
+    nameRow.appendChild(el("span", "cg-card__cost", String(cost) + "費"));
+    nameRow.appendChild(el("span", "cg-card__name", card.name || card.postId || "(無題)"));
+    n.appendChild(nameRow);
+
+    if (card.exhaust || opts.exhaust) {
+      n.appendChild(el("span", "cg-card__flag cg-card__flag--exhaust", "消耗"));
     }
     if (card.retain || opts.retain) {
       n.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
@@ -114,11 +120,7 @@
     }
 
     var foot = el("div", "cg-card__foot");
-    if (card.support || opts.support) {
-      foot.appendChild(el("span", "cg-card__support-note", "輔助牌（無讚數）"));
-    } else {
-      foot.appendChild(el("span", "cg-card__likes", abbr(card.likes || 0)));
-    }
+    foot.appendChild(el("span", "cg-card__likes", abbr(card.likes || 0)));
     n.appendChild(foot);
 
     if ((opts.selectable || opts.playable) && typeof opts.onClick === "function" && !opts.disabled) {
@@ -298,7 +300,8 @@
             tags: postTags(rec.post),
             effects: fx ? fx.effects : [],
             retain: !!(fx && fx.retain),
-            support: !!(fx && fx.support),
+            exhaust: !!(fx && fx.exhaust),
+            cost: (fx && typeof fx.cost === "number") ? fx.cost : 0,
             selectable: true,
             selected: selected,
             disabled: (!selected && atMax),
@@ -353,6 +356,14 @@
     var nm = post.title || post.name || post.id || "(無題)";
     // 組牌時於名稱後附上貼文編號，方便與配方表對照。
     if (post.id && nm !== post.id) nm += "（" + post.id + "）";
+    return nm;
+  }
+
+  // 對戰中卡片顯示名稱：於名稱後附上貼文編號（postId），方便打牌時對照配方表。
+  function battleCardName(card) {
+    if (!card) return "(無題)";
+    var nm = card.name || card.postId || "(無題)";
+    if (card.postId && nm !== card.postId) nm += "（" + card.postId + "）";
     return nm;
   }
   function postTags(post) {
@@ -581,7 +592,7 @@
     // 費用徽章（左上）。
     var cost = (card && typeof card.cost === "number") ? card.cost : 0;
     top.appendChild(el("span", "cg-card__cost", String(cost) + "費"));
-    top.appendChild(el("div", "cg-card__name", (card && card.name) || (card && card.postId) || "(無題)"));
+    top.appendChild(el("div", "cg-card__name", battleCardName(card)));
     if (card && card.support) top.appendChild(el("span", "cg-card__flag cg-card__flag--support", "輔助"));
     if (card && card.exhaust) top.appendChild(el("span", "cg-card__flag cg-card__flag--exhaust", "消耗"));
     if (card && card.retain) top.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
@@ -624,7 +635,7 @@
     if (card) {
       var cardBox = el("div", "cg-card cg-card--lg cg-card--opp");
       var top = el("div", "cg-card__top");
-      top.appendChild(el("div", "cg-card__name", card.name || card.postId || "對手貼文"));
+      top.appendChild(el("div", "cg-card__name", battleCardName(card) || "對手貼文"));
       cardBox.appendChild(top);
       var effs = card.effects || [];
       if (effs.length) {
@@ -715,7 +726,7 @@
           var selected = _scryPick.indexOf(pos) !== -1;
           var c = el("div", "cg-card cg-card--battle cg-card--scry is-playable" + (selected ? " is-selected" : ""));
           var top = el("div", "cg-card__top");
-          top.appendChild(el("div", "cg-card__name", (card && card.name) || (card && card.postId) || "?"));
+          top.appendChild(el("div", "cg-card__name", battleCardName(card)));
           c.appendChild(top);
           var foot = el("div", "cg-card__foot");
           var atk = el("span", "cg-card__atk");
@@ -746,6 +757,51 @@
         render();
       };
       wrap.appendChild(confirm);
+      return wrap;
+    }
+
+    if (pending.kind === "discard") {
+      var dcount = (typeof d.count === "number") ? d.count : 1;
+      wrap.appendChild(el("div", "cg-pending__title", (d.label || ("丟棄 " + dcount + " 張手牌"))));
+      if (!Array.isArray(_discardPick)) _discardPick = [];
+      var dhand = (b.player && b.player.hand) ? b.player.hand : [];
+      var dgrid = el("div", "cg-pending__scry");
+      for (var di = 0; di < dhand.length; di++) {
+        (function (idx) {
+          var c = dhand[idx];
+          var sel = _discardPick.indexOf(idx) !== -1;
+          var ce = el("div", "cg-card cg-card--battle cg-card--scry is-playable" + (sel ? " is-selected" : ""));
+          var top = el("div", "cg-card__top");
+          var cst = (c && typeof c.cost === "number") ? c.cost : 0;
+          top.appendChild(el("span", "cg-card__cost", cst + "費"));
+          top.appendChild(el("div", "cg-card__name", battleCardName(c)));
+          ce.appendChild(top);
+          var ft = el("div", "cg-card__foot");
+          var atk = el("span", "cg-card__atk");
+          atk.appendChild(el("span", "cg-card__atklab", "攻擊"));
+          atk.appendChild(el("b", null, abbr(effLikesOf(b, "PLAYER", c))));
+          ft.appendChild(atk);
+          ce.appendChild(ft);
+          ce.onclick = function () {
+            var at = _discardPick.indexOf(idx);
+            if (at !== -1) { _discardPick.splice(at, 1); }
+            else { if (_discardPick.length >= dcount) { toast("已達上限 " + dcount + " 張", "warn"); return; } _discardPick.push(idx); }
+            render();
+          };
+          dgrid.appendChild(ce);
+        })(di);
+      }
+      wrap.appendChild(dgrid);
+      var effD = Math.min(dcount, dhand.length);
+      var dconfirm = el("button", "btn btn--primary cg-pending__confirm", "確認丟棄（" + _discardPick.length + " / " + effD + "）");
+      dconfirm.disabled = (_discardPick.length !== effD);
+      dconfirm.onclick = function () {
+        var payload = _discardPick.slice();
+        _discardPick = [];
+        if (typeof SF.CardGame.resolveChoice === "function") SF.CardGame.resolveChoice(payload);
+        render();
+      };
+      wrap.appendChild(dconfirm);
       return wrap;
     }
 
