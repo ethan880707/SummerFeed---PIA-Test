@@ -6,6 +6,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -18,6 +20,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "add_shield",
@@ -30,6 +34,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -47,6 +53,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "shield_to_hp",
@@ -54,9 +62,10 @@
     "label": "鐵粉20%轉粉絲"
    },
    {
-    "kind": "likes_to_shield",
-    "pct": 0.2,
-    "label": "讚數20%轉鐵粉"
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.5,
+    "label": "本回合鐵粉獲得+50%"
    }
   ]
  },
@@ -64,11 +73,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "likes_to_shield",
-    "pct": 0.2,
-    "label": "讚數20%轉鐵粉"
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.5,
+    "label": "本回合鐵粉獲得+50%"
    }
   ]
  },
@@ -76,11 +88,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "shield_to_hp",
-    "pct": 0.3,
-    "label": "鐵粉30%轉粉絲"
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.75,
+    "label": "本回合鐵粉獲得+75%"
    },
    {
     "kind": "add_shield",
@@ -93,11 +108,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "shield_to_hp",
-    "pct": 0.3,
-    "label": "鐵粉30%轉粉絲"
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.75,
+    "label": "本回合鐵粉獲得+75%"
    },
    {
     "kind": "shield_to_atk",
@@ -115,6 +133,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "shield_to_atk",
@@ -127,11 +147,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "atk",
-    "label": "本回合讚數獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合讚數獲得+100%"
    },
    {
     "kind": "shield_to_atk",
@@ -149,16 +172,20 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "atk",
-    "label": "本回合讚數獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合讚數獲得+100%"
    },
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "shield",
-    "label": "本回合鐵粉獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合鐵粉獲得+100%"
    },
    {
     "kind": "add_shield",
@@ -171,6 +198,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -188,6 +217,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -205,6 +236,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -217,6 +250,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -229,6 +264,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_to_money",
@@ -246,6 +283,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_to_money",
@@ -268,6 +307,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -290,11 +331,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "traffic_add",
-    "pct": 100,
-    "label": "本回合獲得流量100%"
+    "kind": "turn_gain_bonus",
+    "what": "atk",
+    "pct": 1.0,
+    "label": "本回合從流量獲取的讚數+100%"
    },
    {
     "kind": "cond_traffic",
@@ -317,11 +361,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "traffic_add",
-    "pct": 100,
-    "label": "本回合獲得流量100%"
+    "kind": "turn_gain_bonus",
+    "what": "atk",
+    "pct": 1.0,
+    "label": "本回合從流量獲取的讚數+100%"
    },
    {
     "kind": "cond_traffic",
@@ -344,6 +391,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -365,6 +414,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -386,11 +437,13 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": true,
   "effects": [
    {
     "kind": "hand_size_up",
     "n": 1,
-    "label": "增加最大手牌數量+1"
+    "label": "增加最大手牌數量+1，消耗"
    }
   ]
  },
@@ -398,6 +451,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -425,6 +480,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -452,6 +509,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": true,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -462,7 +521,7 @@
    {
     "kind": "hand_size_up",
     "n": 2,
-    "label": "增加最大手牌數量+2"
+    "label": "增加最大手牌數量+2，消耗"
    }
   ]
  },
@@ -470,6 +529,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -497,6 +558,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -540,6 +603,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -561,6 +626,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -604,6 +671,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -647,6 +716,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_amp",
@@ -690,6 +761,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -703,6 +776,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -716,6 +791,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -728,24 +805,8 @@
   "category": [],
   "retain": false,
   "support": false,
-  "effects": [
-   {
-    "kind": "all_in",
-    "target": "atk",
-    "mult": 2,
-    "label": "ALL IN 所有代幣 50~100%轉換為兩倍讚數"
-   },
-   {
-    "kind": "money_mult",
-    "factor": 2,
-    "label": "代幣變為兩倍"
-   }
-  ]
- },
- "D4b": {
-  "category": [],
-  "retain": false,
-  "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "all_in",
@@ -760,22 +821,43 @@
    }
   ]
  },
+ "D4b": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 2,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "all_in",
+    "target": "atk",
+    "mult": 2,
+    "label": "ALL IN 所有代幣 50~100%轉換為兩倍讚數"
+   },
+   {
+    "kind": "next_money_extra",
+    "times": 2,
+    "label": "下一張代幣額外發動2次"
+   }
+  ]
+ },
  "D5a": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "all_in",
-    "target": "hp",
+    "target": "shield",
     "mult": 2,
-    "label": "ALL IN 所有代幣 50~100%轉換為兩倍粉絲"
+    "label": "ALL IN 所有代幣 50~100%轉換為兩倍鐵粉"
    },
    {
-    "kind": "money_pack",
-    "gain": 2,
-    "perRound": 1,
-    "label": "代幣+15%，永久增加10%"
+    "kind": "money_to_atk",
+    "pctSpend": 0.3,
+    "label": "代幣30%轉讚數"
    }
   ]
  },
@@ -783,18 +865,20 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "all_in",
-    "target": "hp",
+    "target": "shield",
     "mult": 2,
-    "label": "ALL IN 所有代幣 50~100%轉換為兩倍粉絲"
+    "label": "ALL IN 所有代幣 50~100%轉換為兩倍鐵粉"
    },
    {
     "kind": "money_pack",
-    "gain": 2,
-    "perRound": 2,
-    "label": "代幣+15%，永久增加15%"
+    "gain": 1,
+    "perRound": 1,
+    "label": "代幣+10%，永久增加10%"
    }
   ]
  },
@@ -802,17 +886,23 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "all_in",
-    "target": "shield",
-    "mult": 2,
-    "label": "ALL IN 所有代幣 50~100%轉換為兩倍鐵粉"
+    "kind": "money_mult",
+    "factor": 2,
+    "label": "代幣變為兩倍"
    },
    {
     "kind": "money_to_atk",
-    "pctSpend": 0.3,
-    "label": "代幣30%轉讚數"
+    "pctSpend": 0.4,
+    "label": "代幣40%轉讚數"
+   },
+   {
+    "kind": "next_money_extra",
+    "times": 2,
+    "label": "下一張代幣額外發動2次"
    }
   ]
  },
@@ -820,13 +910,9 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
-   {
-    "kind": "all_in",
-    "target": "shield",
-    "mult": 2,
-    "label": "ALL IN 所有代幣 50~100%轉換為兩倍鐵粉"
-   },
    {
     "kind": "money_mult",
     "factor": 2,
@@ -836,41 +922,22 @@
     "kind": "money_to_atk",
     "pctSpend": 0.3,
     "label": "代幣30%轉讚數"
+   },
+   {
+    "kind": "money_pack",
+    "gain": 1,
+    "perRound": 1,
+    "label": "代幣+10%，永久增加10%"
    }
   ]
  },
- "D7a": {
+ "D6c": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
-   {
-    "kind": "money_mult",
-    "factor": 3,
-    "label": "代幣變為三倍"
-   },
-   {
-    "kind": "money_to_atk",
-    "pctSpend": 0.4,
-    "label": "代幣40%轉讚數"
-   },
-   {
-    "kind": "next_money_extra",
-    "times": 2,
-    "label": "下一張代幣額外發動2次"
-   }
-  ]
- },
- "D7b": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "money_mult",
-    "factor": 3,
-    "label": "代幣變為三倍"
-   },
    {
     "kind": "money_mult",
     "factor": 2,
@@ -880,28 +947,11 @@
     "kind": "money_to_atk",
     "pctSpend": 0.4,
     "label": "代幣40%轉讚數"
-   }
-  ]
- },
- "D7c": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "money_mult",
-    "factor": 3,
-    "label": "代幣變為三倍"
    },
    {
     "kind": "next_money_extra",
     "times": 2,
     "label": "下一張代幣額外發動2次"
-   },
-   {
-    "kind": "money_to_atk",
-    "pctSpend": 0.4,
-    "label": "代幣40%轉讚數"
    }
   ]
  },
@@ -909,6 +959,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -921,6 +973,23 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.5,
+    "label": "本回合鐵粉獲得+50%"
+   }
+  ]
+ },
+ "E03": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -934,10 +1003,31 @@
    }
   ]
  },
- "E03": {
+ "E04": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "cond_traffic",
+    "above": 50,
+    "effect": {
+     "kind": "heal",
+     "pct": 0.2,
+     "label": "當流量高於50% +20%粉絲"
+    },
+    "label": "當流量高於50% +20%粉絲"
+   }
+  ]
+ },
+ "E05": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -955,112 +1045,12 @@
    }
   ]
  },
- "E04": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "money_pack",
-    "gain": 1,
-    "perRound": 1,
-    "label": "代幣+10%，永久增加5%"
-   }
-  ]
- },
- "E05": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "heal",
-    "pct": 0.05,
-    "label": "粉絲+5%"
-   }
-  ]
- },
  "E06": {
   "category": [],
   "retain": false,
   "support": false,
-  "effects": [
-   {
-    "kind": "add_shield",
-    "pct": 0.05,
-    "label": "鐵粉+5%"
-   }
-  ]
- },
- "E07": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "traffic_add",
-    "pct": 10,
-    "label": "流量+10%"
-   }
-  ]
- },
- "E08": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "hand_size_up",
-    "n": 1,
-    "label": "增加最大手牌數量+1"
-   }
-  ]
- },
- "E09": {
-  "category": [],
-  "retain": true,
-  "support": false,
-  "effects": [
-   {
-    "kind": "retain_n",
-    "n": 1,
-    "label": "保留1張手牌"
-   }
-  ]
- },
- "E10": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "likes_to_shield",
-    "pct": 0.2,
-    "label": "讚數20%轉鐵粉"
-   }
-  ]
- },
- "E11": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "cond_traffic",
-    "above": 50,
-    "effect": {
-     "kind": "heal",
-     "pct": 0.2,
-     "label": "當流量高於50% +20%粉絲"
-    },
-    "label": "當流量高於50% +20%粉絲"
-   }
-  ]
- },
- "E12": {
-  "category": [],
-  "retain": false,
-  "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -1078,44 +1068,27 @@
    }
   ]
  },
- "E13": {
+ "E07": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_pack",
-    "gain": 2,
+    "gain": 1,
     "perRound": 1,
-    "label": "代幣+15%，永久增加10%"
+    "label": "代幣+10%，永久增加5%"
    }
   ]
  },
- "E14": {
+ "E08": {
   "category": [],
   "retain": false,
   "support": false,
-  "effects": [
-   {
-    "kind": "parity",
-    "odd": {
-     "kind": "heal",
-     "pct": 0.3,
-     "label": "獲得30%粉絲"
-    },
-    "even": {
-     "kind": "gain_money",
-     "amount": 3,
-     "label": "獲得30%代幣"
-    },
-    "label": "奇:獲得30%粉絲 / 偶:獲得30%代幣"
-   }
-  ]
- },
- "E15": {
-  "category": [],
-  "retain": false,
-  "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -1125,34 +1098,119 @@
    }
   ]
  },
+ "E09": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "heal",
+    "pct": 0.05,
+    "label": "粉絲+5%"
+   }
+  ]
+ },
+ "E10": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "add_shield",
+    "pct": 0.05,
+    "label": "鐵粉+5%"
+   }
+  ]
+ },
+ "E11": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "traffic_add",
+    "pct": 10,
+    "label": "流量+10%"
+   }
+  ]
+ },
+ "E12": {
+  "category": [],
+  "retain": true,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "retain_n",
+    "n": 1,
+    "label": "保留1張手牌"
+   }
+  ]
+ },
+ "E13": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "money_to_atk",
+    "pctSpend": 0.1,
+    "label": "代幣10%轉讚數"
+   }
+  ]
+ },
+ "E14": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "parity",
+    "odd": {
+     "kind": "heal",
+     "pct": 0.2,
+     "label": "獲得20%粉絲"
+    },
+    "even": {
+     "kind": "gain_money",
+     "amount": 2,
+     "label": "獲得20%代幣"
+    },
+    "label": "奇:獲得20%粉絲 / 偶:獲得20%代幣"
+   }
+  ]
+ },
+ "E15": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "next_money_extra",
+    "times": 2,
+    "label": "下一張代幣額外發動2次"
+   }
+  ]
+ },
  "E16": {
   "category": [],
   "retain": false,
   "support": false,
-  "effects": [
-   {
-    "kind": "money_to_atk",
-    "pctSpend": 0.2,
-    "label": "代幣20%轉讚數"
-   }
-  ]
- },
- "E17": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "heal",
-    "pct": 0.1,
-    "label": "粉絲+10%"
-   }
-  ]
- },
- "E18": {
-  "category": [],
-  "retain": false,
-  "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_sub",
@@ -1161,10 +1219,40 @@
    }
   ]
  },
+ "E17": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "add_shield",
+    "pct": 0.1,
+    "label": "鐵粉+10%"
+   }
+  ]
+ },
+ "E18": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "traffic_add",
+    "pct": 15,
+    "label": "流量+15%"
+   }
+  ]
+ },
  "E19": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "shield_to_atk",
@@ -1172,9 +1260,10 @@
     "label": "鐵粉30%轉讚數"
    },
    {
-    "kind": "likes_to_shield",
-    "pct": 0.2,
-    "label": "讚數20%轉鐵粉"
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.5,
+    "label": "本回合鐵粉獲得+50%"
    }
   ]
  },
@@ -1182,6 +1271,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1209,6 +1300,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -1244,17 +1337,18 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "money_mult",
-    "factor": 2,
-    "label": "代幣變為兩倍"
+    "kind": "next_money_extra",
+    "times": 2,
+    "label": "下一張代幣額外發動2次"
    },
    {
-    "kind": "money_pack",
-    "gain": 2,
-    "perRound": 2,
-    "label": "代幣+15%，永久增加15%"
+    "kind": "money_to_atk",
+    "pctSpend": 0.3,
+    "label": "代幣30%轉讚數"
    }
   ]
  },
@@ -1262,6 +1356,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "heal",
@@ -1279,6 +1375,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -1296,6 +1394,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "random_post",
@@ -1313,16 +1413,20 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "atk",
-    "label": "本回合讚數獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合讚數獲得+100%"
    },
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "shield",
-    "label": "本回合鐵粉獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合鐵粉獲得+100%"
    },
    {
     "kind": "shield_to_atk",
@@ -1335,6 +1439,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1372,6 +1478,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "heal",
@@ -1394,6 +1502,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "random_post",
@@ -1416,6 +1526,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
     "kind": "draw_discard",
@@ -1429,6 +1541,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
     "kind": "draw",
@@ -1441,6 +1555,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
     "kind": "scry",
@@ -1454,6 +1570,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1466,6 +1584,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1478,6 +1598,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cancel_opponent",
@@ -1490,12 +1612,13 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 0,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "draw_discard",
-    "draw": 2,
-    "discard": 1,
-    "label": "抽2丟1"
+    "kind": "gain_energy",
+    "amount": 1,
+    "label": "獲得1點費用"
    }
   ]
  },
@@ -1503,12 +1626,12 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "draw_discard",
-    "draw": 1,
-    "discard": 1,
-    "label": "抽1丟1"
+    "kind": "copy_last",
+    "label": "複製上一張"
    },
    {
     "kind": "draw",
@@ -1521,17 +1644,20 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "draw",
-    "n": 1,
-    "label": "抽1"
+    "kind": "draw_discard",
+    "draw": 2,
+    "discard": 1,
+    "label": "抽2丟1"
    },
    {
-    "kind": "scry",
-    "look": 3,
-    "pick": 1,
-    "label": "查看牌堆三張選一張上手"
+    "kind": "draw_discard",
+    "draw": 1,
+    "discard": 1,
+    "label": "抽1丟1"
    }
   ]
  },
@@ -1539,6 +1665,8 @@
   "category": [],
   "retain": false,
   "support": true,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "draw",
@@ -1546,8 +1674,10 @@
     "label": "抽2"
    },
    {
-    "kind": "copy_last",
-    "label": "複製上一張"
+    "kind": "random_post",
+    "starMin": 1,
+    "starMax": 3,
+    "label": "隨機獲得一張1~3星貼文"
    }
   ]
  },
@@ -1555,6 +1685,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "likes_to_shield",
@@ -1567,11 +1699,14 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "likes_to_shield",
-    "pct": 0.2,
-    "label": "讚數20%轉鐵粉"
+    "kind": "turn_gain_bonus",
+    "what": "shield",
+    "pct": 0.5,
+    "label": "本回合鐵粉獲得+50%"
    },
    {
     "kind": "shield_to_atk",
@@ -1584,16 +1719,20 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "atk",
-    "label": "本回合讚數獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合讚數獲得+100%"
    },
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "shield",
-    "label": "本回合鐵粉獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合鐵粉獲得+100%"
    },
    {
     "kind": "add_shield",
@@ -1606,6 +1745,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1623,6 +1764,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1650,6 +1793,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "cond_traffic",
@@ -1682,6 +1827,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -1703,6 +1850,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -1724,6 +1873,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "parity",
@@ -1759,6 +1910,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_pack",
@@ -1772,17 +1925,18 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "money_pack",
-    "gain": 2,
-    "perRound": 2,
-    "label": "代幣+15%，永久增加15%"
+    "kind": "next_money_extra",
+    "times": 2,
+    "label": "下一張代幣額外發動2次"
    },
    {
-    "kind": "money_mult",
-    "factor": 2,
-    "label": "代幣變為兩倍"
+    "kind": "money_to_atk",
+    "pctSpend": 0.3,
+    "label": "代幣30%轉讚數"
    }
   ]
  },
@@ -1790,22 +1944,24 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
-   {
-    "kind": "money_mult",
-    "factor": 2,
-    "label": "代幣變為兩倍"
-   },
-   {
-    "kind": "money_pack",
-    "gain": 2,
-    "perRound": 1,
-    "label": "代幣+15%，永久增加10%"
-   },
    {
     "kind": "money_to_atk",
     "pctSpend": 0.4,
     "label": "代幣40%轉讚數"
+   },
+   {
+    "kind": "next_money_extra",
+    "times": 2,
+    "label": "下一張代幣額外發動2次"
+   },
+   {
+    "kind": "money_pack",
+    "gain": 1,
+    "perRound": 1,
+    "label": "代幣+10%，永久增加10%"
    }
   ]
  },
@@ -1813,6 +1969,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -1825,6 +1983,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "hp_to_atk",
@@ -1832,9 +1992,9 @@
     "label": "粉絲20%轉讚數"
    },
    {
-    "kind": "hp_to_atk",
+    "kind": "hp_to_shield",
     "pct": 0.4,
-    "label": "粉絲40%轉讚數"
+    "label": "粉絲40%轉鐵粉"
    }
   ]
  },
@@ -1842,16 +2002,18 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
-   {
-    "kind": "hp_to_atk",
-    "pct": 0.4,
-    "label": "粉絲40%轉讚數"
-   },
    {
     "kind": "hp_to_shield",
     "pct": 0.4,
     "label": "粉絲40%轉鐵粉"
+   },
+   {
+    "kind": "hp_to_shield",
+    "pct": 0.1,
+    "label": "粉絲10%轉鐵粉"
    },
    {
     "kind": "heal",
@@ -1864,6 +2026,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -1876,11 +2040,13 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "traffic_to_atk",
-    "pct": 0.3,
-    "label": "流量30%轉讚數"
+    "kind": "traffic_to_hp",
+    "pct": 0.2,
+    "label": "流量20%轉粉絲"
    }
   ]
  },
@@ -1888,11 +2054,13 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "traffic_to_hp",
+    "kind": "traffic_to_shield",
     "pct": 0.3,
-    "label": "流量30%轉粉絲"
+    "label": "流量30%轉鐵粉"
    },
    {
     "kind": "traffic_sub",
@@ -1905,6 +2073,8 @@
   "category": [],
   "retain": true,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "retain_gain",
@@ -1923,18 +2093,9 @@
   "category": [],
   "retain": true,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
-   {
-    "kind": "retain_gain",
-    "base": {
-     "kind": "gain_atk",
-     "pct": 0.2,
-     "label": "獲得20%讚數，被保留時額外獲得20%"
-    },
-    "bonusPct": 0.2,
-    "retain": true,
-    "label": "獲得20%讚數，被保留時額外獲得20%"
-   },
    {
     "kind": "retain_gain",
     "base": {
@@ -1945,6 +2106,17 @@
     "bonusPct": 0.2,
     "retain": true,
     "label": "獲得20%鐵粉，被保留時額外獲得20%"
+   },
+   {
+    "kind": "retain_gain",
+    "base": {
+     "kind": "heal",
+     "pct": 0.2,
+     "label": "獲得20%粉絲，被保留時額外獲得20%"
+    },
+    "bonusPct": 0.2,
+    "retain": true,
+    "label": "獲得20%粉絲，被保留時額外獲得20%"
    }
   ]
  },
@@ -1952,17 +2124,19 @@
   "category": [],
   "retain": true,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "retain_gain",
     "base": {
-     "kind": "gain_atk",
+     "kind": "add_shield",
      "pct": 0.2,
-     "label": "獲得20%讚數，被保留時額外獲得20%"
+     "label": "獲得20%鐵粉，被保留時額外獲得20%"
     },
     "bonusPct": 0.2,
     "retain": true,
-    "label": "獲得20%讚數，被保留時額外獲得20%"
+    "label": "獲得20%鐵粉，被保留時額外獲得20%"
    },
    {
     "kind": "retain_gain",
@@ -1987,6 +2161,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "add_shield",
@@ -1999,6 +2175,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_add",
@@ -2011,6 +2189,8 @@
   "category": [],
   "retain": true,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "retain_n",
@@ -2023,6 +2203,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "heal",
@@ -2035,6 +2217,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "money_to_atk",
@@ -2047,6 +2231,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "traffic_sub",
@@ -2059,11 +2245,13 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": true,
   "effects": [
    {
     "kind": "hand_size_up",
     "n": 2,
-    "label": "增加最大手牌數量+2"
+    "label": "增加最大手牌數量+2，消耗"
    }
   ]
  },
@@ -2071,6 +2259,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
     "kind": "random_gain",
@@ -2083,6 +2273,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "random_post",
@@ -2100,110 +2292,63 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 1,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "hp",
-    "label": "本回合粉絲獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合粉絲獲得+100%"
    }
   ]
  },
- "N02": {
+ "N02a": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "hp",
-    "label": "本回合粉絲獲得兩倍"
-   },
-   {
-    "kind": "heal",
-    "pct": 0.1,
-    "label": "粉絲+10%"
-   }
-  ]
- },
- "N03": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "turn_double",
-    "what": "hp",
-    "label": "本回合粉絲獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合粉絲獲得+100%"
    },
    {
     "kind": "hp_to_atk",
     "pct": 0.4,
     "label": "粉絲40%轉讚數"
-   },
-   {
-    "kind": "heal",
-    "pct": 0.15,
-    "label": "粉絲+15%"
    }
   ]
  },
- "N04": {
+ "N02b": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
-    "kind": "turn_double",
+    "kind": "turn_gain_bonus",
     "what": "hp",
-    "label": "本回合粉絲獲得兩倍"
+    "pct": 1.0,
+    "label": "本回合粉絲獲得+100%"
    },
    {
-    "kind": "hp_to_shield",
+    "kind": "hp_to_atk",
     "pct": 0.4,
-    "label": "粉絲40%轉鐵粉"
-   },
-   {
-    "kind": "heal",
-    "pct": 0.2,
-    "label": "粉絲+20%"
+    "label": "粉絲40%轉讚數"
    }
   ]
  },
- "N05": {
+ "N03a": {
   "category": [],
   "retain": false,
   "support": false,
-  "effects": [
-   {
-    "kind": "traffic_to_atk",
-    "pct": 1.0,
-    "dumpAll": true,
-    "label": "流量歸0%，獲得消耗流量%數的讚數"
-   }
-  ]
- },
- "N06": {
-  "category": [],
-  "retain": false,
-  "support": false,
-  "effects": [
-   {
-    "kind": "traffic_to_atk",
-    "pct": 1.0,
-    "dumpAll": true,
-    "label": "流量歸0%，獲得消耗流量%數的讚數"
-   },
-   {
-    "kind": "traffic_sub",
-    "pct": 20,
-    "label": "流量-20%"
-   }
-  ]
- },
- "N07": {
-  "category": [],
-  "retain": false,
-  "support": false,
+  "cost": 2,
+  "exhaust": true,
   "effects": [
    {
     "kind": "traffic_to_atk",
@@ -2215,50 +2360,35 @@
     "kind": "traffic_to_atk",
     "pct": 0.3,
     "label": "流量30%轉讚數"
-   },
-   {
-    "kind": "traffic_sub",
-    "pct": 25,
-    "label": "流量-25%"
    }
   ]
  },
- "N08": {
+ "N03b": {
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": true,
   "effects": [
    {
-    "kind": "nth_card_repeat",
-    "n": 2,
-    "times": 2,
-    "label": "本回合第二張效果發動兩次"
-   }
-  ]
- },
- "N09": {
-  "category": [],
-  "retain": true,
-  "support": false,
-  "effects": [
-   {
-    "kind": "nth_card_repeat",
-    "n": 2,
-    "times": 2,
-    "label": "本回合第二張效果發動兩次"
+    "kind": "traffic_to_atk",
+    "pct": 1.0,
+    "dumpAll": true,
+    "label": "流量歸0%，獲得消耗流量%數的讚數"
    },
    {
-    "kind": "retain_n",
-    "n": 2,
-    "label": "保留2張手牌，被保留牌效果增加20%",
-    "boost": 0.2
+    "kind": "traffic_to_atk",
+    "pct": 0.3,
+    "label": "流量30%轉讚數"
    }
   ]
  },
- "N10": {
+ "N04a": {
   "category": [],
   "retain": true,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "nth_card_repeat",
@@ -2276,6 +2406,108 @@
     "bonusPct": 0.2,
     "retain": true,
     "label": "獲得20%讚數，被保留時額外獲得20%"
+   }
+  ]
+ },
+ "N04b": {
+  "category": [],
+  "retain": true,
+  "support": false,
+  "cost": 2,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "nth_card_repeat",
+    "n": 2,
+    "times": 2,
+    "label": "本回合第二張效果發動兩次"
+   },
+   {
+    "kind": "retain_gain",
+    "base": {
+     "kind": "gain_atk",
+     "pct": 0.2,
+     "label": "獲得20%讚數，被保留時額外獲得20%"
+    },
+    "bonusPct": 0.2,
+    "retain": true,
+    "label": "獲得20%讚數，被保留時額外獲得20%"
+   }
+  ]
+ },
+ "N05": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 2,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "turn_gain_bonus",
+    "what": "hp",
+    "pct": 1.0,
+    "label": "本回合粉絲獲得+100%"
+   },
+   {
+    "kind": "hp_to_shield",
+    "pct": 0.4,
+    "label": "粉絲40%轉鐵粉"
+   },
+   {
+    "kind": "heal",
+    "pct": 0.2,
+    "label": "粉絲+20%"
+   }
+  ]
+ },
+ "N06": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 2,
+  "exhaust": true,
+  "effects": [
+   {
+    "kind": "traffic_to_atk",
+    "pct": 1.0,
+    "dumpAll": true,
+    "label": "流量歸0%，獲得消耗流量%數的讚數"
+   },
+   {
+    "kind": "traffic_to_shield",
+    "pct": 0.3,
+    "label": "流量30%轉鐵粉"
+   },
+   {
+    "kind": "traffic_sub",
+    "pct": 25,
+    "label": "流量-25%"
+   }
+  ]
+ },
+ "N07": {
+  "category": [],
+  "retain": true,
+  "support": false,
+  "cost": 2,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "nth_card_repeat",
+    "n": 2,
+    "times": 2,
+    "label": "本回合第二張效果發動兩次"
+   },
+   {
+    "kind": "retain_gain",
+    "base": {
+     "kind": "add_shield",
+     "pct": 0.2,
+     "label": "獲得20%鐵粉，被保留時額外獲得20%"
+    },
+    "bonusPct": 0.2,
+    "retain": true,
+    "label": "獲得20%鐵粉，被保留時額外獲得20%"
    },
    {
     "kind": "retain_n",
@@ -2289,6 +2521,8 @@
   "category": [],
   "retain": false,
   "support": false,
+  "cost": 2,
+  "exhaust": false,
   "effects": [
    {
     "kind": "all_in",
@@ -2297,11 +2531,125 @@
     "label": "ALL IN 所有代幣 50~100%轉換為兩倍讚數"
    },
    {
-    "kind": "money_mult",
-    "factor": 2,
-    "label": "代幣變為兩倍"
+    "kind": "money_to_atk",
+    "pctSpend": 0.2,
+    "label": "代幣20%轉讚數"
    }
   ]
+ },
+ "D7a": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": []
+ },
+ "D7b": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": []
+ },
+ "D7c": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": []
+ },
+ "N02": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 2,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "turn_gain_bonus",
+    "what": "hp",
+    "pct": 1.0,
+    "label": "本回合粉絲獲得+100%"
+   },
+   {
+    "kind": "hp_to_atk",
+    "pct": 0.4,
+    "label": "粉絲40%轉讚數"
+   }
+  ]
+ },
+ "N03": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 2,
+  "exhaust": true,
+  "effects": [
+   {
+    "kind": "traffic_to_atk",
+    "pct": 1.0,
+    "dumpAll": true,
+    "label": "流量歸0%，獲得消耗流量%數的讚數"
+   },
+   {
+    "kind": "traffic_to_atk",
+    "pct": 0.3,
+    "label": "流量30%轉讚數"
+   }
+  ]
+ },
+ "N04": {
+  "category": [],
+  "retain": true,
+  "support": false,
+  "cost": 2,
+  "exhaust": false,
+  "effects": [
+   {
+    "kind": "nth_card_repeat",
+    "n": 2,
+    "times": 2,
+    "label": "本回合第二張效果發動兩次"
+   },
+   {
+    "kind": "retain_gain",
+    "base": {
+     "kind": "gain_atk",
+     "pct": 0.2,
+     "label": "獲得20%讚數，被保留時額外獲得20%"
+    },
+    "bonusPct": 0.2,
+    "retain": true,
+    "label": "獲得20%讚數，被保留時額外獲得20%"
+   }
+  ]
+ },
+ "N08": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": []
+ },
+ "N09": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": []
+ },
+ "N10": {
+  "category": [],
+  "retain": false,
+  "support": false,
+  "cost": 1,
+  "exhaust": false,
+  "effects": []
  },
  "OPP01-P1": {
   "category": [

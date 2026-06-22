@@ -350,7 +350,10 @@
   // post 顯示名稱 / 標籤（防禦式取值，post 結構未必含 title）
   function cardName(post) {
     if (!post) return "(無題)";
-    return post.title || post.name || post.id || "(無題)";
+    var nm = post.title || post.name || post.id || "(無題)";
+    // 組牌時於名稱後附上貼文編號，方便與配方表對照。
+    if (post.id && nm !== post.id) nm += "（" + post.id + "）";
+    return nm;
   }
   function postTags(post) {
     if (!post) return [];
@@ -506,6 +509,11 @@
     n.appendChild(hpRow);
 
     var pills = el("div", "cg-pills");
+    // 費用（能量）：顯示「目前/上限」。
+    var enPill = el("div", "cg-pill cg-pill--energy");
+    enPill.appendChild(el("span", "cg-pill__lab", "費用"));
+    enPill.appendChild(el("span", "cg-pill__val", ((typeof u.energy === "number") ? u.energy : 0) + "/" + ((typeof u.energyMax === "number") ? u.energyMax : 3)));
+    pills.appendChild(enPill);
     pills.appendChild(resPill("shield", "鐵粉", (typeof u.shield === "number") ? u.shield : 0));
     pills.appendChild(resPill("money", "金錢", (typeof u.money === "number") ? u.money : 0));
     // 本回合累積讚數（攻擊）：回合結束才一次結算傷害。
@@ -538,12 +546,14 @@
     if (!cards.length) {
       hand.appendChild(el("div", "cg-hand__empty", "手牌為空"));
     }
-    // 出牌階段且未鎖定即可操作；輔助牌不受「已出 3 張」限制。
+    // 出牌階段且未鎖定即可操作；輔助牌不受「已出 3 張」限制；費用不足不能出。
     var canAct = isPlayerPlayPhase(b) && !locked;
+    var energy = (b.player && typeof b.player.energy === "number") ? b.player.energy : 0;
     for (var i = 0; i < cards.length; i++) {
       (function (idx) {
         var c = cards[idx];
-        var cardDisabled = !canAct || (!(c && c.support) && played >= cfg.PLAY_SIZE);
+        var cCost = (c && typeof c.cost === "number") ? c.cost : 0;
+        var cardDisabled = !canAct || (!(c && c.support) && played >= cfg.PLAY_SIZE) || (cCost > energy);
         hand.appendChild(handCard(b, c, {
           disabled: cardDisabled,
           onClick: function () {
@@ -568,8 +578,12 @@
     var n = el("div", cls);
 
     var top = el("div", "cg-card__top");
+    // 費用徽章（左上）。
+    var cost = (card && typeof card.cost === "number") ? card.cost : 0;
+    top.appendChild(el("span", "cg-card__cost", String(cost) + "費"));
     top.appendChild(el("div", "cg-card__name", (card && card.name) || (card && card.postId) || "(無題)"));
     if (card && card.support) top.appendChild(el("span", "cg-card__flag cg-card__flag--support", "輔助"));
+    if (card && card.exhaust) top.appendChild(el("span", "cg-card__flag cg-card__flag--exhaust", "消耗"));
     if (card && card.retain) top.appendChild(el("span", "cg-card__flag cg-card__flag--retain", "保留"));
     if (card && card.temp) top.appendChild(el("span", "cg-card__flag cg-card__flag--temp", "暫時"));
     n.appendChild(top);

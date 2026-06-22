@@ -550,7 +550,8 @@
     phead.appendChild(el("span", "post__id", post.id));
     card.appendChild(phead);
 
-    card.appendChild(el("div", "post__title", post.name || "（未命名）"));
+    // 標題後方附上貼文編號，方便與配方表對照。
+    card.appendChild(el("div", "post__title", (post.name || "（未命名）") + "（" + post.id + "）"));
 
     if (post.type === "image") {
       card.appendChild(el("div", "post__media", "圖片貼文"));

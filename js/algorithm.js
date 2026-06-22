@@ -44,13 +44,13 @@
 
       // 互動漏斗（reach → 各指標），quality 調變
       ctrBase:            0.06,      // 基礎互動率（觸及→互動）
-      likeRate:           0.090,     // 觸及→讚
+      likeRate:           0.2,       // 觸及→讚
       shareRate:          0.022,     // 觸及→分享（< like）
       viewRate:           0.62,      // 觸及→瀏覽（瀏覽 > 讚 > 分享）
       shareAmplify:       2.4,       // 每次分享再帶來的觸及（社群迴路 1）
 
       // 漲粉回饋（社群迴路 2）
-      followerConvRate:   0.004,     // 觸及→新粉絲（隨 reach 成長）
+      followerConvRate:   0.08,      // 觸及→新粉絲（隨 reach 成長）
       followerBaseGain:   18,        // 每篇「漲粉基數」（再乘流量倍率 E）：救初期/低粉
       followerRampDays:   1.0,       // 基數在發文後幾天內漸進到位（越小越快）
 

@@ -38,6 +38,7 @@
       // ---- 金錢 ----
       MONEY_START: 10,                 // 代幣初始值
       MONEY_PER_ROUND: 5,              // 代幣每回合 +5
+      ENERGY_MAX: 3,                   // 費用（能量）每回合回滿至此值；出牌需支付卡片費用
       MONEY_ATK_FRAC: 0.05,            // 代幣轉換匯率：花費 1 代幣 = 該卡讚數的 5%（轉攻擊/粉絲/鐵粉）
       TRAFFIC_ATK_FRAC: 0.01,          // 流量轉換：消耗 1% 流量 = 該卡讚數的 1%
       // ---- HP ----
@@ -271,11 +272,13 @@
   // 由 postId 取得 effects / retain（player 與 opponent 共用 PIA_CARD_EFFECTS）。
   function effectsForPost(postId) {
     var rec = effectsData()[postId];
-    if (!rec) return { effects: [], retain: false, support: false, category: [] };
+    if (!rec) return { effects: [], retain: false, support: false, cost: 0, exhaust: false, category: [] };
     return {
       effects: cloneEffects(rec.effects),
       retain: !!rec.retain,
       support: !!rec.support, // 輔助牌（詞條配方為「共通」）：純功能、不消耗出牌次數、無讚數
+      cost: (typeof rec.cost === "number") ? rec.cost : 0,   // 費用（能量）
+      exhaust: !!rec.exhaust, // 消耗：打出後移除出遊戲（不入棄牌堆）
       category: Array.isArray(rec.category) ? rec.category.slice() : []
     };
   }
@@ -293,6 +296,8 @@
       temp: false,
       retain: !!rec.retain,
       support: !!rec.support,
+      cost: rec.cost,
+      exhaust: !!rec.exhaust,
       _addBuff: 0,
       _mulBuff: 1,
       _isDefenseOnly: false
@@ -403,6 +408,8 @@
       temp: false,
       retain: !!card.retain,
       support: !!card.support,
+      cost: (typeof card.cost === "number") ? card.cost : 0,
+      exhaust: !!card.exhaust,
       _addBuff: 0,
       _mulBuff: 1,
       _isDefenseOnly: false
@@ -592,6 +599,14 @@
         if (thC < 0) thC = 0; if (thC > b.traffic) thC = b.traffic;
         b.traffic -= thC;
         gainHp(b, side, thC * (cfg.TRAFFIC_ATK_FRAC || 0.01) * (ctx.anchorLikes || 0), false);
+        break;
+      }
+
+      case "traffic_to_shield": {       // 流量X%轉鐵粉
+        var tsC = Math.round(b.traffic * (Number(eff.pct) || 0));
+        if (tsC < 0) tsC = 0; if (tsC > b.traffic) tsC = b.traffic;
+        b.traffic -= tsC;
+        gainShield(b, side, tsC * (cfg.TRAFFIC_ATK_FRAC || 0.01) * (ctx.anchorLikes || 0));
         break;
       }
 
@@ -811,12 +826,24 @@
         break;
       }
 
-      case "turn_double": {               // 本回合 X 獲得兩倍
+      case "turn_double": {               // 舊式：本回合 X 獲得兩倍（= +100%）
         if (eff.what === "shield") side.turnShieldMult = (side.turnShieldMult || 1) * 2;
         else if (eff.what === "hp") side.turnHpMult = (side.turnHpMult || 1) * 2;
         else side.turnAtkMult = (side.turnAtkMult || 1) * 2;
         break;
       }
+
+      case "turn_gain_bonus": {            // 本回合 X 獲得 +pct%（加成；+100% = ×2）
+        var tb2 = Number(eff.pct) || 0;
+        if (eff.what === "shield") side.turnShieldMult = (side.turnShieldMult || 1) + tb2;
+        else if (eff.what === "hp") side.turnHpMult = (side.turnHpMult || 1) + tb2;
+        else side.turnAtkMult = (side.turnAtkMult || 1) + tb2;
+        break;
+      }
+
+      case "gain_energy":                  // 獲得 N 點費用（本回合）
+        side.energy = (side.energy || 0) + Math.max(0, round(eff.amount));
+        break;
 
       case "cond_traffic":                // 當流量高於 above% → 觸發 effect
         if (b.traffic > (Number(eff.above) || 0) && eff.effect) return runEffect(eff.effect, ctx);
@@ -1115,6 +1142,7 @@
 
       player: {
         hp: playerHpMax, hpMax: playerHpMax, shield: 0, money: (CardGame.config.MONEY_START || 0),
+        energy: (CardGame.config.ENERGY_MAX || 3), energyMax: (CardGame.config.ENERGY_MAX || 3),
         deck: deck,
         drawPile: shuffledInitial(opponentId, nonce, deck.length),
         hand: [],
@@ -1132,6 +1160,7 @@
       },
       opponent: {
         hp: oppHpMax, hpMax: oppHpMax, shield: 0, money: (CardGame.config.MONEY_START || 0),
+        energy: (CardGame.config.ENERGY_MAX || 3), energyMax: (CardGame.config.ENERGY_MAX || 3),
         posts: buildOpponentPosts(opp),
         nextPostIdx: 0,
         playedThisTurn: 0,
@@ -1199,6 +1228,10 @@
     b.turn = "PLAYER";
     b.phase = "P_DRAW";
 
+    // 費用（能量）每回合回滿。
+    b.player.energy = cfg.ENERGY_MAX;
+    b.opponent.energy = cfg.ENERGY_MAX;
+
     // P_DRAW：補牌至 HAND_SIZE（含手牌上限加成）。
     resetTurnState(b.player);
     var handTarget = cfg.HAND_SIZE + (b.player.handSizeBonus || 0);
@@ -1224,8 +1257,12 @@
     // 輔助牌不受「每回合 3 張」限制；非輔助牌才檢查出牌上限。
     var peek = b.player.hand[handIdx];
     if (!(peek && peek.support) && b.player.playedThisTurn >= CardGame.config.PLAY_SIZE) return b;
+    // 費用檢查：能量不足以支付卡片費用 → 不能出。
+    var peekCost = (peek && typeof peek.cost === "number") ? peek.cost : 0;
+    if (peekCost > (b.player.energy || 0)) return b;
 
     var card = b.player.hand.splice(handIdx, 1)[0];
+    b.player.energy -= ((typeof card.cost === "number") ? card.cost : 0); // 支付費用
     b._pendingCard = card;
     b.phase = "P_RESOLVE_CARD";
 
@@ -1240,7 +1277,8 @@
   //   與「已打出的牌」無關 → 已打出的 retain 牌一樣進棄牌堆（修正先前誤放回手牌的 bug）。
   function finishPlayerCard(b, card) {
     if (b.phase === "ENDED") { b._pendingCard = null; return; }
-    if (!card.temp) {
+    // temp（暫時卡）與 exhaust（消耗牌）打出後都不入棄牌堆（移除出本場循環）。
+    if (!card.temp && !card.exhaust) {
       var idx = findDeckIndex(b.player, card.postId);
       if (idx >= 0) b.player.discard.push(idx);
     }
